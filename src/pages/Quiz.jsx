@@ -1,0 +1,447 @@
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { createPageUrl } from "@/utils";
+import { ArrowLeft, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { AlertCircle } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import QuestionCard from "../components/quiz/QuestionCard";
+import ResultsCard from "../components/quiz/ResultsCard";
+import { useLanguage } from "../components/language/LanguageProvider";
+import { getQuestionsData } from "../components/data/index";
+import { applyQuizGamification } from "../components/gamification/gamification";
+
+const TESTS_PER_CATEGORY = 20;
+const QUESTIONS_PER_TEST = 20;
+
+/**
+ * Returns a random set of stable question keys. Questions may repeat when the
+ * source pool is small, which keeps every category at 20-question tests.
+ *
+ * @param {Array<object>} questionPool
+ * @returns {Array<string>}
+ */
+const buildRandomTestQuestionKeys = (questionPool) => {
+  if (questionPool.length === 0) return [];
+
+  return Array.from({ length: QUESTIONS_PER_TEST }, () => {
+    const randomIndex = Math.floor(Math.random() * questionPool.length);
+    return questionPool[randomIndex].question_key;
+  });
+};
+
+/**
+ * Resolves a saved test selection against the currently active language.
+ *
+ * @param {Array<object>} questionPool
+ * @param {Array<string>} questionKeys
+ * @returns {Array<object>}
+ */
+const resolveQuestionsByKey = (questionPool, questionKeys) => {
+  const questionsByKey = new Map(
+    questionPool.map((question) => [question.question_key, question])
+  );
+
+  return questionKeys
+    .map((questionKey) => questionsByKey.get(questionKey))
+    .filter(Boolean);
+};
+
+/**
+ * Selects questions for the requested category. Mixed practice uses the full
+ * bank, while modules keep their specific categories.
+ *
+ * @param {Array<object>} questions
+ * @param {string} category
+ * @returns {Array<object>}
+ */
+const getQuestionsForCategory = (questions, category) => {
+  if (category === "practice_quiz") return questions;
+  return questions.filter(q => q.category === category);
+};
+
+const defaultQuizSettings = {
+  phishing_awareness_limit: 20,
+  malware_basics_limit: 20,
+  safe_data_habits_limit: 20,
+  practice_quiz_limit: 20,
+  phishing_awareness_taken: 0,
+  malware_basics_taken: 0,
+  safe_data_habits_taken: 0,
+  practice_quiz_taken: 0
+};
+
+/**
+ * Quiz page.
+ *
+ * Responsibilities:
+ * - Reads the requested category from `?category=...`.
+ * - Loads the matching localized question set.
+ * - Generates 20 randomized 20-question tests per category.
+ * - Saves completed attempts and increments category counters in localStorage.
+ *
+ * @returns {JSX.Element}
+ */
+export default function Quiz() {
+  const navigate = useNavigate();
+  const { t, language } = useLanguage();
+  const urlParams = new URLSearchParams(window.location.search);
+  const category = urlParams.get("category") || "phishing_awareness";
+
+  const [allQuestions, setAllQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [selectedQuestionKeys, setSelectedQuestionKeys] = useState([]);
+  const [answerResults, setAnswerResults] = useState([]);
+  const [selectedTestNumber, setSelectedTestNumber] = useState(null);
+  const [totalTests, setTotalTests] = useState(0);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [gamificationResult, setGamificationResult] = useState(null);
+  const [showResults, setShowResults] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [startTime, setStartTime] = useState(null);
+  const [error, setError] = useState(null);
+  const [showTestSelection, setShowTestSelection] = useState(true);
+
+  /**
+   * Loads all questions for the active language/category.
+   *
+   * Inputs:
+   * - `language` and `category`.
+   *
+   * Outputs:
+   * - Updates `allQuestions` with category-filtered questions.
+   * - Updates `totalTests` using the configured 20-test catalog.
+   */
+  const loadQuestions = useCallback(() => {
+    setLoading(true);
+    const questionsData = getQuestionsData();
+    const currentQuestions = questionsData[language] || questionsData.en;
+    
+    const filtered = getQuestionsForCategory(currentQuestions, category);
+    
+    setAllQuestions(filtered);
+    setTotalTests(filtered.length > 0 ? TESTS_PER_CATEGORY : 0);
+    
+    setLoading(false);
+  }, [category, language]);
+
+  /**
+   * Checks whether the user can start another test before loading questions.
+   *
+   * Side effects:
+   * - Reads `user_quiz_settings` from localStorage.
+   * - Sets `error` when the category limit has been reached.
+   */
+  const checkLimitAndLoad = useCallback(() => {
+    setLoading(true);
+    try {
+      const settingsJSON = localStorage.getItem("user_quiz_settings");
+      const settings = {
+        ...defaultQuizSettings,
+        ...(settingsJSON ? JSON.parse(settingsJSON) : {})
+      };
+      
+      const takenField = `${category}_taken`;
+      const limitField = `${category}_limit`;
+      
+      if (settings[takenField] >= settings[limitField]) {
+        setError(t("testLimitError"));
+        setLoading(false);
+        return;
+      }
+      
+      loadQuestions();
+    } catch {
+      setError("Error loading quiz. Please try again.");
+      setLoading(false);
+    }
+  }, [category, loadQuestions, t]);
+
+  useEffect(() => {
+    checkLimitAndLoad();
+  }, [checkLimitAndLoad]);
+
+  useEffect(() => {
+    if (selectedTestNumber && !showTestSelection && !showResults) {
+      const questionsData = getQuestionsData();
+      const currentQuestions = questionsData[language] || questionsData.en;
+
+      const fetchedQuestions = getQuestionsForCategory(currentQuestions, category);
+      setAllQuestions(fetchedQuestions);
+      setQuestions(resolveQuestionsByKey(fetchedQuestions, selectedQuestionKeys));
+    }
+  }, [
+    language,
+    selectedQuestionKeys,
+    selectedTestNumber,
+    showTestSelection,
+    showResults,
+    category
+  ]);
+
+  /**
+   * Starts one randomized 20-question test selected by the user.
+   *
+   * @param {string | number} testNumber - One-based test number from the UI.
+   */
+  const handleTestSelect = (testNumber) => {
+    const questionKeys = buildRandomTestQuestionKeys(allQuestions);
+    setSelectedTestNumber(parseInt(testNumber));
+    setSelectedQuestionKeys(questionKeys);
+    setQuestions(resolveQuestionsByKey(allQuestions, questionKeys));
+    setAnswerResults([]);
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setGamificationResult(null);
+    setShowTestSelection(false);
+    setStartTime(Date.now());
+  };
+
+  /**
+   * Receives the result of one question and advances the quiz.
+   *
+   * @param {object} answerResult - Detailed answer result from the question card.
+   */
+  const handleAnswer = (answerResult) => {
+    const nextAnswerResults = [...answerResults, answerResult];
+    setAnswerResults(nextAnswerResults);
+
+    if (answerResult.is_correct) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      finishQuiz(answerResult.is_correct ? score + 1 : score, nextAnswerResults);
+    }
+  };
+
+  /**
+   * Finalizes the quiz and persists the attempt.
+   *
+   * @param {number} finalScore - Correct answers accumulated for this test.
+   * @param {Array<object>} finalAnswerResults - Per-question answer history.
+   */
+  const finishQuiz = (finalScore, finalAnswerResults) => {
+    const timeTaken = Math.floor((Date.now() - startTime) / 1000);
+    const percentage = Math.round((finalScore / questions.length) * 100);
+    const passed = percentage >= 70;
+
+    const attempt = {
+      category,
+      score: finalScore,
+      total_questions: questions.length,
+      percentage,
+      time_taken: timeTaken,
+      passed,
+      language,
+      question_results: finalAnswerResults,
+      created_date: new Date().toISOString()
+    };
+
+    const attemptsJSON = localStorage.getItem("quiz_attempts") || "[]";
+    const attempts = JSON.parse(attemptsJSON);
+    attempts.push(attempt);
+    localStorage.setItem("quiz_attempts", JSON.stringify(attempts));
+
+    const settingsJSON = localStorage.getItem("user_quiz_settings");
+    const settings = {
+      ...defaultQuizSettings,
+      ...(settingsJSON ? JSON.parse(settingsJSON) : {})
+    };
+    const takenField = `${category}_taken`;
+    settings[takenField] = settings[takenField] + 1;
+    localStorage.setItem("user_quiz_settings", JSON.stringify(settings));
+
+    const nextGamificationResult = applyQuizGamification({
+      percentage,
+      passed,
+      answerResults: finalAnswerResults
+    });
+
+    const attemptWithGamification = {
+      ...attempt,
+      gamification: nextGamificationResult
+    };
+    attempts[attempts.length - 1] = attemptWithGamification;
+    localStorage.setItem("quiz_attempts", JSON.stringify(attempts));
+
+    setScore(finalScore);
+    setGamificationResult(nextGamificationResult);
+    setShowResults(true);
+  };
+
+  /**
+   * Resets only the in-memory quiz flow so the user can choose a test again.
+   */
+  const handleRetry = () => {
+    setCurrentQuestionIndex(0);
+    setScore(0);
+    setGamificationResult(null);
+    setShowResults(false);
+    setShowTestSelection(true);
+    setSelectedTestNumber(null);
+    setSelectedQuestionKeys([]);
+    setAnswerResults([]);
+    setStartTime(null);
+  };
+
+  /**
+   * Maps the current category code to a translated display name.
+   *
+   * @returns {string}
+   */
+  const getCategoryName = () => {
+    const names = {
+      phishing_awareness: t("phishing_awarenessTest"),
+      malware_basics: t("malware_basicsTest"),
+      safe_data_habits: t("safe_data_habitsTest"),
+      practice_quiz: t("practiceQuizTest")
+    };
+    return names[category] || t("quiz");
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-teal-600 mx-auto mb-4" />
+          <p className="text-slate-600 font-medium">{t("loadingQuestions")}</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <Button
+          variant="ghost"
+          onClick={() => navigate(createPageUrl("Home"))}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          {t("backToHome")}
+        </Button>
+        <Alert variant="destructive">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  if (totalTests === 0) {
+    return (
+      <div className="max-w-2xl mx-auto text-center py-12">
+        <div className="rounded-2xl border border-slate-200 bg-white p-12 shadow-sm">
+          <h2 className="text-2xl font-bold text-slate-950 mb-4">
+            {t("noQuestionsAvailable")}
+          </h2>
+          <p className="text-slate-600 mb-6">
+            {t("noQuestionsDesc")}
+          </p>
+          <Button
+            onClick={() => navigate(createPageUrl("Home"))}
+            className="bg-teal-600 hover:bg-teal-700 text-white rounded-lg"
+          >
+            {t("backToHome")}
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-3xl mx-auto pb-20 md:pb-8">
+      <div className="mb-8">
+        <Button
+          variant="ghost"
+          onClick={() => navigate(createPageUrl("Home"))}
+          className="mb-4"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          {t("backToHome")}
+        </Button>
+        <h1 className="text-3xl font-bold tracking-tight text-slate-950">{getCategoryName()}</h1>
+      </div>
+
+      {showTestSelection ? (
+        <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <CardHeader>
+            <CardTitle>{t("selectTest")}</CardTitle>
+            <p className="text-sm text-slate-500">
+              {totalTests} {t("test")}{totalTests > 1 ? 's' : ''} {t("totalAvailable")} • {QUESTIONS_PER_TEST} {t("questions")} {t("per")} {t("test")}
+            </p>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-3">
+              <Label htmlFor="test-select" className="text-base font-semibold">
+                {t("chooseTestNumber")}
+              </Label>
+              <Select onValueChange={handleTestSelect}>
+                <SelectTrigger id="test-select" className="h-12 text-lg">
+                  <SelectValue placeholder={t("selectTestPlaceholder")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {Array.from({ length: totalTests }, (_, i) => i + 1).map((num) => (
+                    <SelectItem key={num} value={num.toString()} className="text-lg">
+                      {t("test")} {num}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 border-l-4 border-l-teal-500">
+              <h3 className="font-semibold text-slate-950 mb-3">{t("testInfo")}</h3>
+              <ul className="space-y-2 text-slate-700">
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
+                  <span>{t("testInfo1")}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
+                  <span>{t("testInfo2")}</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
+                  <span>{t("testInfo3")}</span>
+                </li>
+              </ul>
+            </div>
+          </CardContent>
+        </Card>
+      ) : !showResults ? (
+        <div>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="text-sm text-slate-600 bg-slate-100 px-4 py-2 rounded-full font-medium">
+              {t("test")} #{selectedTestNumber}
+            </div>
+          </div>
+          <QuestionCard
+            question={questions[currentQuestionIndex]}
+            questionNumber={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+            onAnswer={handleAnswer}
+          />
+        </div>
+      ) : (
+        <ResultsCard
+          score={score}
+          totalQuestions={questions.length}
+          percentage={Math.round((score / questions.length) * 100)}
+          timeTaken={Math.floor((Date.now() - startTime) / 1000)}
+          gamification={gamificationResult}
+          onRetry={handleRetry}
+          onHome={() => navigate(createPageUrl("Home"))}
+        />
+      )}
+    </div>
+  );
+}

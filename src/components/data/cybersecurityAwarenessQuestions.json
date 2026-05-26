@@ -1,0 +1,2106 @@
+{
+  "en": [
+    {
+      "id": "phish-001",
+      "category": "phishing_awareness",
+      "block_id": 1,
+      "block_name": "Suspicious Messages",
+      "question": "You receive an email saying your payroll account will be closed in one hour unless you click a link. What should you do first?",
+      "options": [
+        "Click the link quickly before the deadline",
+        "Forward it to coworkers to ask if they received it",
+        "Use a known company portal or contact method to verify the message",
+        "Reply with your username so support can help"
+      ],
+      "correct_answer": 2,
+      "explanation": "Urgent deadlines are common in phishing. Verify through a trusted path you already know, such as the official portal, help desk, or bookmarked site.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "urgency",
+        "verification"
+      ]
+    },
+    {
+      "id": "phish-002",
+      "category": "phishing_awareness",
+      "block_id": 1,
+      "block_name": "Suspicious Messages",
+      "question": "Which sign most strongly suggests a message may be phishing?",
+      "options": [
+        "It uses your first name",
+        "It asks you to bypass normal approval steps",
+        "It arrives during business hours",
+        "It has a company logo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Attackers often pressure people to skip normal controls. Logos and personal names can be copied, so process-breaking requests deserve extra verification.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "approval",
+        "social engineering"
+      ]
+    },
+    {
+      "id": "phish-003",
+      "category": "phishing_awareness",
+      "block_id": 2,
+      "block_name": "Links and Attachments",
+      "question": "A link text says 'company.com', but hovering over it shows a different unfamiliar domain. What is the safest response?",
+      "options": [
+        "Open it in a private browser window",
+        "Ignore the hover information because link text is reliable",
+        "Do not click it and report or verify the message",
+        "Copy the link into a social media post"
+      ],
+      "correct_answer": 2,
+      "explanation": "Displayed link text can be misleading. If the real destination looks unfamiliar, avoid clicking and use your organization's reporting process.",
+      "difficulty": "intermediate",
+      "tags": [
+        "links",
+        "spoofing",
+        "reporting"
+      ]
+    },
+    {
+      "id": "phish-004",
+      "category": "phishing_awareness",
+      "block_id": 2,
+      "block_name": "Links and Attachments",
+      "question": "A vendor asks you by email to change their payment bank account. What should you do?",
+      "options": [
+        "Update it immediately to avoid late payment",
+        "Confirm using an approved phone number or vendor management workflow",
+        "Ask the sender to resend the request with a logo",
+        "Send a screenshot of the finance system"
+      ],
+      "correct_answer": 1,
+      "explanation": "Payment-change scams are common. Use a trusted phone number or approved workflow, not the contact details in the suspicious email.",
+      "difficulty": "intermediate",
+      "tags": [
+        "payment fraud",
+        "vendor risk",
+        "verification"
+      ]
+    },
+    {
+      "id": "malware-001",
+      "category": "malware_basics",
+      "block_id": 3,
+      "block_name": "Unsafe Downloads",
+      "question": "A website says you must install a new video player to view a file. What is the safest choice?",
+      "options": [
+        "Install it if the website looks professional",
+        "Download it and scan it later",
+        "Avoid installing unexpected software and use approved tools only",
+        "Share the installer with others to see if it works"
+      ],
+      "correct_answer": 2,
+      "explanation": "Unexpected software prompts are a frequent malware path. Use approved software sources and ask support when a tool is required.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "downloads",
+        "approved tools"
+      ]
+    },
+    {
+      "id": "malware-002",
+      "category": "malware_basics",
+      "block_id": 3,
+      "block_name": "Unsafe Downloads",
+      "question": "Which behavior can indicate a device may be infected?",
+      "options": [
+        "The clock shows the correct time",
+        "Apps open normally",
+        "Unexpected pop-ups, slowdowns, or security warnings appear",
+        "The battery is fully charged"
+      ],
+      "correct_answer": 2,
+      "explanation": "No single symptom proves malware, but unexpected pop-ups, major slowdowns, and security warnings should be reported promptly.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "warning signs",
+        "device behavior"
+      ]
+    },
+    {
+      "id": "malware-003",
+      "category": "malware_basics",
+      "block_id": 4,
+      "block_name": "Safe Response",
+      "question": "You accidentally opened a suspicious attachment. What should you do next?",
+      "options": [
+        "Delete the email and say nothing",
+        "Report it immediately using the approved process",
+        "Keep using the computer to see if anything happens",
+        "Forward the attachment to your team"
+      ],
+      "correct_answer": 1,
+      "explanation": "Fast reporting helps security teams limit damage. Do not hide mistakes or spread the attachment.",
+      "difficulty": "intermediate",
+      "tags": [
+        "attachments",
+        "incident reporting",
+        "safe response"
+      ]
+    },
+    {
+      "id": "malware-004",
+      "category": "malware_basics",
+      "block_id": 4,
+      "block_name": "Safe Response",
+      "question": "Why are software updates important for everyday users?",
+      "options": [
+        "They only change colors and icons",
+        "They can fix security weaknesses attackers may use",
+        "They make passwords unnecessary",
+        "They prevent all phishing emails"
+      ],
+      "correct_answer": 1,
+      "explanation": "Updates often include security fixes. Keeping software current reduces risk, even though it does not replace careful behavior.",
+      "difficulty": "beginner",
+      "tags": [
+        "updates",
+        "security fixes",
+        "safe habits"
+      ]
+    },
+    {
+      "id": "data-001",
+      "category": "safe_data_habits",
+      "block_id": 5,
+      "block_name": "Passwords and Access",
+      "question": "What is the best password habit?",
+      "options": [
+        "Reuse one strong password everywhere",
+        "Write passwords on sticky notes near the screen",
+        "Use unique passwords and a trusted password manager",
+        "Share passwords only with close coworkers"
+      ],
+      "correct_answer": 2,
+      "explanation": "Unique passwords limit damage if one site is compromised. A trusted password manager helps people use strong passwords without memorizing all of them.",
+      "difficulty": "beginner",
+      "tags": [
+        "passwords",
+        "password manager",
+        "account safety"
+      ]
+    },
+    {
+      "id": "data-002",
+      "category": "safe_data_habits",
+      "block_id": 5,
+      "block_name": "Passwords and Access",
+      "question": "A sign-in prompt asks for a multi-factor code you did not request. What should you do?",
+      "options": [
+        "Approve it to clear the notification",
+        "Deny it and report the unexpected prompt",
+        "Send the code to your manager",
+        "Turn off multi-factor authentication"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unexpected multi-factor prompts can mean someone knows your password. Deny the request, change the password through a trusted path, and report it.",
+      "difficulty": "intermediate",
+      "tags": [
+        "mfa",
+        "account takeover",
+        "reporting"
+      ]
+    },
+    {
+      "id": "data-003",
+      "category": "safe_data_habits",
+      "block_id": 6,
+      "block_name": "Privacy and Reporting",
+      "question": "Which information should you avoid sending through an unverified chat or email request?",
+      "options": [
+        "Public office hours",
+        "A link to the public company website",
+        "Passwords, access codes, personal IDs, or payment details",
+        "A public job title"
+      ],
+      "correct_answer": 2,
+      "explanation": "Sensitive data should only be shared through approved systems and verified requests. Attackers often ask for secrets through informal channels.",
+      "difficulty": "beginner",
+      "tags": [
+        "privacy",
+        "sensitive data",
+        "verification"
+      ]
+    },
+    {
+      "id": "data-004",
+      "category": "safe_data_habits",
+      "block_id": 6,
+      "block_name": "Privacy and Reporting",
+      "question": "Why should suspicious activity be reported even when you are not sure?",
+      "options": [
+        "Security teams can decide if it is real and respond early",
+        "It automatically proves someone did something wrong",
+        "It replaces the need for training",
+        "It makes all future messages safe"
+      ],
+      "correct_answer": 0,
+      "explanation": "Reporting uncertainty is useful. Security teams would rather check a false alarm than miss an early sign of a real incident.",
+      "difficulty": "beginner",
+      "tags": [
+        "reporting",
+        "early response",
+        "security culture"
+      ]
+    },
+    {
+      "id": "phish-005",
+      "category": "phishing_awareness",
+      "block_id": 7,
+      "block_name": "Sender Verification",
+      "question": "A message appears to come from your manager and asks you to buy gift cards right away. What should you do?",
+      "options": [
+        "Buy the cards because the request came from a manager",
+        "Reply asking how many cards are needed",
+        "Verify through a trusted channel before taking action",
+        "Post the request in a public chat"
+      ],
+      "correct_answer": 2,
+      "explanation": "Gift card requests with urgency are a common social engineering pattern. Verify through a known phone number, approved chat, or normal approval workflow.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "gift cards",
+        "verification"
+      ]
+    },
+    {
+      "id": "phish-006",
+      "category": "phishing_awareness",
+      "block_id": 7,
+      "block_name": "Sender Verification",
+      "question": "An email address looks almost correct but has one extra letter in the company name. What is the safest conclusion?",
+      "options": [
+        "It is probably safe because the logo is correct",
+        "It may be impersonation and should be verified",
+        "It is safe if the message is short",
+        "It should be forwarded to customers"
+      ],
+      "correct_answer": 1,
+      "explanation": "Small changes in sender addresses are often used to impersonate trusted people or companies. Treat the message as suspicious until verified.",
+      "difficulty": "intermediate",
+      "tags": [
+        "impersonation",
+        "sender address",
+        "spoofing"
+      ]
+    },
+    {
+      "id": "phish-007",
+      "category": "phishing_awareness",
+      "block_id": 8,
+      "block_name": "Urgent Requests",
+      "question": "A text message says a package delivery failed and asks you to pay a small fee through a link. What should you do?",
+      "options": [
+        "Pay quickly because the fee is small",
+        "Use the official delivery company website or app to check",
+        "Send the link to friends to ask what they think",
+        "Enter any card because the amount is low"
+      ],
+      "correct_answer": 1,
+      "explanation": "Delivery scams often use small fees to collect card details. Check using the official website, app, or tracking number from a trusted source.",
+      "difficulty": "beginner",
+      "tags": [
+        "smishing",
+        "delivery scam",
+        "links"
+      ]
+    },
+    {
+      "id": "malware-005",
+      "category": "malware_basics",
+      "block_id": 9,
+      "block_name": "Pop-ups and Warnings",
+      "question": "A pop-up says your computer is infected and gives a phone number to call. What is the safest response?",
+      "options": [
+        "Call the number immediately",
+        "Follow the pop-up instructions",
+        "Close the page and contact approved support if needed",
+        "Give remote access to the person who answers"
+      ],
+      "correct_answer": 2,
+      "explanation": "Fake security pop-ups try to scare users into calling attackers or installing tools. Use approved support channels instead.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "fake warning",
+        "support scam"
+      ]
+    },
+    {
+      "id": "malware-006",
+      "category": "malware_basics",
+      "block_id": 9,
+      "block_name": "Pop-ups and Warnings",
+      "question": "You find an unknown USB drive in a meeting room. What should you do?",
+      "options": [
+        "Plug it in to identify the owner",
+        "Open the files only if they look harmless",
+        "Give it to approved IT or security staff without using it",
+        "Take it home and test it there"
+      ],
+      "correct_answer": 2,
+      "explanation": "Unknown USB devices can carry malware. Do not connect them to work or personal devices; follow the approved handling process.",
+      "difficulty": "intermediate",
+      "tags": [
+        "usb",
+        "malware",
+        "physical security"
+      ]
+    },
+    {
+      "id": "malware-007",
+      "category": "malware_basics",
+      "block_id": 10,
+      "block_name": "Safe Response",
+      "question": "After clicking a suspicious link, your browser starts downloading a file automatically. What should you do?",
+      "options": [
+        "Open the file to see what it is",
+        "Cancel or delete the download and report the incident",
+        "Rename the file before opening it",
+        "Upload the file to a shared drive"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unexpected downloads can be unsafe. Avoid opening the file, preserve enough detail to report, and follow your organization's process.",
+      "difficulty": "intermediate",
+      "tags": [
+        "downloads",
+        "incident reporting",
+        "safe response"
+      ]
+    },
+    {
+      "id": "data-005",
+      "category": "safe_data_habits",
+      "block_id": 11,
+      "block_name": "Data Sharing",
+      "question": "A coworker asks you to send a customer list through a personal email account because they are locked out. What should you do?",
+      "options": [
+        "Send it because the coworker needs help",
+        "Use only approved systems and verify the request",
+        "Remove a few rows and send the rest",
+        "Send it through a messaging app instead"
+      ],
+      "correct_answer": 1,
+      "explanation": "Customer data should stay in approved systems. Workarounds can expose sensitive information even when the request seems helpful.",
+      "difficulty": "intermediate",
+      "tags": [
+        "data sharing",
+        "privacy",
+        "approved systems"
+      ]
+    },
+    {
+      "id": "data-006",
+      "category": "safe_data_habits",
+      "block_id": 11,
+      "block_name": "Data Sharing",
+      "question": "Which habit best protects sensitive information during screen sharing?",
+      "options": [
+        "Share the entire desktop for every meeting",
+        "Keep email and chat open so people can follow along",
+        "Share only the needed window and close unrelated sensitive content",
+        "Assume meeting participants will ignore private information"
+      ],
+      "correct_answer": 2,
+      "explanation": "Sharing only what is needed reduces accidental exposure of emails, chats, customer data, or internal documents.",
+      "difficulty": "beginner",
+      "tags": [
+        "screen sharing",
+        "privacy",
+        "least exposure"
+      ]
+    },
+    {
+      "id": "data-007",
+      "category": "safe_data_habits",
+      "block_id": 12,
+      "block_name": "Account Safety",
+      "question": "A browser asks to save the password for a shared kiosk or public computer. What is the safest choice?",
+      "options": [
+        "Save it to make future sign-ins faster",
+        "Save it only if the password is strong",
+        "Do not save it and sign out completely when finished",
+        "Save it and clear the screen"
+      ],
+      "correct_answer": 2,
+      "explanation": "Shared or public devices should not store personal or work passwords. Always sign out and avoid saving credentials.",
+      "difficulty": "beginner",
+      "tags": [
+        "passwords",
+        "public devices",
+        "account safety"
+      ]
+    },
+    {
+      "id": "phish-008",
+      "category": "phishing_awareness",
+      "block_id": 13,
+      "block_name": "Unexpected Attachments",
+      "question": "You receive an invoice attachment from a company you do not recognize. What should you do first?",
+      "options": [
+        "Open it because invoices are normal business documents",
+        "Verify the sender and business reason before opening",
+        "Forward it to the finance team without comment",
+        "Download it to your personal device"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unexpected invoices can be phishing or malware attempts. Verify the sender and context before opening attachments.",
+      "difficulty": "beginner",
+      "tags": [
+        "attachments",
+        "invoice scam",
+        "verification"
+      ]
+    },
+    {
+      "id": "phish-009",
+      "category": "phishing_awareness",
+      "block_id": 13,
+      "block_name": "Unexpected Attachments",
+      "question": "A message says you won a prize but must sign in with your work account to claim it. What is the safest response?",
+      "options": [
+        "Sign in quickly before the offer expires",
+        "Use a personal password instead",
+        "Avoid the link and report or verify the message",
+        "Share the link with coworkers"
+      ],
+      "correct_answer": 2,
+      "explanation": "Prize messages can be used to steal credentials. Do not enter work account details into unverified pages.",
+      "difficulty": "beginner",
+      "tags": [
+        "credential theft",
+        "prize scam",
+        "reporting"
+      ]
+    },
+    {
+      "id": "malware-008",
+      "category": "malware_basics",
+      "block_id": 14,
+      "block_name": "Approved Software",
+      "question": "You need a tool for a task, and a website offers a free cracked version. What should you do?",
+      "options": [
+        "Install it because it saves money",
+        "Ask for an approved tool or license through normal channels",
+        "Install it only after work hours",
+        "Share the download link with your team"
+      ],
+      "correct_answer": 1,
+      "explanation": "Cracked or unofficial software often carries malware and can create legal and security risk. Use approved software channels.",
+      "difficulty": "intermediate",
+      "tags": [
+        "software",
+        "downloads",
+        "approved tools"
+      ]
+    },
+    {
+      "id": "malware-009",
+      "category": "malware_basics",
+      "block_id": 14,
+      "block_name": "Approved Software",
+      "question": "A browser extension asks for permission to read and change all data on every website. What is the safest next step?",
+      "options": [
+        "Approve it because extensions are always reviewed",
+        "Check whether it is approved and needed before installing",
+        "Install it and remove it later if there is a problem",
+        "Use it only on weekends"
+      ],
+      "correct_answer": 1,
+      "explanation": "Extensions can access sensitive browsing data. Install only trusted and approved extensions that are needed for your work.",
+      "difficulty": "advanced",
+      "tags": [
+        "browser extensions",
+        "permissions",
+        "data access"
+      ]
+    },
+    {
+      "id": "data-008",
+      "category": "safe_data_habits",
+      "block_id": 15,
+      "block_name": "Clean Desk and Devices",
+      "question": "You step away from your desk for a quick break. Which action best protects your account?",
+      "options": [
+        "Leave the screen open because you will be back soon",
+        "Ask someone nearby to watch the screen",
+        "Lock the device before leaving",
+        "Turn the monitor brightness down"
+      ],
+      "correct_answer": 2,
+      "explanation": "Locking your device helps prevent unauthorized access, even during short breaks.",
+      "difficulty": "beginner",
+      "tags": [
+        "device lock",
+        "clean desk",
+        "account safety"
+      ]
+    },
+    {
+      "id": "data-009",
+      "category": "safe_data_habits",
+      "block_id": 15,
+      "block_name": "Clean Desk and Devices",
+      "question": "What should you do with printed documents that contain sensitive information?",
+      "options": [
+        "Leave them on the printer for later",
+        "Throw them in any trash can",
+        "Store or dispose of them using approved secure methods",
+        "Take a photo so you can recycle the paper"
+      ],
+      "correct_answer": 2,
+      "explanation": "Printed sensitive data needs the same care as digital data. Use approved storage, shredding, or disposal processes.",
+      "difficulty": "beginner",
+      "tags": [
+        "printed data",
+        "clean desk",
+        "secure disposal"
+      ]
+    },
+    {
+      "id": "phish-010",
+      "category": "phishing_awareness",
+      "block_id": 16,
+      "block_name": "Calendar and Meeting Scams",
+      "question": "You receive an unexpected calendar invite with a link to review a document. What should you do before opening it?",
+      "options": [
+        "Open it because calendar invites are safe",
+        "Verify the meeting and sender through a trusted channel",
+        "Accept the invite and enter your password",
+        "Forward it to everyone on your team"
+      ],
+      "correct_answer": 1,
+      "explanation": "Attackers can use calendar invites to deliver suspicious links. Verify unexpected meetings before opening links or attachments.",
+      "difficulty": "intermediate",
+      "tags": [
+        "calendar invite",
+        "phishing",
+        "verification"
+      ]
+    },
+    {
+      "id": "phish-011",
+      "category": "phishing_awareness",
+      "block_id": 16,
+      "block_name": "Calendar and Meeting Scams",
+      "question": "A video meeting link asks you to install a new plug-in before joining. What is the safest action?",
+      "options": [
+        "Install the plug-in quickly so you are not late",
+        "Check whether the meeting tool and plug-in are approved",
+        "Try the plug-in on a coworker's computer first",
+        "Disable security settings to continue"
+      ],
+      "correct_answer": 1,
+      "explanation": "Fake meeting pages may push unsafe software. Use approved meeting tools and ask support if a new plug-in is required.",
+      "difficulty": "intermediate",
+      "tags": [
+        "meeting link",
+        "software prompt",
+        "approved tools"
+      ]
+    },
+    {
+      "id": "phish-012",
+      "category": "phishing_awareness",
+      "block_id": 17,
+      "block_name": "Account Alerts",
+      "question": "An email says your mailbox is full and asks you to sign in through a link to keep receiving mail. What should you do?",
+      "options": [
+        "Sign in from the email link",
+        "Use the official mail app or known portal to check storage",
+        "Reply with your password",
+        "Delete old mail from the link page"
+      ],
+      "correct_answer": 1,
+      "explanation": "Account alert scams often imitate real notifications. Use the official app or known portal instead of links in unexpected emails.",
+      "difficulty": "beginner",
+      "tags": [
+        "account alert",
+        "credential theft",
+        "mailbox"
+      ]
+    },
+    {
+      "id": "malware-010",
+      "category": "malware_basics",
+      "block_id": 18,
+      "block_name": "Mobile Device Safety",
+      "question": "A phone app asks for access to contacts, microphone, camera, and location even though it is only a flashlight app. What should you do?",
+      "options": [
+        "Approve all permissions because apps need access",
+        "Question the permissions and avoid installing if they are unnecessary",
+        "Install it and remove permissions later",
+        "Share the app with others"
+      ],
+      "correct_answer": 1,
+      "explanation": "Apps should request only permissions that make sense for their purpose. Excessive permissions can expose private data.",
+      "difficulty": "advanced",
+      "tags": [
+        "mobile apps",
+        "permissions",
+        "privacy"
+      ]
+    },
+    {
+      "id": "malware-011",
+      "category": "malware_basics",
+      "block_id": 18,
+      "block_name": "Mobile Device Safety",
+      "question": "Your device warns that an app came from an unknown source. What is the safest response?",
+      "options": [
+        "Ignore the warning if the app looks useful",
+        "Install it only on Wi-Fi",
+        "Stop and use approved app stores or company-approved sources",
+        "Send the installer to a friend"
+      ],
+      "correct_answer": 2,
+      "explanation": "Unknown sources increase malware risk. Use approved stores and organizational guidance for software installation.",
+      "difficulty": "beginner",
+      "tags": [
+        "unknown source",
+        "mobile security",
+        "downloads"
+      ]
+    },
+    {
+      "id": "malware-012",
+      "category": "malware_basics",
+      "block_id": 19,
+      "block_name": "Ransomware Awareness",
+      "question": "Several files suddenly cannot be opened and a note demands payment to restore them. What should you do?",
+      "options": [
+        "Pay immediately",
+        "Try random recovery tools from the internet",
+        "Disconnect from networks if instructed and report immediately",
+        "Delete the note and keep working"
+      ],
+      "correct_answer": 2,
+      "explanation": "This may be ransomware. Fast reporting and following approved incident steps helps limit damage.",
+      "difficulty": "advanced",
+      "tags": [
+        "ransomware",
+        "incident response",
+        "reporting"
+      ]
+    },
+    {
+      "id": "data-010",
+      "category": "safe_data_habits",
+      "block_id": 20,
+      "block_name": "Cloud File Sharing",
+      "question": "You need to share a document with one external partner. Which sharing setting is safest?",
+      "options": [
+        "Anyone with the link can edit",
+        "Public on the internet",
+        "Specific approved people with only the access they need",
+        "Everyone in your address book"
+      ],
+      "correct_answer": 2,
+      "explanation": "Use least-privilege sharing: specific people, appropriate access level, and approved business purpose.",
+      "difficulty": "intermediate",
+      "tags": [
+        "cloud sharing",
+        "least privilege",
+        "external sharing"
+      ]
+    },
+    {
+      "id": "data-011",
+      "category": "safe_data_habits",
+      "block_id": 20,
+      "block_name": "Cloud File Sharing",
+      "question": "What should you check before uploading sensitive files to a shared folder?",
+      "options": [
+        "Whether the folder name sounds professional",
+        "Who has access and whether the location is approved",
+        "Whether the file is small",
+        "Whether the folder has many files already"
+      ],
+      "correct_answer": 1,
+      "explanation": "Before uploading sensitive content, confirm the storage location is approved and access is limited to the right people.",
+      "difficulty": "beginner",
+      "tags": [
+        "cloud storage",
+        "access review",
+        "sensitive data"
+      ]
+    },
+    {
+      "id": "data-012",
+      "category": "safe_data_habits",
+      "block_id": 21,
+      "block_name": "Public Wi-Fi",
+      "question": "You are working from a cafe on public Wi-Fi. What is the safest habit?",
+      "options": [
+        "Access sensitive systems only through approved secure methods",
+        "Turn off multi-factor authentication",
+        "Share the Wi-Fi password with strangers",
+        "Use any network with the strongest signal"
+      ],
+      "correct_answer": 0,
+      "explanation": "Public networks can be risky. Follow approved secure access methods such as company VPN or managed device protections.",
+      "difficulty": "intermediate",
+      "tags": [
+        "public wifi",
+        "remote work",
+        "secure access"
+      ]
+    },
+    {
+      "id": "data-013",
+      "category": "safe_data_habits",
+      "block_id": 21,
+      "block_name": "Public Wi-Fi",
+      "question": "A public charging station offers a free cable to connect your phone. What is a safer option?",
+      "options": [
+        "Use the cable for data transfer",
+        "Use your own charger or a power-only charging method",
+        "Unlock the phone while charging",
+        "Approve any prompt that appears"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unknown cables or charging stations may expose a device to risk. Use trusted chargers or power-only options when possible.",
+      "difficulty": "intermediate",
+      "tags": [
+        "public charging",
+        "mobile safety",
+        "device protection"
+      ]
+    },
+    {
+      "id": "phish-013",
+      "category": "phishing_awareness",
+      "block_id": 22,
+      "block_name": "QR Code Scams",
+      "question": "A poster in the office has a QR code promising a free company gift. What should you do before scanning it?",
+      "options": [
+        "Scan it because it is inside the office",
+        "Check whether the QR code and campaign are approved",
+        "Cover the QR code with another sticker",
+        "Send a photo of it to customers"
+      ],
+      "correct_answer": 1,
+      "explanation": "QR codes can hide unsafe links. Verify unexpected codes before scanning, especially when they ask for sign-in or payment information.",
+      "difficulty": "intermediate",
+      "tags": [
+        "qr code",
+        "phishing",
+        "verification"
+      ]
+    },
+    {
+      "id": "phish-014",
+      "category": "phishing_awareness",
+      "block_id": 22,
+      "block_name": "QR Code Scams",
+      "question": "A QR code takes you to a sign-in page that looks like your company portal but the address is unfamiliar. What is safest?",
+      "options": [
+        "Enter your password because the page looks correct",
+        "Close it and use the known portal address instead",
+        "Try a different password",
+        "Share the QR code with your team"
+      ],
+      "correct_answer": 1,
+      "explanation": "A familiar-looking page can still be fake. Use a known address or bookmark instead of trusting the QR destination.",
+      "difficulty": "advanced",
+      "tags": [
+        "qr code",
+        "credential theft",
+        "fake portal"
+      ]
+    },
+    {
+      "id": "phish-015",
+      "category": "phishing_awareness",
+      "block_id": 23,
+      "block_name": "Social Media Messages",
+      "question": "A social media message from a coworker asks for a work file urgently. What should you do?",
+      "options": [
+        "Send the file because you know the coworker",
+        "Verify through an approved work channel first",
+        "Ask for their personal email",
+        "Post the file in the message thread"
+      ],
+      "correct_answer": 1,
+      "explanation": "Social accounts can be impersonated or compromised. Use approved work channels before sharing business information.",
+      "difficulty": "intermediate",
+      "tags": [
+        "social media",
+        "impersonation",
+        "data sharing"
+      ]
+    },
+    {
+      "id": "phish-016",
+      "category": "phishing_awareness",
+      "block_id": 23,
+      "block_name": "Social Media Messages",
+      "question": "A recruiter message offers a job interview but asks you to upload a copy of your ID before any call. What is safest?",
+      "options": [
+        "Upload the ID immediately",
+        "Verify the company and process before sharing personal information",
+        "Send a clearer photo to look professional",
+        "Share your work password too"
+      ],
+      "correct_answer": 1,
+      "explanation": "Requests for personal documents before basic verification can be scams. Confirm the organization and process first.",
+      "difficulty": "beginner",
+      "tags": [
+        "job scam",
+        "personal data",
+        "verification"
+      ]
+    },
+    {
+      "id": "malware-013",
+      "category": "malware_basics",
+      "block_id": 24,
+      "block_name": "File Types",
+      "question": "Which file should make you extra cautious when it arrives unexpectedly?",
+      "options": [
+        "A plain text meeting agenda",
+        "An executable installer or script",
+        "A public PDF from a known portal",
+        "A calendar reminder you created"
+      ],
+      "correct_answer": 1,
+      "explanation": "Installers, scripts, and executable files can run code. Unexpected files should be verified before opening.",
+      "difficulty": "beginner",
+      "tags": [
+        "file types",
+        "attachments",
+        "malware"
+      ]
+    },
+    {
+      "id": "malware-014",
+      "category": "malware_basics",
+      "block_id": 24,
+      "block_name": "File Types",
+      "question": "A compressed ZIP file from an unknown sender asks you to enable content after opening. What should you do?",
+      "options": [
+        "Enable content so the file displays correctly",
+        "Stop and report or verify the file",
+        "Extract it on a shared computer",
+        "Rename it before opening"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unknown compressed files and enable-content prompts can hide malicious content. Verify before interacting further.",
+      "difficulty": "advanced",
+      "tags": [
+        "zip files",
+        "enable content",
+        "malware"
+      ]
+    },
+    {
+      "id": "malware-015",
+      "category": "malware_basics",
+      "block_id": 25,
+      "block_name": "Device Behavior",
+      "question": "Your computer suddenly shows many browser tabs, ads, and toolbars you did not install. What should you do?",
+      "options": [
+        "Ignore it if work still opens",
+        "Report it and avoid entering sensitive information until checked",
+        "Install more toolbars to block them",
+        "Enter passwords only in one tab"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unexpected ads, toolbars, and redirects can signal unwanted software. Report the behavior and avoid sensitive activity until reviewed.",
+      "difficulty": "intermediate",
+      "tags": [
+        "device behavior",
+        "adware",
+        "reporting"
+      ]
+    },
+    {
+      "id": "malware-016",
+      "category": "malware_basics",
+      "block_id": 25,
+      "block_name": "Device Behavior",
+      "question": "A support caller asks you to install a remote-control tool to fix a problem you did not report. What is safest?",
+      "options": [
+        "Install it because they say they are support",
+        "End the call and contact approved support directly",
+        "Give them temporary access only",
+        "Ask them to call back after work"
+      ],
+      "correct_answer": 1,
+      "explanation": "Unexpected support calls can be scams. Use known support channels before installing remote-access tools.",
+      "difficulty": "intermediate",
+      "tags": [
+        "support scam",
+        "remote access",
+        "verification"
+      ]
+    },
+    {
+      "id": "data-014",
+      "category": "safe_data_habits",
+      "block_id": 26,
+      "block_name": "Data Classification",
+      "question": "A document is marked confidential. What does that usually mean?",
+      "options": [
+        "It can be shared publicly",
+        "It should be handled only through approved access and storage",
+        "It must be printed for everyone",
+        "It is safe to send to personal email"
+      ],
+      "correct_answer": 1,
+      "explanation": "Confidential labels indicate information needs controlled access, approved storage, and careful sharing.",
+      "difficulty": "beginner",
+      "tags": [
+        "confidential data",
+        "data classification",
+        "approved storage"
+      ]
+    },
+    {
+      "id": "data-015",
+      "category": "safe_data_habits",
+      "block_id": 26,
+      "block_name": "Data Classification",
+      "question": "You are unsure whether a file contains sensitive data. What should you do?",
+      "options": [
+        "Treat it as non-sensitive until told otherwise",
+        "Handle it carefully and ask the appropriate owner or policy source",
+        "Upload it publicly to get feedback",
+        "Send it to a personal account for review"
+      ],
+      "correct_answer": 1,
+      "explanation": "When unsure, use the more protective handling choice and ask the right owner, manager, or policy resource.",
+      "difficulty": "beginner",
+      "tags": [
+        "data classification",
+        "sensitive data",
+        "policy"
+      ]
+    },
+    {
+      "id": "data-016",
+      "category": "safe_data_habits",
+      "block_id": 27,
+      "block_name": "Multi-Factor Authentication",
+      "question": "Which response is safest if you receive repeated multi-factor prompts you did not start?",
+      "options": [
+        "Approve one to stop the alerts",
+        "Deny them, change your password through a trusted path, and report",
+        "Turn off notifications",
+        "Send the code to support"
+      ],
+      "correct_answer": 1,
+      "explanation": "Repeated unexpected prompts can indicate someone is trying to access your account. Deny and report quickly.",
+      "difficulty": "intermediate",
+      "tags": [
+        "mfa fatigue",
+        "account safety",
+        "reporting"
+      ]
+    },
+    {
+      "id": "data-017",
+      "category": "safe_data_habits",
+      "block_id": 27,
+      "block_name": "Multi-Factor Authentication",
+      "question": "Why is multi-factor authentication useful?",
+      "options": [
+        "It makes phishing impossible",
+        "It adds another check beyond the password",
+        "It lets everyone share one account",
+        "It replaces software updates"
+      ],
+      "correct_answer": 1,
+      "explanation": "MFA adds a second layer of verification. It reduces risk when a password is guessed or stolen.",
+      "difficulty": "beginner",
+      "tags": [
+        "mfa",
+        "passwords",
+        "account safety"
+      ]
+    },
+    {
+      "id": "data-018",
+      "category": "safe_data_habits",
+      "block_id": 28,
+      "block_name": "Travel Security",
+      "question": "When traveling for work, what should you do with devices in public places?",
+      "options": [
+        "Leave them unattended for short moments",
+        "Keep them with you or secured according to policy",
+        "Ask strangers to watch them",
+        "Disable screen lock for convenience"
+      ],
+      "correct_answer": 1,
+      "explanation": "Travel increases loss and theft risk. Keep devices secured, locked, and handled according to policy.",
+      "difficulty": "beginner",
+      "tags": [
+        "travel security",
+        "device safety",
+        "screen lock"
+      ]
+    }
+  ],
+  "es": [
+    {
+      "id": "phish-001",
+      "category": "phishing_awareness",
+      "block_id": 1,
+      "block_name": "Mensajes sospechosos",
+      "question": "Recibes un correo que dice que tu cuenta de nomina se cerrara en una hora si no haces clic en un enlace. Que deberias hacer primero?",
+      "options": [
+        "Hacer clic rapido antes de que venza el tiempo",
+        "Reenviarlo a companeros para preguntar si tambien lo recibieron",
+        "Verificar usando un portal o contacto oficial ya conocido",
+        "Responder con tu usuario para que soporte ayude"
+      ],
+      "correct_answer": 2,
+      "explanation": "La urgencia artificial es comun en phishing. Verifica por una ruta confiable que ya conozcas, como el portal oficial, soporte o un sitio guardado.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "urgencia",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "phish-002",
+      "category": "phishing_awareness",
+      "block_id": 1,
+      "block_name": "Mensajes sospechosos",
+      "question": "Que senal sugiere con mas fuerza que un mensaje puede ser phishing?",
+      "options": [
+        "Usa tu nombre",
+        "Te pide saltarte pasos normales de aprobacion",
+        "Llega durante horario laboral",
+        "Tiene el logo de la empresa"
+      ],
+      "correct_answer": 1,
+      "explanation": "Los atacantes suelen presionar para saltar controles. Los logos y nombres se copian facilmente; las solicitudes que rompen procesos deben verificarse.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "aprobacion",
+        "ingenieria social"
+      ]
+    },
+    {
+      "id": "phish-003",
+      "category": "phishing_awareness",
+      "block_id": 2,
+      "block_name": "Enlaces y adjuntos",
+      "question": "El texto de un enlace dice 'empresa.com', pero al pasar el cursor aparece otro dominio desconocido. Cual es la respuesta mas segura?",
+      "options": [
+        "Abrirlo en una ventana privada",
+        "Ignorar la vista previa porque el texto del enlace es confiable",
+        "No hacer clic y reportar o verificar el mensaje",
+        "Copiar el enlace en redes sociales"
+      ],
+      "correct_answer": 2,
+      "explanation": "El texto visible puede enganar. Si el destino real parece desconocido, evita hacer clic y usa el proceso de reporte.",
+      "difficulty": "intermediate",
+      "tags": [
+        "enlaces",
+        "suplantacion",
+        "reporte"
+      ]
+    },
+    {
+      "id": "phish-004",
+      "category": "phishing_awareness",
+      "block_id": 2,
+      "block_name": "Enlaces y adjuntos",
+      "question": "Un proveedor pide por correo cambiar su cuenta bancaria de pago. Que deberias hacer?",
+      "options": [
+        "Actualizarla de inmediato para evitar atrasos",
+        "Confirmar con un telefono aprobado o flujo oficial de proveedores",
+        "Pedir que reenvien la solicitud con un logo",
+        "Enviar una captura del sistema financiero"
+      ],
+      "correct_answer": 1,
+      "explanation": "Los fraudes de cambio de pago son comunes. Usa un numero o proceso confiable, no los datos incluidos en el correo sospechoso.",
+      "difficulty": "intermediate",
+      "tags": [
+        "fraude de pago",
+        "riesgo de proveedor",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "malware-001",
+      "category": "malware_basics",
+      "block_id": 3,
+      "block_name": "Descargas inseguras",
+      "question": "Un sitio web dice que debes instalar un nuevo reproductor para ver un archivo. Cual es la opcion mas segura?",
+      "options": [
+        "Instalarlo si el sitio se ve profesional",
+        "Descargarlo y revisarlo despues",
+        "Evitar software inesperado y usar solo herramientas aprobadas",
+        "Compartir el instalador para ver si funciona"
+      ],
+      "correct_answer": 2,
+      "explanation": "Las instalaciones inesperadas son una via comun de malware. Usa fuentes aprobadas y consulta a soporte cuando sea necesario.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "descargas",
+        "herramientas aprobadas"
+      ]
+    },
+    {
+      "id": "malware-002",
+      "category": "malware_basics",
+      "block_id": 3,
+      "block_name": "Descargas inseguras",
+      "question": "Que comportamiento puede indicar que un dispositivo esta infectado?",
+      "options": [
+        "El reloj muestra la hora correcta",
+        "Las apps abren normalmente",
+        "Aparecen ventanas emergentes, lentitud o alertas inesperadas",
+        "La bateria esta cargada"
+      ],
+      "correct_answer": 2,
+      "explanation": "Ningun sintoma prueba malware por si solo, pero ventanas emergentes, lentitud fuerte y alertas deben reportarse pronto.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "senales de alerta",
+        "comportamiento del dispositivo"
+      ]
+    },
+    {
+      "id": "malware-003",
+      "category": "malware_basics",
+      "block_id": 4,
+      "block_name": "Respuesta segura",
+      "question": "Abriste por accidente un adjunto sospechoso. Que deberias hacer despues?",
+      "options": [
+        "Borrar el correo y no decir nada",
+        "Reportarlo inmediatamente por el proceso aprobado",
+        "Seguir usando el equipo para ver si pasa algo",
+        "Reenviar el adjunto al equipo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Reportar rapido ayuda a limitar danos. No ocultes errores ni difundas el adjunto.",
+      "difficulty": "intermediate",
+      "tags": [
+        "adjuntos",
+        "reporte de incidentes",
+        "respuesta segura"
+      ]
+    },
+    {
+      "id": "malware-004",
+      "category": "malware_basics",
+      "block_id": 4,
+      "block_name": "Respuesta segura",
+      "question": "Por que son importantes las actualizaciones para usuarios finales?",
+      "options": [
+        "Solo cambian colores e iconos",
+        "Pueden corregir debilidades de seguridad que atacantes usan",
+        "Hacen innecesarias las contrasenas",
+        "Detienen todos los correos de phishing"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las actualizaciones suelen incluir correcciones de seguridad. Mantener software actualizado reduce riesgos.",
+      "difficulty": "beginner",
+      "tags": [
+        "actualizaciones",
+        "correcciones de seguridad",
+        "habitos seguros"
+      ]
+    },
+    {
+      "id": "data-001",
+      "category": "safe_data_habits",
+      "block_id": 5,
+      "block_name": "Contrasenas y acceso",
+      "question": "Cual es el mejor habito con contrasenas?",
+      "options": [
+        "Reusar una contrasena fuerte en todos lados",
+        "Escribir contrasenas en notas junto a la pantalla",
+        "Usar contrasenas unicas y un gestor confiable",
+        "Compartir contrasenas solo con companeros cercanos"
+      ],
+      "correct_answer": 2,
+      "explanation": "Las contrasenas unicas limitan el dano si un sitio se compromete. Un gestor confiable ayuda a usarlas sin memorizarlas todas.",
+      "difficulty": "beginner",
+      "tags": [
+        "contrasenas",
+        "gestor de contrasenas",
+        "seguridad de cuentas"
+      ]
+    },
+    {
+      "id": "data-002",
+      "category": "safe_data_habits",
+      "block_id": 5,
+      "block_name": "Contrasenas y acceso",
+      "question": "Una solicitud de inicio de sesion pide un codigo multifactor que tu no solicitaste. Que haces?",
+      "options": [
+        "Aprobarlo para quitar la notificacion",
+        "Negarlo y reportar la solicitud inesperada",
+        "Enviar el codigo a tu gerente",
+        "Apagar la autenticacion multifactor"
+      ],
+      "correct_answer": 1,
+      "explanation": "Una solicitud inesperada puede significar que alguien conoce tu contrasena. Niega, cambia la contrasena por una ruta confiable y reporta.",
+      "difficulty": "intermediate",
+      "tags": [
+        "mfa",
+        "toma de cuenta",
+        "reporte"
+      ]
+    },
+    {
+      "id": "data-003",
+      "category": "safe_data_habits",
+      "block_id": 6,
+      "block_name": "Privacidad y reporte",
+      "question": "Que informacion debes evitar enviar por un chat o correo no verificado?",
+      "options": [
+        "Horarios publicos de oficina",
+        "Un enlace al sitio publico de la empresa",
+        "Contrasenas, codigos, identificaciones personales o datos de pago",
+        "Un cargo publico"
+      ],
+      "correct_answer": 2,
+      "explanation": "Los datos sensibles solo deben compartirse por sistemas aprobados y solicitudes verificadas.",
+      "difficulty": "beginner",
+      "tags": [
+        "privacidad",
+        "datos sensibles",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "data-004",
+      "category": "safe_data_habits",
+      "block_id": 6,
+      "block_name": "Privacidad y reporte",
+      "question": "Por que conviene reportar actividad sospechosa incluso si no estas seguro?",
+      "options": [
+        "El equipo de seguridad puede decidir y responder temprano",
+        "Prueba automaticamente que alguien hizo algo malo",
+        "Reemplaza la necesidad de capacitacion",
+        "Hace seguros todos los mensajes futuros"
+      ],
+      "correct_answer": 0,
+      "explanation": "Reportar dudas es util. Es mejor revisar una falsa alarma que perder una senal temprana de incidente.",
+      "difficulty": "beginner",
+      "tags": [
+        "reporte",
+        "respuesta temprana",
+        "cultura de seguridad"
+      ]
+    },
+    {
+      "id": "phish-005",
+      "category": "phishing_awareness",
+      "block_id": 7,
+      "block_name": "Verificacion del remitente",
+      "question": "Un mensaje parece venir de tu gerente y te pide comprar tarjetas de regalo de inmediato. Que deberias hacer?",
+      "options": [
+        "Comprar las tarjetas porque la solicitud vino de un gerente",
+        "Responder preguntando cuantas tarjetas se necesitan",
+        "Verificar por un canal confiable antes de actuar",
+        "Publicar la solicitud en un chat publico"
+      ],
+      "correct_answer": 2,
+      "explanation": "Las solicitudes urgentes de tarjetas de regalo son comunes en ingenieria social. Verifica por telefono conocido, chat aprobado o flujo normal de aprobacion.",
+      "difficulty": "beginner",
+      "tags": [
+        "phishing",
+        "tarjetas de regalo",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "phish-006",
+      "category": "phishing_awareness",
+      "block_id": 7,
+      "block_name": "Verificacion del remitente",
+      "question": "Una direccion de correo parece casi correcta pero tiene una letra extra en el nombre de la empresa. Cual es la conclusion mas segura?",
+      "options": [
+        "Probablemente es segura porque el logo es correcto",
+        "Puede ser suplantacion y debe verificarse",
+        "Es segura si el mensaje es corto",
+        "Debe reenviarse a clientes"
+      ],
+      "correct_answer": 1,
+      "explanation": "Pequenos cambios en direcciones de remitente se usan para suplantar personas o empresas confiables. Trata el mensaje como sospechoso hasta verificarlo.",
+      "difficulty": "intermediate",
+      "tags": [
+        "suplantacion",
+        "direccion del remitente",
+        "spoofing"
+      ]
+    },
+    {
+      "id": "phish-007",
+      "category": "phishing_awareness",
+      "block_id": 8,
+      "block_name": "Solicitudes urgentes",
+      "question": "Un mensaje de texto dice que una entrega fallo y te pide pagar una pequena tarifa mediante un enlace. Que deberias hacer?",
+      "options": [
+        "Pagar rapido porque la tarifa es pequena",
+        "Usar el sitio o app oficial de la empresa de envio para revisar",
+        "Enviar el enlace a amigos para preguntar que opinan",
+        "Ingresar cualquier tarjeta porque el monto es bajo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las estafas de entrega usan tarifas pequenas para capturar datos de tarjetas. Revisa por el sitio oficial, app o numero de rastreo confiable.",
+      "difficulty": "beginner",
+      "tags": [
+        "smishing",
+        "estafa de entrega",
+        "enlaces"
+      ]
+    },
+    {
+      "id": "malware-005",
+      "category": "malware_basics",
+      "block_id": 9,
+      "block_name": "Ventanas emergentes y alertas",
+      "question": "Una ventana emergente dice que tu computadora esta infectada y muestra un numero para llamar. Cual es la respuesta mas segura?",
+      "options": [
+        "Llamar al numero inmediatamente",
+        "Seguir las instrucciones de la ventana emergente",
+        "Cerrar la pagina y contactar soporte aprobado si hace falta",
+        "Dar acceso remoto a la persona que conteste"
+      ],
+      "correct_answer": 2,
+      "explanation": "Las falsas alertas de seguridad buscan asustar para que llames a atacantes o instales herramientas. Usa canales de soporte aprobados.",
+      "difficulty": "beginner",
+      "tags": [
+        "malware",
+        "alerta falsa",
+        "estafa de soporte"
+      ]
+    },
+    {
+      "id": "malware-006",
+      "category": "malware_basics",
+      "block_id": 9,
+      "block_name": "Ventanas emergentes y alertas",
+      "question": "Encuentras una memoria USB desconocida en una sala de reuniones. Que deberias hacer?",
+      "options": [
+        "Conectarla para identificar al dueno",
+        "Abrir los archivos solo si parecen inofensivos",
+        "Entregarla a IT o seguridad aprobada sin usarla",
+        "Llevarla a casa y probarla alla"
+      ],
+      "correct_answer": 2,
+      "explanation": "Los dispositivos USB desconocidos pueden contener malware. No los conectes a equipos de trabajo o personales; sigue el proceso aprobado.",
+      "difficulty": "intermediate",
+      "tags": [
+        "usb",
+        "malware",
+        "seguridad fisica"
+      ]
+    },
+    {
+      "id": "malware-007",
+      "category": "malware_basics",
+      "block_id": 10,
+      "block_name": "Respuesta segura",
+      "question": "Despues de hacer clic en un enlace sospechoso, tu navegador empieza a descargar un archivo automaticamente. Que deberias hacer?",
+      "options": [
+        "Abrir el archivo para ver que es",
+        "Cancelar o eliminar la descarga y reportar el incidente",
+        "Cambiar el nombre del archivo antes de abrirlo",
+        "Subir el archivo a una carpeta compartida"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las descargas inesperadas pueden ser inseguras. Evita abrir el archivo, conserva detalles suficientes para reportar y sigue el proceso de tu organizacion.",
+      "difficulty": "intermediate",
+      "tags": [
+        "descargas",
+        "reporte de incidentes",
+        "respuesta segura"
+      ]
+    },
+    {
+      "id": "data-005",
+      "category": "safe_data_habits",
+      "block_id": 11,
+      "block_name": "Compartir datos",
+      "question": "Un companero te pide enviar una lista de clientes por correo personal porque no puede entrar a su cuenta. Que deberias hacer?",
+      "options": [
+        "Enviarla porque el companero necesita ayuda",
+        "Usar solo sistemas aprobados y verificar la solicitud",
+        "Quitar algunas filas y enviar el resto",
+        "Enviarla por una app de mensajeria"
+      ],
+      "correct_answer": 1,
+      "explanation": "Los datos de clientes deben permanecer en sistemas aprobados. Los atajos pueden exponer informacion sensible aunque la solicitud parezca util.",
+      "difficulty": "intermediate",
+      "tags": [
+        "compartir datos",
+        "privacidad",
+        "sistemas aprobados"
+      ]
+    },
+    {
+      "id": "data-006",
+      "category": "safe_data_habits",
+      "block_id": 11,
+      "block_name": "Compartir datos",
+      "question": "Que habito protege mejor la informacion sensible durante una pantalla compartida?",
+      "options": [
+        "Compartir todo el escritorio en cada reunion",
+        "Mantener correo y chat abiertos para que todos sigan el contexto",
+        "Compartir solo la ventana necesaria y cerrar contenido sensible no relacionado",
+        "Asumir que los participantes ignoraran informacion privada"
+      ],
+      "correct_answer": 2,
+      "explanation": "Compartir solo lo necesario reduce la exposicion accidental de correos, chats, datos de clientes o documentos internos.",
+      "difficulty": "beginner",
+      "tags": [
+        "pantalla compartida",
+        "privacidad",
+        "menor exposicion"
+      ]
+    },
+    {
+      "id": "data-007",
+      "category": "safe_data_habits",
+      "block_id": 12,
+      "block_name": "Seguridad de cuentas",
+      "question": "Un navegador pregunta si quieres guardar la contrasena en un kiosco o computador publico. Cual es la opcion mas segura?",
+      "options": [
+        "Guardarla para iniciar sesion mas rapido despues",
+        "Guardarla solo si la contrasena es fuerte",
+        "No guardarla y cerrar sesion completamente al terminar",
+        "Guardarla y limpiar la pantalla"
+      ],
+      "correct_answer": 2,
+      "explanation": "Los dispositivos compartidos o publicos no deben guardar contrasenas personales o laborales. Siempre cierra sesion y evita guardar credenciales.",
+      "difficulty": "beginner",
+      "tags": [
+        "contrasenas",
+        "dispositivos publicos",
+        "seguridad de cuentas"
+      ]
+    },
+    {
+      "id": "phish-008",
+      "category": "phishing_awareness",
+      "block_id": 13,
+      "block_name": "Adjuntos inesperados",
+      "question": "Recibes un adjunto de factura de una empresa que no reconoces. Que deberias hacer primero?",
+      "options": [
+        "Abrirlo porque las facturas son documentos normales",
+        "Verificar el remitente y la razon antes de abrirlo",
+        "Reenviarlo a finanzas sin comentario",
+        "Descargarlo en tu dispositivo personal"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las facturas inesperadas pueden ser phishing o intentos de malware. Verifica remitente y contexto antes de abrir adjuntos.",
+      "difficulty": "beginner",
+      "tags": [
+        "adjuntos",
+        "estafa de factura",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "phish-009",
+      "category": "phishing_awareness",
+      "block_id": 13,
+      "block_name": "Adjuntos inesperados",
+      "question": "Un mensaje dice que ganaste un premio pero debes iniciar sesion con tu cuenta laboral para reclamarlo. Cual es la respuesta mas segura?",
+      "options": [
+        "Iniciar sesion rapido antes de que expire la oferta",
+        "Usar una contrasena personal",
+        "Evitar el enlace y reportar o verificar el mensaje",
+        "Compartir el enlace con companeros"
+      ],
+      "correct_answer": 2,
+      "explanation": "Los mensajes de premios pueden usarse para robar credenciales. No ingreses datos laborales en paginas no verificadas.",
+      "difficulty": "beginner",
+      "tags": [
+        "robo de credenciales",
+        "estafa de premio",
+        "reporte"
+      ]
+    },
+    {
+      "id": "malware-008",
+      "category": "malware_basics",
+      "block_id": 14,
+      "block_name": "Software aprobado",
+      "question": "Necesitas una herramienta para una tarea y un sitio ofrece una version gratuita pirateada. Que deberias hacer?",
+      "options": [
+        "Instalarla porque ahorra dinero",
+        "Solicitar una herramienta o licencia aprobada por canales normales",
+        "Instalarla solo despues del horario laboral",
+        "Compartir el enlace de descarga con tu equipo"
+      ],
+      "correct_answer": 1,
+      "explanation": "El software pirateado o no oficial suele traer malware y puede crear riesgos legales y de seguridad. Usa canales aprobados.",
+      "difficulty": "intermediate",
+      "tags": [
+        "software",
+        "descargas",
+        "herramientas aprobadas"
+      ]
+    },
+    {
+      "id": "malware-009",
+      "category": "malware_basics",
+      "block_id": 14,
+      "block_name": "Software aprobado",
+      "question": "Una extension del navegador pide permiso para leer y cambiar todos los datos en cada sitio web. Cual es el siguiente paso mas seguro?",
+      "options": [
+        "Aprobarla porque las extensiones siempre se revisan",
+        "Verificar si esta aprobada y es necesaria antes de instalar",
+        "Instalarla y quitarla despues si hay problemas",
+        "Usarla solo los fines de semana"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las extensiones pueden acceder a datos sensibles de navegacion. Instala solo extensiones confiables, aprobadas y necesarias.",
+      "difficulty": "advanced",
+      "tags": [
+        "extensiones del navegador",
+        "permisos",
+        "acceso a datos"
+      ]
+    },
+    {
+      "id": "data-008",
+      "category": "safe_data_habits",
+      "block_id": 15,
+      "block_name": "Escritorio y dispositivos",
+      "question": "Te alejas de tu escritorio por una pausa corta. Que accion protege mejor tu cuenta?",
+      "options": [
+        "Dejar la pantalla abierta porque vuelves pronto",
+        "Pedir a alguien cercano que mire la pantalla",
+        "Bloquear el dispositivo antes de irte",
+        "Bajar el brillo del monitor"
+      ],
+      "correct_answer": 2,
+      "explanation": "Bloquear tu dispositivo ayuda a evitar acceso no autorizado, incluso durante pausas cortas.",
+      "difficulty": "beginner",
+      "tags": [
+        "bloqueo de dispositivo",
+        "escritorio limpio",
+        "seguridad de cuentas"
+      ]
+    },
+    {
+      "id": "data-009",
+      "category": "safe_data_habits",
+      "block_id": 15,
+      "block_name": "Escritorio y dispositivos",
+      "question": "Que deberias hacer con documentos impresos que contienen informacion sensible?",
+      "options": [
+        "Dejarlos en la impresora para despues",
+        "Tirarlos en cualquier basura",
+        "Guardarlos o desecharlos usando metodos seguros aprobados",
+        "Tomar una foto para reciclar el papel"
+      ],
+      "correct_answer": 2,
+      "explanation": "La informacion sensible impresa necesita el mismo cuidado que la digital. Usa procesos aprobados de almacenamiento, triturado o eliminacion.",
+      "difficulty": "beginner",
+      "tags": [
+        "datos impresos",
+        "escritorio limpio",
+        "eliminacion segura"
+      ]
+    },
+    {
+      "id": "phish-010",
+      "category": "phishing_awareness",
+      "block_id": 16,
+      "block_name": "Estafas de calendario y reuniones",
+      "question": "Recibes una invitacion de calendario inesperada con un enlace para revisar un documento. Que deberias hacer antes de abrirlo?",
+      "options": [
+        "Abrirlo porque las invitaciones de calendario son seguras",
+        "Verificar la reunion y el remitente por un canal confiable",
+        "Aceptar la invitacion e ingresar tu contrasena",
+        "Reenviarlo a todo tu equipo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Los atacantes pueden usar invitaciones de calendario para entregar enlaces sospechosos. Verifica reuniones inesperadas antes de abrir enlaces o adjuntos.",
+      "difficulty": "intermediate",
+      "tags": [
+        "invitacion de calendario",
+        "phishing",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "phish-011",
+      "category": "phishing_awareness",
+      "block_id": 16,
+      "block_name": "Estafas de calendario y reuniones",
+      "question": "Un enlace de videollamada pide instalar un nuevo complemento antes de entrar. Cual es la accion mas segura?",
+      "options": [
+        "Instalarlo rapido para no llegar tarde",
+        "Verificar si la herramienta y el complemento estan aprobados",
+        "Probar el complemento primero en el computador de un companero",
+        "Desactivar configuraciones de seguridad para continuar"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las paginas falsas de reuniones pueden impulsar software inseguro. Usa herramientas aprobadas y consulta soporte si se requiere un complemento nuevo.",
+      "difficulty": "intermediate",
+      "tags": [
+        "enlace de reunion",
+        "solicitud de software",
+        "herramientas aprobadas"
+      ]
+    },
+    {
+      "id": "phish-012",
+      "category": "phishing_awareness",
+      "block_id": 17,
+      "block_name": "Alertas de cuenta",
+      "question": "Un correo dice que tu buzon esta lleno y pide iniciar sesion mediante un enlace para seguir recibiendo correo. Que deberias hacer?",
+      "options": [
+        "Iniciar sesion desde el enlace del correo",
+        "Usar la app oficial de correo o el portal conocido para revisar almacenamiento",
+        "Responder con tu contrasena",
+        "Eliminar correos desde la pagina del enlace"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las estafas de alertas de cuenta imitan notificaciones reales. Usa la app oficial o portal conocido en vez de enlaces en correos inesperados.",
+      "difficulty": "beginner",
+      "tags": [
+        "alerta de cuenta",
+        "robo de credenciales",
+        "buzon"
+      ]
+    },
+    {
+      "id": "malware-010",
+      "category": "malware_basics",
+      "block_id": 18,
+      "block_name": "Seguridad en dispositivos moviles",
+      "question": "Una app del telefono pide acceso a contactos, microfono, camara y ubicacion aunque solo es una linterna. Que deberias hacer?",
+      "options": [
+        "Aprobar todos los permisos porque las apps necesitan acceso",
+        "Cuestionar los permisos y evitar instalarla si no son necesarios",
+        "Instalarla y quitar permisos despues",
+        "Compartir la app con otros"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las apps deben pedir solo permisos coherentes con su proposito. Permisos excesivos pueden exponer datos privados.",
+      "difficulty": "advanced",
+      "tags": [
+        "apps moviles",
+        "permisos",
+        "privacidad"
+      ]
+    },
+    {
+      "id": "malware-011",
+      "category": "malware_basics",
+      "block_id": 18,
+      "block_name": "Seguridad en dispositivos moviles",
+      "question": "Tu dispositivo advierte que una app viene de una fuente desconocida. Cual es la respuesta mas segura?",
+      "options": [
+        "Ignorar la advertencia si la app parece util",
+        "Instalarla solo usando Wi-Fi",
+        "Detenerse y usar tiendas aprobadas o fuentes aprobadas por la empresa",
+        "Enviar el instalador a un amigo"
+      ],
+      "correct_answer": 2,
+      "explanation": "Las fuentes desconocidas aumentan el riesgo de malware. Usa tiendas aprobadas y la guia de tu organizacion para instalar software.",
+      "difficulty": "beginner",
+      "tags": [
+        "fuente desconocida",
+        "seguridad movil",
+        "descargas"
+      ]
+    },
+    {
+      "id": "malware-012",
+      "category": "malware_basics",
+      "block_id": 19,
+      "block_name": "Conciencia sobre ransomware",
+      "question": "Varios archivos de pronto no abren y una nota exige pago para restaurarlos. Que deberias hacer?",
+      "options": [
+        "Pagar inmediatamente",
+        "Probar herramientas aleatorias de recuperacion de internet",
+        "Desconectarte de redes si asi se indica y reportar inmediatamente",
+        "Eliminar la nota y seguir trabajando"
+      ],
+      "correct_answer": 2,
+      "explanation": "Esto puede ser ransomware. Reportar rapido y seguir los pasos aprobados de incidente ayuda a limitar el dano.",
+      "difficulty": "advanced",
+      "tags": [
+        "ransomware",
+        "respuesta a incidentes",
+        "reporte"
+      ]
+    },
+    {
+      "id": "data-010",
+      "category": "safe_data_habits",
+      "block_id": 20,
+      "block_name": "Compartir archivos en la nube",
+      "question": "Necesitas compartir un documento con un socio externo. Que configuracion es mas segura?",
+      "options": [
+        "Cualquiera con el enlace puede editar",
+        "Publico en internet",
+        "Personas especificas aprobadas con solo el acceso necesario",
+        "Todos en tu libreta de direcciones"
+      ],
+      "correct_answer": 2,
+      "explanation": "Usa acceso de minimo privilegio: personas especificas, nivel adecuado y proposito de negocio aprobado.",
+      "difficulty": "intermediate",
+      "tags": [
+        "compartir en la nube",
+        "minimo privilegio",
+        "compartir externo"
+      ]
+    },
+    {
+      "id": "data-011",
+      "category": "safe_data_habits",
+      "block_id": 20,
+      "block_name": "Compartir archivos en la nube",
+      "question": "Que deberias revisar antes de subir archivos sensibles a una carpeta compartida?",
+      "options": [
+        "Si el nombre de la carpeta suena profesional",
+        "Quien tiene acceso y si la ubicacion esta aprobada",
+        "Si el archivo es pequeno",
+        "Si la carpeta ya tiene muchos archivos"
+      ],
+      "correct_answer": 1,
+      "explanation": "Antes de subir contenido sensible, confirma que la ubicacion este aprobada y el acceso este limitado a las personas correctas.",
+      "difficulty": "beginner",
+      "tags": [
+        "almacenamiento en nube",
+        "revision de acceso",
+        "datos sensibles"
+      ]
+    },
+    {
+      "id": "data-012",
+      "category": "safe_data_habits",
+      "block_id": 21,
+      "block_name": "Wi-Fi publico",
+      "question": "Estas trabajando desde una cafeteria con Wi-Fi publico. Cual es el habito mas seguro?",
+      "options": [
+        "Acceder a sistemas sensibles solo mediante metodos seguros aprobados",
+        "Apagar la autenticacion multifactor",
+        "Compartir la contrasena del Wi-Fi con desconocidos",
+        "Usar cualquier red con la senal mas fuerte"
+      ],
+      "correct_answer": 0,
+      "explanation": "Las redes publicas pueden ser riesgosas. Sigue metodos seguros aprobados como VPN corporativa o protecciones de dispositivo administrado.",
+      "difficulty": "intermediate",
+      "tags": [
+        "wifi publico",
+        "trabajo remoto",
+        "acceso seguro"
+      ]
+    },
+    {
+      "id": "data-013",
+      "category": "safe_data_habits",
+      "block_id": 21,
+      "block_name": "Wi-Fi publico",
+      "question": "Una estacion publica de carga ofrece un cable gratis para conectar tu telefono. Cual es una opcion mas segura?",
+      "options": [
+        "Usar el cable para transferir datos",
+        "Usar tu propio cargador o un metodo de carga solo electrica",
+        "Desbloquear el telefono mientras carga",
+        "Aprobar cualquier mensaje que aparezca"
+      ],
+      "correct_answer": 1,
+      "explanation": "Cables o estaciones desconocidas pueden exponer un dispositivo a riesgo. Usa cargadores confiables u opciones solo de energia cuando sea posible.",
+      "difficulty": "intermediate",
+      "tags": [
+        "carga publica",
+        "seguridad movil",
+        "proteccion de dispositivo"
+      ]
+    },
+    {
+      "id": "phish-013",
+      "category": "phishing_awareness",
+      "block_id": 22,
+      "block_name": "Estafas con codigos QR",
+      "question": "Un aviso en la oficina tiene un codigo QR que promete un regalo de la empresa. Que deberias hacer antes de escanearlo?",
+      "options": [
+        "Escanearlo porque esta dentro de la oficina",
+        "Verificar si el codigo QR y la campana estan aprobados",
+        "Cubrir el codigo QR con otra etiqueta",
+        "Enviar una foto a clientes"
+      ],
+      "correct_answer": 1,
+      "explanation": "Los codigos QR pueden ocultar enlaces inseguros. Verifica codigos inesperados antes de escanear, especialmente si piden inicio de sesion o pagos.",
+      "difficulty": "intermediate",
+      "tags": [
+        "codigo qr",
+        "phishing",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "phish-014",
+      "category": "phishing_awareness",
+      "block_id": 22,
+      "block_name": "Estafas con codigos QR",
+      "question": "Un codigo QR te lleva a una pagina de inicio de sesion que parece el portal de la empresa, pero la direccion es desconocida. Que es mas seguro?",
+      "options": [
+        "Ingresar tu contrasena porque la pagina parece correcta",
+        "Cerrar y usar la direccion conocida del portal",
+        "Probar una contrasena diferente",
+        "Compartir el codigo QR con tu equipo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Una pagina conocida puede ser falsa. Usa una direccion conocida o marcador en lugar de confiar en el destino del QR.",
+      "difficulty": "advanced",
+      "tags": [
+        "codigo qr",
+        "robo de credenciales",
+        "portal falso"
+      ]
+    },
+    {
+      "id": "phish-015",
+      "category": "phishing_awareness",
+      "block_id": 23,
+      "block_name": "Mensajes en redes sociales",
+      "question": "Un mensaje en redes sociales de un companero pide un archivo laboral con urgencia. Que deberias hacer?",
+      "options": [
+        "Enviar el archivo porque conoces al companero",
+        "Verificar primero por un canal laboral aprobado",
+        "Pedir su correo personal",
+        "Publicar el archivo en el hilo del mensaje"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las cuentas sociales pueden ser suplantadas o comprometidas. Usa canales laborales aprobados antes de compartir informacion de negocio.",
+      "difficulty": "intermediate",
+      "tags": [
+        "redes sociales",
+        "suplantacion",
+        "compartir datos"
+      ]
+    },
+    {
+      "id": "phish-016",
+      "category": "phishing_awareness",
+      "block_id": 23,
+      "block_name": "Mensajes en redes sociales",
+      "question": "Un mensaje de reclutador ofrece una entrevista pero pide subir copia de tu ID antes de cualquier llamada. Que es mas seguro?",
+      "options": [
+        "Subir el ID inmediatamente",
+        "Verificar la empresa y el proceso antes de compartir informacion personal",
+        "Enviar una foto mas clara para parecer profesional",
+        "Compartir tambien tu contrasena laboral"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las solicitudes de documentos personales antes de verificar lo basico pueden ser estafas. Confirma la organizacion y el proceso primero.",
+      "difficulty": "beginner",
+      "tags": [
+        "estafa laboral",
+        "datos personales",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "malware-013",
+      "category": "malware_basics",
+      "block_id": 24,
+      "block_name": "Tipos de archivo",
+      "question": "Que archivo debe causar mas cautela cuando llega inesperadamente?",
+      "options": [
+        "Una agenda de reunion en texto simple",
+        "Un instalador ejecutable o script",
+        "Un PDF publico de un portal conocido",
+        "Un recordatorio de calendario que creaste"
+      ],
+      "correct_answer": 1,
+      "explanation": "Instaladores, scripts y archivos ejecutables pueden correr codigo. Los archivos inesperados deben verificarse antes de abrirse.",
+      "difficulty": "beginner",
+      "tags": [
+        "tipos de archivo",
+        "adjuntos",
+        "malware"
+      ]
+    },
+    {
+      "id": "malware-014",
+      "category": "malware_basics",
+      "block_id": 24,
+      "block_name": "Tipos de archivo",
+      "question": "Un archivo ZIP de un remitente desconocido pide habilitar contenido al abrirlo. Que deberias hacer?",
+      "options": [
+        "Habilitar contenido para que se vea correctamente",
+        "Detenerte y reportar o verificar el archivo",
+        "Extraerlo en un computador compartido",
+        "Cambiarle el nombre antes de abrirlo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Archivos comprimidos desconocidos y solicitudes de habilitar contenido pueden ocultar contenido malicioso. Verifica antes de seguir.",
+      "difficulty": "advanced",
+      "tags": [
+        "archivos zip",
+        "habilitar contenido",
+        "malware"
+      ]
+    },
+    {
+      "id": "malware-015",
+      "category": "malware_basics",
+      "block_id": 25,
+      "block_name": "Comportamiento del dispositivo",
+      "question": "Tu computador muestra de pronto muchas pestanas, anuncios y barras que no instalaste. Que deberias hacer?",
+      "options": [
+        "Ignorarlo si el trabajo todavia abre",
+        "Reportarlo y evitar ingresar informacion sensible hasta revisarlo",
+        "Instalar mas barras para bloquearlas",
+        "Ingresar contrasenas solo en una pestana"
+      ],
+      "correct_answer": 1,
+      "explanation": "Anuncios, barras y redirecciones inesperadas pueden indicar software no deseado. Reporta el comportamiento y evita actividad sensible hasta revision.",
+      "difficulty": "intermediate",
+      "tags": [
+        "comportamiento del dispositivo",
+        "adware",
+        "reporte"
+      ]
+    },
+    {
+      "id": "malware-016",
+      "category": "malware_basics",
+      "block_id": 25,
+      "block_name": "Comportamiento del dispositivo",
+      "question": "Una llamada de soporte te pide instalar una herramienta de control remoto para arreglar un problema que no reportaste. Que es mas seguro?",
+      "options": [
+        "Instalarla porque dicen ser soporte",
+        "Terminar la llamada y contactar soporte aprobado directamente",
+        "Darles acceso temporal solamente",
+        "Pedir que llamen despues del trabajo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las llamadas inesperadas de soporte pueden ser estafas. Usa canales conocidos antes de instalar herramientas de acceso remoto.",
+      "difficulty": "intermediate",
+      "tags": [
+        "estafa de soporte",
+        "acceso remoto",
+        "verificacion"
+      ]
+    },
+    {
+      "id": "data-014",
+      "category": "safe_data_habits",
+      "block_id": 26,
+      "block_name": "Clasificacion de datos",
+      "question": "Un documento esta marcado como confidencial. Que significa normalmente?",
+      "options": [
+        "Puede compartirse publicamente",
+        "Debe manejarse solo con acceso y almacenamiento aprobados",
+        "Debe imprimirse para todos",
+        "Es seguro enviarlo a correo personal"
+      ],
+      "correct_answer": 1,
+      "explanation": "Las etiquetas confidenciales indican que la informacion necesita acceso controlado, almacenamiento aprobado y cuidado al compartir.",
+      "difficulty": "beginner",
+      "tags": [
+        "datos confidenciales",
+        "clasificacion de datos",
+        "almacenamiento aprobado"
+      ]
+    },
+    {
+      "id": "data-015",
+      "category": "safe_data_habits",
+      "block_id": 26,
+      "block_name": "Clasificacion de datos",
+      "question": "No estas seguro si un archivo contiene datos sensibles. Que deberias hacer?",
+      "options": [
+        "Tratarlo como no sensible hasta que digan lo contrario",
+        "Manejarlo con cuidado y consultar al propietario o politica adecuada",
+        "Subirlo publicamente para recibir comentarios",
+        "Enviarlo a una cuenta personal para revisarlo"
+      ],
+      "correct_answer": 1,
+      "explanation": "Si hay duda, elige el manejo mas protector y consulta al propietario, gerente o recurso de politica correcto.",
+      "difficulty": "beginner",
+      "tags": [
+        "clasificacion de datos",
+        "datos sensibles",
+        "politica"
+      ]
+    },
+    {
+      "id": "data-016",
+      "category": "safe_data_habits",
+      "block_id": 27,
+      "block_name": "Autenticacion multifactor",
+      "question": "Cual es la respuesta mas segura si recibes repetidas solicitudes multifactor que no iniciaste?",
+      "options": [
+        "Aprobar una para detener alertas",
+        "Negarlas, cambiar tu contrasena por ruta confiable y reportar",
+        "Apagar notificaciones",
+        "Enviar el codigo a soporte"
+      ],
+      "correct_answer": 1,
+      "explanation": "Solicitudes inesperadas repetidas pueden indicar que alguien intenta entrar a tu cuenta. Niega y reporta rapido.",
+      "difficulty": "intermediate",
+      "tags": [
+        "fatiga mfa",
+        "seguridad de cuentas",
+        "reporte"
+      ]
+    },
+    {
+      "id": "data-017",
+      "category": "safe_data_habits",
+      "block_id": 27,
+      "block_name": "Autenticacion multifactor",
+      "question": "Por que es util la autenticacion multifactor?",
+      "options": [
+        "Hace imposible el phishing",
+        "Agrega otra verificacion ademas de la contrasena",
+        "Permite que todos compartan una cuenta",
+        "Reemplaza las actualizaciones"
+      ],
+      "correct_answer": 1,
+      "explanation": "MFA agrega una segunda capa de verificacion. Reduce el riesgo cuando una contrasena es adivinada o robada.",
+      "difficulty": "beginner",
+      "tags": [
+        "mfa",
+        "contrasenas",
+        "seguridad de cuentas"
+      ]
+    },
+    {
+      "id": "data-018",
+      "category": "safe_data_habits",
+      "block_id": 28,
+      "block_name": "Seguridad en viajes",
+      "question": "Cuando viajas por trabajo, que deberias hacer con dispositivos en lugares publicos?",
+      "options": [
+        "Dejarlos sin supervision por momentos cortos",
+        "Mantenerlos contigo o asegurados segun la politica",
+        "Pedir a desconocidos que los vigilen",
+        "Desactivar bloqueo de pantalla por conveniencia"
+      ],
+      "correct_answer": 1,
+      "explanation": "Viajar aumenta el riesgo de perdida y robo. Mantén dispositivos asegurados, bloqueados y manejados segun la politica.",
+      "difficulty": "beginner",
+      "tags": [
+        "seguridad en viajes",
+        "seguridad de dispositivos",
+        "bloqueo de pantalla"
+      ]
+    }
+  ]
+}

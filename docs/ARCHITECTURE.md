@@ -9,6 +9,7 @@ SmartQuiz is a client-only React/Vite app. It reads localized question data from
 3. `src/pages/index.jsx` defines lazy-loaded pages.
 4. `src/pages/Layout.jsx` provides the app shell, navigation, and language switcher.
 5. Pages load question data through `getQuestionsData()`.
+6. UI copy and quiz rules can be customized through the local exam profile.
 
 ## Data
 
@@ -35,12 +36,24 @@ Each question has:
 
 The adapter normalizes optional metadata and adds a stable `question_key` for randomized tests, progress analytics, and language switching.
 
+## Exam Profile
+
+The editable exam profile lives in:
+
+- `src/components/profile/examProfileStorage.js`
+
+At runtime, profile edits are stored in:
+
+- `smartquiz_exam_profile`
+
+The profile controls app name, subtitle, hero copy, domain label, module labels/descriptions, passing score, quiz length, and category defaults. This keeps the visual interface reusable across domains while preserving stable category ids for analytics and question matching.
+
 ## Quiz Behavior
 
 - `Quiz.jsx` reads `?category=...` from the URL.
 - Category tests filter the question bank by `category`.
 - Mixed practice uses the full active language bank.
-- Each selected test generates 20 randomized question keys.
+- Each selected test generates the configured number of randomized question keys.
 - Smaller category banks can repeat questions, which keeps every module usable.
 - Completed attempts are saved to `quiz_attempts` with score, timing, pass/fail state, and per-question answer details.
 - Each completed quiz also updates local XP and level progress through the gamification layer.
@@ -54,6 +67,7 @@ SmartQuiz uses browser storage only:
 - `user_quiz_settings`: per-module limits and counters.
 - `smartquiz_question_bank_customizations`: local question additions, edits, deletions, imports, and exports.
 - `smartquiz_gamification_profile`: total XP, level, completed quizzes, passed quizzes, and perfect scores.
+- `smartquiz_exam_profile`: app branding, module labels, passing score, and quiz length.
 
 No private credentials, access codes, or backend secrets are required.
 

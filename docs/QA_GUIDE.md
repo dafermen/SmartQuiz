@@ -49,9 +49,13 @@ Expected behavior:
 
 ## Settings
 
+- Edit the exam profile name, subtitle, passing score, and questions per test.
+- Save the exam profile and confirm Home, Quiz, Progress, and the browser title reflect the update.
+- Edit module labels/descriptions in EN/ES and confirm Home/Theory/Quiz/Progress use the new labels.
+- Restore the default exam profile and confirm the cybersecurity sample labels return.
 - Limits save to local storage.
 - Counters reset without deleting attempt history.
-- Values clamp between 1 and 20.
+- Values clamp between 1 and 100.
 
 ## Question CRUD
 

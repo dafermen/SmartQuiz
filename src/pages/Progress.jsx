@@ -5,6 +5,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getGamificationProfile, getLevelProgress } from "../components/gamification/gamification";
+import {
+  getExamProfile,
+  getLocalizedProfileText,
+  getPracticeCategoryProfile
+} from "../components/profile/examProfileStorage";
 
 /**
  * Progress page.
@@ -19,6 +24,7 @@ export default function Progress() {
   const [categoryPerformance, setCategoryPerformance] = useState([]);
   const [questionPerformance, setQuestionPerformance] = useState([]);
   const [gamificationProfile, setGamificationProfile] = useState(getGamificationProfile);
+  const [examProfile, setExamProfile] = useState(getExamProfile);
   const [stats, setStats] = useState({
     total: 0,
     passed: 0,
@@ -26,7 +32,7 @@ export default function Progress() {
     bestScore: 0,
     avgTime: 0
   });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const buildCategoryPerformance = (loadedAttempts) => {
     const categoryMap = new Map();
@@ -96,11 +102,13 @@ export default function Progress() {
     const attemptsJSON = localStorage.getItem("quiz_attempts") || "[]";
     const loadedAttempts = JSON.parse(attemptsJSON);
     const currentGamificationProfile = getGamificationProfile();
+    const currentExamProfile = getExamProfile();
     
     setAttempts(loadedAttempts.slice(0, 10).reverse());
     setCategoryPerformance(buildCategoryPerformance(loadedAttempts));
     setQuestionPerformance(buildQuestionPerformance(loadedAttempts));
     setGamificationProfile(currentGamificationProfile);
+    setExamProfile(currentExamProfile);
 
     if (loadedAttempts.length > 0) {
       const passedCount = loadedAttempts.filter(a => a.passed).length;
@@ -142,13 +150,12 @@ export default function Progress() {
    * @returns {string}
    */
   const getCategoryName = (category) => {
-    const names = {
-      phishing_awareness: t("phishing_awareness"),
-      malware_basics: t("malware_basics"),
-      safe_data_habits: t("safe_data_habits"),
-      practice_quiz: t("practiceQuiz")
-    };
-    return names[category] || category;
+    if (category === "practice_quiz") {
+      return getLocalizedProfileText(getPracticeCategoryProfile(language).label, language);
+    }
+
+    const categoryProfile = examProfile.categories.find((item) => item.id === category);
+    return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : category;
   };
 
   /**

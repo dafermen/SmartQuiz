@@ -48,6 +48,8 @@ function CelebrationConfetti({ active }) {
  * @param {number} props.percentage - Rounded score percentage.
  * @param {number} props.timeTaken - Elapsed time in seconds.
  * @param {object | null} props.gamification - XP and level result for this attempt.
+ * @param {boolean} props.passed - Whether the attempt met the configured passing score.
+ * @param {number} props.passingScore - Configured passing score percentage.
  * @param {Function} props.onRetry - Starts a new quiz flow.
  * @param {Function} props.onHome - Navigates back to Home.
  * @returns {JSX.Element}
@@ -58,11 +60,12 @@ export default function ResultsCard({
   percentage, 
   timeTaken,
   gamification,
+  passed,
+  passingScore = 70,
   onRetry, 
   onHome 
 }) {
   const { t } = useLanguage();
-  const passed = percentage >= 70;
   const excellent = percentage >= 90;
   const perfect = percentage === 100;
   const shouldCelebrate = passed || gamification?.leveledUp || excellent;
@@ -227,7 +230,7 @@ export default function ResultsCard({
           ) : (
             <div className="bg-amber-50 border-2 border-amber-200 p-5 rounded-xl mb-6">
               <p className="text-amber-950 font-medium">
-                {t("needToPass")}
+                {t("needToPass")} {t("passingScore")}: {passingScore}%.
               </p>
             </div>
           )}

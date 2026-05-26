@@ -13,9 +13,12 @@ import ResultsCard from "../components/quiz/ResultsCard";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getQuestionsData } from "../components/data/index";
 import { applyQuizGamification } from "../components/gamification/gamification";
-
-const TESTS_PER_CATEGORY = 20;
-const QUESTIONS_PER_TEST = 20;
+import {
+  getExamProfile,
+  getLocalizedProfileText,
+  getPracticeCategoryProfile,
+  getQuizSettingsDefaults
+} from "../components/profile/examProfileStorage";
 
 /**
  * Returns a random set of stable question keys. Questions may repeat when the
@@ -24,10 +27,10 @@ const QUESTIONS_PER_TEST = 20;
  * @param {Array<object>} questionPool
  * @returns {Array<string>}
  */
-const buildRandomTestQuestionKeys = (questionPool) => {
+const buildRandomTestQuestionKeys = (questionPool, questionsPerTest) => {
   if (questionPool.length === 0) return [];
 
-  return Array.from({ length: QUESTIONS_PER_TEST }, () => {
+  return Array.from({ length: questionsPerTest }, () => {
     const randomIndex = Math.floor(Math.random() * questionPool.length);
     return questionPool[randomIndex].question_key;
   });
@@ -63,24 +66,13 @@ const getQuestionsForCategory = (questions, category) => {
   return questions.filter(q => q.category === category);
 };
 
-const defaultQuizSettings = {
-  phishing_awareness_limit: 20,
-  malware_basics_limit: 20,
-  safe_data_habits_limit: 20,
-  practice_quiz_limit: 20,
-  phishing_awareness_taken: 0,
-  malware_basics_taken: 0,
-  safe_data_habits_taken: 0,
-  practice_quiz_taken: 0
-};
-
 /**
  * Quiz page.
  *
  * Responsibilities:
  * - Reads the requested category from `?category=...`.
  * - Loads the matching localized question set.
- * - Generates 20 randomized 20-question tests per category.
+ * - Generates randomized tests using the configured exam profile.
  * - Saves completed attempts and increments category counters in localStorage.
  *
  * @returns {JSX.Element}
@@ -90,6 +82,7 @@ export default function Quiz() {
   const { t, language } = useLanguage();
   const urlParams = new URLSearchParams(window.location.search);
   const category = urlParams.get("category") || "phishing_awareness";
+  const [examProfile, setExamProfile] = useState(getExamProfile);
 
   const [allQuestions, setAllQuestions] = useState([]);
   const [questions, setQuestions] = useState([]);
@@ -124,10 +117,10 @@ export default function Quiz() {
     const filtered = getQuestionsForCategory(currentQuestions, category);
     
     setAllQuestions(filtered);
-    setTotalTests(filtered.length > 0 ? TESTS_PER_CATEGORY : 0);
+    setTotalTests(filtered.length > 0 ? examProfile.testsPerCategory : 0);
     
     setLoading(false);
-  }, [category, language]);
+  }, [category, examProfile, language]);
 
   /**
    * Checks whether the user can start another test before loading questions.
@@ -141,7 +134,7 @@ export default function Quiz() {
     try {
       const settingsJSON = localStorage.getItem("user_quiz_settings");
       const settings = {
-        ...defaultQuizSettings,
+        ...getQuizSettingsDefaults(examProfile),
         ...(settingsJSON ? JSON.parse(settingsJSON) : {})
       };
       
@@ -159,7 +152,16 @@ export default function Quiz() {
       setError("Error loading quiz. Please try again.");
       setLoading(false);
     }
-  }, [category, loadQuestions, t]);
+  }, [category, examProfile, loadQuestions, t]);
+
+  useEffect(() => {
+    const handleExamProfileUpdate = () => {
+      setExamProfile(getExamProfile());
+    };
+
+    window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+  }, []);
 
   useEffect(() => {
     checkLimitAndLoad();
@@ -189,7 +191,7 @@ export default function Quiz() {
    * @param {string | number} testNumber - One-based test number from the UI.
    */
   const handleTestSelect = (testNumber) => {
-    const questionKeys = buildRandomTestQuestionKeys(allQuestions);
+    const questionKeys = buildRandomTestQuestionKeys(allQuestions, examProfile.questionsPerTest);
     setSelectedTestNumber(parseInt(testNumber));
     setSelectedQuestionKeys(questionKeys);
     setQuestions(resolveQuestionsByKey(allQuestions, questionKeys));
@@ -230,7 +232,7 @@ export default function Quiz() {
   const finishQuiz = (finalScore, finalAnswerResults) => {
     const timeTaken = Math.floor((Date.now() - startTime) / 1000);
     const percentage = Math.round((finalScore / questions.length) * 100);
-    const passed = percentage >= 70;
+    const passed = percentage >= examProfile.passingScore;
 
     const attempt = {
       category,
@@ -251,7 +253,7 @@ export default function Quiz() {
 
     const settingsJSON = localStorage.getItem("user_quiz_settings");
     const settings = {
-      ...defaultQuizSettings,
+      ...getQuizSettingsDefaults(examProfile),
       ...(settingsJSON ? JSON.parse(settingsJSON) : {})
     };
     const takenField = `${category}_taken`;
@@ -297,13 +299,12 @@ export default function Quiz() {
    * @returns {string}
    */
   const getCategoryName = () => {
-    const names = {
-      phishing_awareness: t("phishing_awarenessTest"),
-      malware_basics: t("malware_basicsTest"),
-      safe_data_habits: t("safe_data_habitsTest"),
-      practice_quiz: t("practiceQuizTest")
-    };
-    return names[category] || t("quiz");
+    if (category === "practice_quiz") {
+      return getLocalizedProfileText(getPracticeCategoryProfile(language).label, language);
+    }
+
+    const categoryProfile = examProfile.categories.find((item) => item.id === category);
+    return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : t("quiz");
   };
 
   if (loading) {
@@ -376,7 +377,7 @@ export default function Quiz() {
           <CardHeader>
             <CardTitle>{t("selectTest")}</CardTitle>
             <p className="text-sm text-slate-500">
-              {totalTests} {t("test")}{totalTests > 1 ? 's' : ''} {t("totalAvailable")} • {QUESTIONS_PER_TEST} {t("questions")} {t("per")} {t("test")}
+              {totalTests} {t("test")}{totalTests > 1 ? 's' : ''} {t("totalAvailable")} • {examProfile.questionsPerTest} {t("questions")} {t("per")} {t("test")}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -403,11 +404,11 @@ export default function Quiz() {
               <ul className="space-y-2 text-slate-700">
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
-                  <span>{t("testInfo1")}</span>
+                  <span>{t("testInfo1Prefix")} {examProfile.questionsPerTest} {t("testInfo1Suffix")}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
-                  <span>{t("testInfo2")}</span>
+                  <span>{t("testInfo2Prefix")} {examProfile.passingScore}% {t("testInfo2Suffix")}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
@@ -438,6 +439,8 @@ export default function Quiz() {
           percentage={Math.round((score / questions.length) * 100)}
           timeTaken={Math.floor((Date.now() - startTime) / 1000)}
           gamification={gamificationResult}
+          passed={score / questions.length * 100 >= examProfile.passingScore}
+          passingScore={examProfile.passingScore}
           onRetry={handleRetry}
           onHome={() => navigate(createPageUrl("Home"))}
         />

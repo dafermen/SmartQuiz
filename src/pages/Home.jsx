@@ -6,8 +6,21 @@ import CategoryCard from "../components/quiz/CategoryCard";
 import TestLimitBadge from "../components/quiz/TestLimitBadge";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getQuestionsData } from "../components/data/index";
+import {
+  getExamProfile,
+  getLocalizedProfileText,
+  getPracticeCategoryProfile,
+  getQuizSettingsDefaults
+} from "../components/profile/examProfileStorage";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
+const categoryIconMap = {
+  Award,
+  BookOpen,
+  ScanSearch,
+  ShieldCheck
+};
 
 /**
  * Home page.
@@ -20,23 +33,10 @@ import { Button } from "@/components/ui/button";
 export default function Home() {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const [examProfile, setExamProfile] = useState(getExamProfile);
   const [stats, setStats] = useState({ total: 0, passed: 0, avgScore: 0 });
-  const [questionCounts, setQuestionCounts] = useState({
-    phishing_awareness: 0,
-    malware_basics: 0,
-    safe_data_habits: 0,
-    practice_quiz: 0,
-  });
-  const [userSettings, setUserSettings] = useState({
-    phishing_awareness_limit: 20,
-    malware_basics_limit: 20,
-    safe_data_habits_limit: 20,
-    practice_quiz_limit: 20,
-    phishing_awareness_taken: 0,
-    malware_basics_taken: 0,
-    safe_data_habits_taken: 0,
-    practice_quiz_taken: 0
-  });
+  const [questionCounts, setQuestionCounts] = useState({});
+  const [userSettings, setUserSettings] = useState(getQuizSettingsDefaults(examProfile));
 
   /**
    * Builds the summary cards from saved quiz attempts.
@@ -65,48 +65,32 @@ export default function Home() {
     const questionsData = getQuestionsData();
     const currentQuestions = questionsData[language] || questionsData.en;
     
-    const counts = {
-      phishing_awareness: currentQuestions.filter(q => q.category === "phishing_awareness").length,
-      malware_basics: currentQuestions.filter(q => q.category === "malware_basics").length,
-      safe_data_habits: currentQuestions.filter(q => q.category === "safe_data_habits").length,
-      practice_quiz: currentQuestions.length,
-    };
+    const counts = examProfile.categories.reduce((categoryCounts, category) => ({
+      ...categoryCounts,
+      [category.id]: currentQuestions.filter(q => q.category === category.id).length
+    }), {
+      practice_quiz: currentQuestions.length
+    });
     setQuestionCounts(counts);
-  }, [language]);
+  }, [examProfile, language]);
 
   /**
    * Loads quiz limits and counters, creating defaults when missing.
    */
   const loadUserSettings = useCallback(() => {
     const settingsJSON = localStorage.getItem("user_quiz_settings");
+    const defaultSettings = getQuizSettingsDefaults(examProfile);
     if (settingsJSON) {
       const savedSettings = JSON.parse(settingsJSON);
       setUserSettings({
-        phishing_awareness_limit: 20,
-        malware_basics_limit: 20,
-        safe_data_habits_limit: 20,
-        practice_quiz_limit: 20,
-        phishing_awareness_taken: 0,
-        malware_basics_taken: 0,
-        safe_data_habits_taken: 0,
-        practice_quiz_taken: 0,
+        ...defaultSettings,
         ...savedSettings
       });
     } else {
-      const defaultSettings = {
-        phishing_awareness_limit: 20,
-        malware_basics_limit: 20,
-        safe_data_habits_limit: 20,
-        practice_quiz_limit: 20,
-        phishing_awareness_taken: 0,
-        malware_basics_taken: 0,
-        safe_data_habits_taken: 0,
-        practice_quiz_taken: 0
-      };
       localStorage.setItem("user_quiz_settings", JSON.stringify(defaultSettings));
       setUserSettings(defaultSettings);
     }
-  }, []);
+  }, [examProfile]);
 
   const loadData = useCallback(() => {
     loadStats();
@@ -117,6 +101,15 @@ export default function Home() {
   useEffect(() => {
     loadData();
   }, [loadData]);
+
+  useEffect(() => {
+    const handleExamProfileUpdate = () => {
+      setExamProfile(getExamProfile());
+    };
+
+    window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+  }, []);
 
   /**
    * Opens the quiz for a category when the configured limit allows it.
@@ -134,78 +127,21 @@ export default function Home() {
     navigate(createPageUrl("Quiz") + "?category=" + category);
   };
 
-  /**
-   * Returns a localized category title.
-   *
-   * @param {string} category
-   * @returns {string}
-   */
-  const getCategoryTitle = (category) => {
-    if (category === "phishing_awareness") return t("phishing_awareness");
-    if (category === "malware_basics") return t("malware_basics");
-    if (category === "safe_data_habits") return t("safe_data_habits");
-    return t("practiceQuiz");
-  };
-
-  /**
-   * Returns localized helper text for a category.
-   *
-   * @param {string} category
-   * @returns {string}
-   */
-  const getCategoryDescription = (category) => {
-    if (category === "phishing_awareness") return t("phishing_awarenessDesc");
-    if (category === "malware_basics") return t("malware_basicsDesc");
-    if (category === "safe_data_habits") return t("safe_data_habitsDesc");
-    return t("practiceQuizDesc");
-  };
-
+  const practiceProfile = getPracticeCategoryProfile(language);
   const categories = [
-    {
-      title: getCategoryTitle("phishing_awareness"),
-      description: getCategoryDescription("phishing_awareness"),
-      icon: ScanSearch,
-      color: "from-teal-500 to-cyan-600",
-      headerTone: "light",
-      category: "phishing_awareness",
-      count: questionCounts.phishing_awareness,
-      taken: userSettings.phishing_awareness_taken,
-      limit: userSettings.phishing_awareness_limit
-    },
-    {
-      title: getCategoryTitle("malware_basics"),
-      description: getCategoryDescription("malware_basics"),
-      icon: ShieldCheck,
-      color: "from-slate-800 to-blue-900",
-      headerTone: "light",
-      category: "malware_basics",
-      count: questionCounts.malware_basics,
-      taken: userSettings.malware_basics_taken,
-      limit: userSettings.malware_basics_limit
-    },
-    {
-      title: getCategoryTitle("safe_data_habits"),
-      description: getCategoryDescription("safe_data_habits"),
-      icon: BookOpen,
-      color: "from-emerald-500 to-teal-700",
-      headerTone: "light",
-      category: "safe_data_habits",
-      count: questionCounts.safe_data_habits,
-      taken: userSettings.safe_data_habits_taken,
-      limit: userSettings.safe_data_habits_limit
-    },
-    {
-      title: getCategoryTitle("practice_quiz"),
-      description: getCategoryDescription("practice_quiz"),
-      icon: Award,
-      color: "from-amber-400 to-orange-500",
-      headerTone: "light",
-      category: "practice_quiz",
-      count: questionCounts.practice_quiz,
-      taken: userSettings.practice_quiz_taken,
-      limit: userSettings.practice_quiz_limit
-    }
-  ];
+    ...examProfile.categories,
+    practiceProfile
+  ].map((category) => ({
+    title: getLocalizedProfileText(category.label, language),
+    description: getLocalizedProfileText(category.description, language),
+    icon: categoryIconMap[category.icon] || BookOpen,
+    color: category.color,
+    headerTone: category.headerTone,
+    category: category.id,
+    count: questionCounts[category.id] || 0,
+    taken: userSettings[`${category.id}_taken`] || 0,
+    limit: userSettings[`${category.id}_limit`] || examProfile.testsPerCategory
+  }));
 
   return (
     <div className="space-y-8 pb-20 md:pb-8">
@@ -216,13 +152,13 @@ export default function Home() {
             <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0f9f8f,#2563eb,#f4b84a)]" />
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-800">
               <Globe2 className="h-4 w-4" />
-              <span>{t("location")}</span>
+              <span>{examProfile.location}</span>
             </div>
             <h1 className="max-w-3xl whitespace-pre-line text-4xl font-bold leading-tight tracking-tight text-slate-950 md:text-6xl">
-              {t("masterYourLicense")}
+              {examProfile.headline}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
-              {t("comprehensivePrep")}
+              {examProfile.description}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -262,7 +198,7 @@ export default function Home() {
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-200">Live demo</p>
-                <h2 className="mt-2 text-2xl font-bold">Cybersecurity awareness</h2>
+                <h2 className="mt-2 text-2xl font-bold">{examProfile.appName}</h2>
               </div>
               <div className="rounded-lg bg-white/10 p-3">
                 <ShieldCheck className="h-6 w-6 text-teal-200" />
@@ -270,9 +206,7 @@ export default function Home() {
             </div>
             <div className="space-y-3">
               {[
-                t("phishing_awareness"),
-                t("malware_basics"),
-                t("safe_data_habits")
+                ...examProfile.categories.map((category) => getLocalizedProfileText(category.label, language))
               ].map((item) => (
                 <div key={item} className="flex items-center justify-between rounded-lg bg-white/8 p-4 ring-1 ring-white/10">
                   <span className="font-medium text-white/90">{item}</span>

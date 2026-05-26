@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getQuestionsData } from "../components/data/index";
 import TheoryCard from "../components/theory/TheoryCard";
+import { getExamProfile, getLocalizedProfileText } from "../components/profile/examProfileStorage";
 
 /**
  * Theory page.
@@ -20,6 +21,7 @@ import TheoryCard from "../components/theory/TheoryCard";
 export default function Theory() {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
+  const [examProfile, setExamProfile] = useState(getExamProfile);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedBlock, setSelectedBlock] = useState("all");
   const [questions, setQuestions] = useState([]);
@@ -29,6 +31,15 @@ export default function Theory() {
     const currentQuestions = questionsData[language] || questionsData.en;
     setQuestions(currentQuestions);
   }, [language]);
+
+  useEffect(() => {
+    const handleExamProfileUpdate = () => {
+      setExamProfile(getExamProfile());
+    };
+
+    window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+  }, []);
 
   const filteredQuestions = questions.filter((question) => {
     const matchesCategory = selectedCategory === "all" || question.category === selectedCategory;
@@ -49,9 +60,10 @@ export default function Theory() {
 
   const categories = [
     { value: "all", label: t("allCategories") },
-    { value: "phishing_awareness", label: t("phishing_awareness") },
-    { value: "malware_basics", label: t("malware_basics") },
-    { value: "safe_data_habits", label: t("safe_data_habits") }
+    ...examProfile.categories.map((category) => ({
+      value: category.id,
+      label: getLocalizedProfileText(category.label, language)
+    }))
   ];
 
   return (
@@ -129,6 +141,7 @@ export default function Theory() {
             key={question.question_key || question.id} 
             question={question} 
             index={index + 1}
+            examProfile={examProfile}
           />
         ))}
       </div>

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Eye, EyeOff, BookOpen } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../language/LanguageProvider";
+import { getLocalizedProfileText } from "../profile/examProfileStorage";
 
 /**
  * Presents one question as study/theory content.
@@ -15,10 +16,10 @@ import { useLanguage } from "../language/LanguageProvider";
  * @param {number} props.index - One-based display index.
  * @returns {JSX.Element}
  */
-export default function TheoryCard({ question, index }) {
+export default function TheoryCard({ question, index, examProfile }) {
   const [showImage, setShowImage] = useState(true);
   const [imageError, setImageError] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   // Prefer bundled images so the app keeps working without network access.
   const imageSource = question.image_path || question.image_url;
@@ -36,15 +37,12 @@ export default function TheoryCard({ question, index }) {
       safe_data_habits: "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100"
     };
     
-    const labels = {
-      phishing_awareness: t("phishing_awareness"),
-      malware_basics: t("malware_basics"),
-      safe_data_habits: t("safe_data_habits")
-    };
+    const categoryProfile = examProfile?.categories.find((category) => category.id === question.category);
+    const label = categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : t(question.category);
 
     return (
       <Badge className={colors[question.category]}>
-        {labels[question.category]}
+        {label}
       </Badge>
     );
   };

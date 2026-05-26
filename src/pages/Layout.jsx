@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
 import { LanguageProvider, useLanguage } from "@/components/language/LanguageProvider";
+import { getExamProfile } from "@/components/profile/examProfileStorage";
 
 /**
  * Inner layout that can read language and router context.
@@ -23,6 +24,7 @@ function LayoutContent({ children }) {
   const location = useLocation();
   const { t, language, setLanguage } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [examProfile, setExamProfile] = useState(getExamProfile);
 
   const navItems = [
     { name: t("home"), path: createPageUrl("Home"), icon: Home },
@@ -56,6 +58,19 @@ function LayoutContent({ children }) {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const handleExamProfileUpdate = () => {
+      setExamProfile(getExamProfile());
+    };
+
+    window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+  }, []);
+
+  useEffect(() => {
+    document.title = examProfile.appName;
+  }, [examProfile.appName]);
+
   return (
     <div className="min-h-screen bg-[#f5f7fb] text-[#162033] flex flex-col">
       <style>{`
@@ -86,8 +101,8 @@ function LayoutContent({ children }) {
                 <ShieldCheck className="w-6 h-6 text-[#52d3c4]" />
               </div>
               <div className="hidden md:block">
-                <h1 className="text-xl font-bold tracking-tight text-slate-950">{t("appName")}</h1>
-                <p className="text-xs text-slate-500">{t("location")}</p>
+                <h1 className="text-xl font-bold tracking-tight text-slate-950">{examProfile.appName}</h1>
+                <p className="text-xs text-slate-500">{examProfile.location}</p>
               </div>
             </Link>
 
@@ -154,8 +169,8 @@ function LayoutContent({ children }) {
                   </div>
 
                   <div>
-                    <h2 className="text-lg font-bold text-slate-950">{t("appName")}</h2>
-                    <p className="text-xs text-slate-500">{t("location")}</p>
+                    <h2 className="text-lg font-bold text-slate-950">{examProfile.appName}</h2>
+                    <p className="text-xs text-slate-500">{examProfile.location}</p>
                   </div>
                 </div>
 
@@ -181,7 +196,7 @@ function LayoutContent({ children }) {
                 {/* Drawer Footer */}
                 <div className="mt-8 pt-6 border-t border-gray-200">
                   <p className="text-xs text-gray-500 text-center">
-                    © 2025 {t("appName")}
+                    © 2025 {examProfile.appName}
                   </p>
                 </div>
               </div>
@@ -201,7 +216,7 @@ function LayoutContent({ children }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
               <p className="text-sm text-slate-500">
-                © 2025 {t("appName")}. All rights reserved.
+                © 2025 {examProfile.appName}. All rights reserved.
               </p>
             </div>
 

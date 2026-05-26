@@ -6,7 +6,7 @@ It ships with a cybersecurity awareness sample bank for end users, but the real 
 
 ## Why SmartQuiz
 
-- **Fast to adapt:** question banks are plain JSON, so non-backend teams can create new exams quickly.
+- **Fast to adapt:** question banks are plain JSON, and the exam profile can be edited from Settings.
 - **No backend required:** progress, language, test limits, and attempts are stored locally in the browser.
 - **Study plus assessment:** learners can review explanations in study mode, then take randomized practice tests.
 - **Built-in question editor:** admins can add, search, paginate, edit, duplicate, delete, import, and export questions from Settings.
@@ -40,6 +40,7 @@ src/components/data/cybersecurityAwarenessQuestions.json
 - Study mode using the same question bank
 - Progress dashboard with learning level, score trend, category performance, per-question review insights, and recent attempts
 - Local settings for test limits and counter resets
+- Editable exam profile for app name, domain, hero copy, module labels, passing score, and quiz length
 - Local question CRUD with debounced search, pagination, duplication, base-question overrides, and soft deletes
 - Optional question metadata for difficulty and tags
 - JSON import/export for backups and content migration
@@ -166,12 +167,33 @@ smartquiz_question_bank_customizations
 
 This keeps the project safe for static hosting while still giving users a practical editing workflow.
 
+## Adapting The Exam Profile
+
+Settings also includes an editable exam profile. Without changing source code, users can customize:
+
+- App name and subtitle.
+- Hero headline and description.
+- Domain label, such as cybersecurity, medical, language, cloud, or interview prep.
+- Passing score.
+- Number of questions per test.
+- Module names and descriptions in English and Spanish.
+
+The profile is stored locally in:
+
+```txt
+smartquiz_exam_profile
+```
+
+This lets the same interface support cybersecurity awareness, AWS/Azure exam prep, medical review, English learning, corporate training, or technical interview practice.
+
 ## Project Structure
 
 ```txt
 src/
   components/
     data/       JSON bank and data adapter
+    profile/    editable exam profile and defaults
+    gamification/ XP, levels, and reward calculation
     language/   UI translations and language state
     quiz/       cards, questions, results, limits
     settings/   question bank manager

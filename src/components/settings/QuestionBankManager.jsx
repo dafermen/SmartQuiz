@@ -46,6 +46,7 @@ import {
   saveQuestionBankCustomizations
 } from "@/components/data/questionBankStorage";
 import { useLanguage } from "@/components/language/LanguageProvider";
+import { getExamProfile, getLocalizedProfileText } from "@/components/profile/examProfileStorage";
 
 const categoryOptions = [
   "phishing_awareness",
@@ -108,6 +109,7 @@ const cloneCustomizations = (customizations) => JSON.parse(JSON.stringify(custom
  */
 export default function QuestionBankManager() {
   const { t, language } = useLanguage();
+  const [examProfile, setExamProfile] = useState(getExamProfile);
   const [activeLanguage, setActiveLanguage] = useState(language);
   const [sourceFilter, setSourceFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -135,6 +137,20 @@ export default function QuestionBankManager() {
   useEffect(() => {
     setCurrentPage(1);
   }, [activeLanguage, sourceFilter, categoryFilter, debouncedSearchTerm, pageSize]);
+
+  useEffect(() => {
+    const handleExamProfileUpdate = () => {
+      setExamProfile(getExamProfile());
+    };
+
+    window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+  }, []);
+
+  const getCategoryLabel = (categoryId) => {
+    const categoryProfile = examProfile.categories.find((category) => category.id === categoryId);
+    return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : t(categoryId);
+  };
 
   const normalizedSearchTerm = debouncedSearchTerm.trim().toLowerCase();
   const filteredQuestions = questions.filter((question) => {
@@ -370,7 +386,7 @@ export default function QuestionBankManager() {
               <SelectItem value="all">{t("allCategories")}</SelectItem>
               {categoryOptions.map((category) => (
                 <SelectItem key={category} value={category}>
-                  {t(category)}
+                  {getCategoryLabel(category)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -427,7 +443,7 @@ export default function QuestionBankManager() {
                     </TableCell>
                     <TableCell>
                       <Badge className="bg-teal-50 text-teal-800 ring-1 ring-teal-100">
-                        {t(question.category)}
+                        {getCategoryLabel(question.category)}
                       </Badge>
                     </TableCell>
                     <TableCell>
@@ -472,7 +488,7 @@ export default function QuestionBankManager() {
               >
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   <Badge className="bg-teal-50 text-teal-800 ring-1 ring-teal-100">
-                    {t(question.category)}
+                    {getCategoryLabel(question.category)}
                   </Badge>
                   <Badge variant="outline">{t(question.difficulty || "beginner")}</Badge>
                   <Badge variant="outline">{getQuestionSourceLabel(question, t)}</Badge>
@@ -594,7 +610,7 @@ export default function QuestionBankManager() {
                   <SelectContent>
                     {categoryOptions.map((category) => (
                       <SelectItem key={category} value={category}>
-                        {t(category)}
+                        {getCategoryLabel(category)}
                       </SelectItem>
                     ))}
                   </SelectContent>

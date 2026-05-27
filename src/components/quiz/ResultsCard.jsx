@@ -11,7 +11,7 @@ const confettiPieces = Array.from({ length: 28 }, (_, index) => ({
   id: index,
   left: `${(index * 37) % 100}%`,
   delay: (index % 8) * 0.08,
-  color: ["#14b8a6", "#22c55e", "#f59e0b", "#38bdf8", "#a78bfa"][index % 5],
+  color: ["var(--sq-primary)", "var(--sq-success)", "var(--sq-accent)", "var(--sq-secondary)", "var(--sq-muted)"][index % 5],
   size: 7 + (index % 4) * 2
 }));
 

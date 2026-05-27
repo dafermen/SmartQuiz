@@ -192,7 +192,7 @@ export default function Progress() {
       ) : (
         <>
           <div className="grid md:grid-cols-4 gap-5">
-            <Card className="rounded-2xl border border-slate-200 bg-[#162033] text-white shadow-sm">
+            <Card className="rounded-2xl border border-slate-200 bg-secondary text-white shadow-sm">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-white/80 flex items-center gap-2">
                   <Target className="w-4 h-4" />
@@ -204,7 +204,7 @@ export default function Progress() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl border border-slate-200 bg-teal-700 text-white shadow-sm">
+            <Card className="rounded-2xl border border-slate-200 bg-primary text-white shadow-sm">
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-medium text-white/80 flex items-center gap-2">
                   <Trophy className="w-4 h-4" />
@@ -282,7 +282,7 @@ export default function Progress() {
                   />
                   <Bar
                     dataKey="score"
-                    fill="#0f9f8f"
+                    fill="var(--sq-primary)"
                     radius={[8, 8, 0, 0]}
                   />
                 </BarChart>

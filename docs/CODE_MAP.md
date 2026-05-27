@@ -14,7 +14,7 @@
 - `src/pages/Theory.jsx`: study mode using question explanations.
 - `src/pages/Quiz.jsx`: randomized test generation, scoring, attempt persistence, and gamification updates.
 - `src/pages/Progress.jsx`: learning level, saved attempt metrics, category performance, question review insights, and chart.
-- `src/pages/Settings.jsx`: local limits and counter reset.
+- `src/pages/Settings.jsx`: exam profile, Theme Studio, question bank CRUD, local limits, and counter reset.
 
 ## Data
 
@@ -22,6 +22,7 @@
 - `src/components/data/index.jsx`: question bank adapter and optional video hook.
 - `src/components/data/questionBankStorage.js`: local customization storage, normalization, and import/export support helpers.
 - `src/components/profile/examProfileStorage.js`: editable exam profile, module labels, passing score, quiz length, and defaults.
+- `src/components/theme/themeStorage.js`: editable visual theme, presets, CSS variable adapter, and local theme storage.
 - `src/components/gamification/gamification.js`: XP, level, reward calculation, and local gamification profile storage.
 
 ## State And Persistence
@@ -32,6 +33,7 @@
 - `smartquiz_question_bank_customizations`: local question bank edits used by Home, Theory, Quiz, and Settings.
 - `smartquiz_gamification_profile`: XP, level, and quiz reward totals used by Quiz and Progress.
 - `smartquiz_exam_profile`: editable exam profile used by Layout, Home, Theory, Quiz, Progress, and Settings.
+- `smartquiz_theme`: editable brand colors used by Layout, Settings, and global CSS variables.
 
 ## Components
 
@@ -48,6 +50,7 @@
 
 - `src/index.css`: Tailwind base and design tokens.
 - `src/App.css`: app-level styles.
+- `src/components/theme/themeStorage.js`: theme presets, local storage, and CSS variable application.
 - `tailwind.config.js`: Tailwind configuration.
 
 ## Best Places To Customize
@@ -57,5 +60,5 @@
 - New categories: update the question bank categories and `src/components/profile/examProfileStorage.js`.
 - New translations: `src/components/language/LanguageProvider.jsx`.
 - Gamification tuning: `src/components/gamification/gamification.js`.
-- New visual identity: `src/index.css`, `src/pages/Layout.jsx`, and `src/pages/Home.jsx`.
+- New visual identity: Settings Theme Studio or `src/components/theme/themeStorage.js`.
 - Question editing workflow: `src/components/settings/QuestionBankManager.jsx`.

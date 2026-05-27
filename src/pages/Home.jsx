@@ -149,7 +149,7 @@ export default function Home() {
       <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
         <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
           <div className="relative p-6 md:p-10">
-            <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,#0f9f8f,#2563eb,#f4b84a)]" />
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent" />
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal-200 bg-teal-50 px-3 py-1 text-sm font-semibold text-teal-800">
               <Globe2 className="h-4 w-4" />
               <span>{examProfile.location}</span>
@@ -194,14 +194,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="border-t border-slate-200 bg-[#162033] p-6 text-white lg:border-l lg:border-t-0 md:p-8">
+          <div className="border-t border-slate-200 bg-secondary p-6 text-white lg:border-l lg:border-t-0 md:p-8">
             <div className="mb-6 flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-200">Live demo</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Live demo</p>
                 <h2 className="mt-2 text-2xl font-bold">{examProfile.appName}</h2>
               </div>
               <div className="rounded-lg bg-white/10 p-3">
-                <ShieldCheck className="h-6 w-6 text-teal-200" />
+                <ShieldCheck className="h-6 w-6 text-accent" />
               </div>
             </div>
             <div className="space-y-3">

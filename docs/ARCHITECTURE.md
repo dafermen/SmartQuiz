@@ -68,6 +68,7 @@ SmartQuiz uses browser storage only:
 - `smartquiz_question_bank_customizations`: local question additions, edits, deletions, imports, and exports.
 - `smartquiz_gamification_profile`: total XP, level, completed quizzes, passed quizzes, and perfect scores.
 - `smartquiz_exam_profile`: app branding, module labels, passing score, and quiz length.
+- `smartquiz_theme`: brand colors applied through CSS variables.
 
 No private credentials, access codes, or backend secrets are required.
 

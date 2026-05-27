@@ -13,6 +13,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { LanguageProvider, useLanguage } from "@/components/language/LanguageProvider";
 import { getExamProfile } from "@/components/profile/examProfileStorage";
+import { applyThemeToDocument, getTheme } from "@/components/theme/themeStorage";
 
 /**
  * Inner layout that can read language and router context.
@@ -25,6 +26,7 @@ function LayoutContent({ children }) {
   const { t, language, setLanguage } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [examProfile, setExamProfile] = useState(getExamProfile);
+  const [theme, setTheme] = useState(getTheme);
 
   const navItems = [
     { name: t("home"), path: createPageUrl("Home"), icon: Home },
@@ -71,18 +73,24 @@ function LayoutContent({ children }) {
     document.title = examProfile.appName;
   }, [examProfile.appName]);
 
-  return (
-    <div className="min-h-screen bg-[#f5f7fb] text-[#162033] flex flex-col">
-      <style>{`
-        :root {
-          --primary: #0f9f8f;
-          --secondary: #162033;
-          --accent: #f4b84a;
-        }
-      `}</style>
+  useEffect(() => {
+    applyThemeToDocument(theme);
 
+    const handleThemeUpdate = () => {
+      setTheme(getTheme());
+    };
+
+    window.addEventListener("smartquiz-theme-updated", handleThemeUpdate);
+    return () => window.removeEventListener("smartquiz-theme-updated", handleThemeUpdate);
+  }, [theme]);
+
+  return (
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: theme.background, color: theme.text }}>
       {/* Header */}
-      <header className="sticky top-0 bg-white/88 backdrop-blur-xl border-b border-slate-200/80 z-50 shadow-[0_1px_0_rgba(15,23,42,0.04)]">
+      <header
+        className="sticky top-0 backdrop-blur-xl border-b z-50 shadow-[0_1px_0_rgba(15,23,42,0.04)]"
+        style={{ backgroundColor: `${theme.surface}e6`, borderColor: "var(--sq-border)" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 gap-4">
             {/* Hamburger Menu Button */}
@@ -97,8 +105,8 @@ function LayoutContent({ children }) {
 
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center gap-3 flex-shrink-0">
-              <div className="w-11 h-11 bg-[#162033] rounded-lg flex items-center justify-center shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-[#52d3c4]" />
+              <div className="w-11 h-11 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: theme.secondary }}>
+                <ShieldCheck className="w-6 h-6" style={{ color: theme.accent }} />
               </div>
               <div className="hidden md:block">
                 <h1 className="text-xl font-bold tracking-tight text-slate-950">{examProfile.appName}</h1>
@@ -121,12 +129,12 @@ function LayoutContent({ children }) {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="min-w-36">
-                  <DropdownMenuItem onClick={() => setLanguage("en")} className={`gap-2 ${language === "en" ? "bg-teal-50 text-teal-900" : ""}`}>
+                  <DropdownMenuItem onClick={() => setLanguage("en")} className={`gap-2 ${language === "en" ? "bg-primary/10 text-foreground" : ""}`}>
                     <span className="w-7 font-semibold">EN</span>
                     <span>{t("english")}</span>
                     {language === "en" && <Check className="ml-auto h-4 w-4" />}
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => setLanguage("es")} className={`gap-2 ${language === "es" ? "bg-teal-50 text-teal-900" : ""}`}>
+                  <DropdownMenuItem onClick={() => setLanguage("es")} className={`gap-2 ${language === "es" ? "bg-primary/10 text-foreground" : ""}`}>
                     <span className="w-7 font-semibold">ES</span>
                     <span>{t("spanish")}</span>
                     {language === "es" && <Check className="ml-auto h-4 w-4" />}
@@ -164,8 +172,8 @@ function LayoutContent({ children }) {
                 {/* Drawer Header */}
                 <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-200">
                   
-                  <div className="w-12 h-12 bg-[#162033] rounded-lg flex items-center justify-center shadow-sm">
-                    <ShieldCheck className="w-7 h-7 text-[#52d3c4]" />
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: theme.secondary }}>
+                    <ShieldCheck className="w-7 h-7" style={{ color: theme.accent }} />
                   </div>
 
                   <div>
@@ -183,9 +191,10 @@ function LayoutContent({ children }) {
                       onClick={() => setMenuOpen(false)}
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                         location.pathname === item.path
-                          ? "bg-[#162033] text-white shadow-lg"
+                          ? "text-white shadow-lg"
                           : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
                       }`}
+                      style={location.pathname === item.path ? { backgroundColor: theme.secondary } : undefined}
                     >
                       <item.icon className="w-5 h-5" />
                       <span className="font-medium text-base">{item.name}</span>
@@ -211,7 +220,7 @@ function LayoutContent({ children }) {
       </main>
 
       {/* Footer */}
-      <footer className="bg-white/80 backdrop-blur-md border-t border-slate-200 mt-auto">
+      <footer className="backdrop-blur-md border-t mt-auto" style={{ backgroundColor: `${theme.surface}cc`, borderColor: "var(--sq-border)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
@@ -222,8 +231,8 @@ function LayoutContent({ children }) {
 
             <div className="text-center md:text-right">
               <p className="text-sm text-slate-500 inline-flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-teal-600" />
-                {t("contact")}: <a href="https://github.com/" className="font-medium text-teal-700 hover:text-teal-900">GitHub-ready template</a>
+                <Sparkles className="h-4 w-4 text-primary" />
+                {t("contact")}: <a href="https://github.com/" className="font-medium text-primary hover:opacity-80">GitHub-ready template</a>
               </p>
             </div>
           </div>

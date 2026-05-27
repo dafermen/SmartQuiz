@@ -8,6 +8,7 @@ import { Settings as SettingsIcon, Save, RotateCcw } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useLanguage } from "../components/language/LanguageProvider";
 import QuestionBankManager from "../components/settings/QuestionBankManager";
+import ThemeStudio from "../components/settings/ThemeStudio";
 import {
   getExamProfile,
   getLocalizedProfileText,
@@ -351,6 +352,8 @@ export default function Settings() {
           </div>
         </CardContent>
       </Card>
+
+      <ThemeStudio />
 
       <QuestionBankManager />
 

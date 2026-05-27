@@ -97,7 +97,7 @@ export default function Theory() {
       {/* Filters and Stats */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <BookOpen className="w-6 h-6 text-[#0f9f8f]" />
+          <BookOpen className="w-6 h-6 text-primary" />
           <div>
             <p className="text-2xl font-bold text-slate-950">{filteredQuestions.length}</p>
             <p className="text-sm text-slate-500">{t("topics")}</p>

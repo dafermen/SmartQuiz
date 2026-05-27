@@ -10,6 +10,7 @@ It ships with a cybersecurity awareness sample bank for end users, but the real 
 - **No backend required:** progress, language, test limits, and attempts are stored locally in the browser.
 - **Study plus assessment:** learners can review explanations in study mode, then take randomized practice tests.
 - **Built-in question editor:** admins can add, search, paginate, edit, duplicate, delete, import, and export questions from Settings.
+- **Brandable theme:** organizations can choose presets or set corporate colors from Settings without rebuilding the app.
 - **Reusable by domain:** works for cybersecurity, PMP, Azure, AWS, CompTIA, Cisco, NCLEX, real estate, citizenship, English learning, technical interviews, K-12 practice, and internal corporate training.
 - **GitHub-friendly:** no private access codes, proprietary assets, personal emails, or vendor-specific content.
 - **Product-ready foundation:** modern responsive UI, 50-question bilingual sample content, score tracking, progress charts, gamified XP, and configurable test limits.
@@ -41,6 +42,7 @@ src/components/data/cybersecurityAwarenessQuestions.json
 - Progress dashboard with learning level, score trend, category performance, per-question review insights, and recent attempts
 - Local settings for test limits and counter resets
 - Editable exam profile for app name, domain, hero copy, module labels, passing score, and quiz length
+- Theme Studio with presets, color pickers, live preview, and local persistence
 - Local question CRUD with debounced search, pagination, duplication, base-question overrides, and soft deletes
 - Optional question metadata for difficulty and tags
 - JSON import/export for backups and content migration
@@ -188,6 +190,23 @@ smartquiz_exam_profile
 
 This lets the same interface support cybersecurity awareness, AWS/Azure exam prep, medical review, English learning, corporate training, or technical interview practice.
 
+## Customizing The Theme
+
+Settings includes a Theme Studio for brand customization. Users can:
+
+- Apply presets such as corporate blue, healthcare, education, security, or minimal gray.
+- Edit primary, secondary, accent, background, surface, text, success, warning, and danger colors.
+- Preview a branded module card before saving.
+- Restore the default SmartQuiz palette.
+
+The theme is stored locally in:
+
+```txt
+smartquiz_theme
+```
+
+Theme values are applied through CSS variables, so the app remains static-hosting friendly and can still be published on GitHub Pages, Netlify, Vercel, or any simple web host.
+
 ## Project Structure
 
 ```txt
@@ -197,6 +216,7 @@ src/
     profile/    editable exam profile and defaults
     gamification/ XP, levels, and reward calculation
     language/   UI translations and language state
+    theme/      brand theme storage, presets, and CSS variable adapter
     quiz/       cards, questions, results, limits
     settings/   question bank manager
     theory/     study-mode cards

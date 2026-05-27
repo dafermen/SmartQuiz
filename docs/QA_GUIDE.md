@@ -54,6 +54,9 @@ Expected behavior:
 - Edit module labels/descriptions in EN/ES and confirm Home/Theory/Quiz/Progress use the new labels.
 - Confirm Settings shows generic module names such as `Modulo 1` / `Module 1`, not cybersecurity-specific internal keys.
 - Confirm the language note explains that the starter app currently ships with EN/ES content.
+- Apply a Theme Studio preset and confirm header, module cards, buttons, charts, and preview colors update after saving.
+- Change a single color manually, save, refresh the browser, and confirm the color persists.
+- Restore the default theme and confirm the SmartQuiz palette returns.
 - Restore the default exam profile and confirm the cybersecurity sample labels return.
 - Limits save to local storage.
 - Counters reset without deleting attempt history.

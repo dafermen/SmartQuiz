@@ -26,7 +26,7 @@ import {
  * @returns {JSX.Element}
  */
 export default function Settings() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState(null);
@@ -282,10 +282,18 @@ export default function Settings() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-slate-950">{t("moduleLabels")}</h3>
-            {examProfileForm.categories.map((category) => (
+            <div>
+              <h3 className="font-semibold text-slate-950">{t("moduleLabels")}</h3>
+              <p className="mt-1 text-sm text-slate-500">{t("moduleLabelsDesc")}</p>
+            </div>
+            <div className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm text-teal-950">
+              {t("settingsLanguageScope")}
+            </div>
+            {examProfileForm.categories.map((category, index) => (
               <div key={category.id} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-                <p className="mb-3 text-sm font-semibold text-slate-500">{category.id}</p>
+                <p className="mb-3 text-sm font-semibold text-slate-500">
+                  {t("module")} {index + 1}
+                </p>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-2">
                     <Label>{t("english")} {t("category")}</Label>
@@ -361,7 +369,7 @@ export default function Settings() {
             {limitCategories.map((category) => (
               <div key={category.id} className="space-y-2">
                 <Label htmlFor={`${category.id}_limit`}>
-                  {getLocalizedProfileText(category.label, "en")}
+                  {getLocalizedProfileText(category.label, language)}
                 </Label>
                 <Input
                   id={`${category.id}_limit`}

@@ -114,7 +114,7 @@ export default function Home() {
   /**
    * Opens the quiz for a category when the configured limit allows it.
    *
-   * @param {string} category - Category code, for example `phishing_awareness`.
+   * @param {string} category - Category code, for example `module_1`.
    */
   const handleCategoryClick = (category) => {
     const fieldName = `${category}_taken`;

@@ -1,5 +1,13 @@
 export const EXAM_PROFILE_KEY = "smartquiz_exam_profile";
 
+const legacyCategoryIdMap = {
+  phishing_awareness: "module_1",
+  malware_basics: "module_2",
+  safe_data_habits: "module_3"
+};
+
+export const normalizeCategoryId = (categoryId) => legacyCategoryIdMap[categoryId] || categoryId;
+
 export const defaultExamProfile = {
   appName: "SmartQuiz",
   location: "Open exam practice platform",
@@ -11,7 +19,7 @@ export const defaultExamProfile = {
   testsPerCategory: 20,
   categories: [
     {
-      id: "phishing_awareness",
+      id: "module_1",
       icon: "ScanSearch",
       color: "from-teal-500 to-cyan-600",
       headerTone: "light",
@@ -25,7 +33,7 @@ export const defaultExamProfile = {
       }
     },
     {
-      id: "malware_basics",
+      id: "module_2",
       icon: "ShieldCheck",
       color: "from-slate-800 to-blue-900",
       headerTone: "light",
@@ -39,7 +47,7 @@ export const defaultExamProfile = {
       }
     },
     {
-      id: "safe_data_habits",
+      id: "module_3",
       icon: "BookOpen",
       color: "from-emerald-500 to-teal-700",
       headerTone: "light",
@@ -68,6 +76,12 @@ const normalizeLocalizedText = (value, fallback) => ({
   es: value?.es || fallback.es
 });
 
+const getSavedCategory = (savedCategories, defaultCategoryId) => (
+  savedCategories.find((category) => (
+    category.id === defaultCategoryId || normalizeCategoryId(category.id) === defaultCategoryId
+  )) || {}
+);
+
 export const normalizeExamProfile = (profile = {}) => ({
   ...defaultExamProfile,
   ...profile,
@@ -80,7 +94,7 @@ export const normalizeExamProfile = (profile = {}) => ({
   questionsPerTest: clampNumber(profile.questionsPerTest, 1, 100, defaultExamProfile.questionsPerTest),
   testsPerCategory: clampNumber(profile.testsPerCategory, 1, 100, defaultExamProfile.testsPerCategory),
   categories: defaultExamProfile.categories.map((defaultCategory) => {
-    const savedCategory = (profile.categories || []).find((category) => category.id === defaultCategory.id) || {};
+    const savedCategory = getSavedCategory(profile.categories || [], defaultCategory.id);
 
     return {
       ...defaultCategory,

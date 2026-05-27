@@ -2,6 +2,12 @@ export const QUESTION_BANK_CUSTOMIZATIONS_KEY = "smartquiz_question_bank_customi
 
 export const SUPPORTED_QUESTION_LANGUAGES = ["en", "es"];
 
+const legacyCategoryIdMap = {
+  phishing_awareness: "module_1",
+  malware_basics: "module_2",
+  safe_data_habits: "module_3"
+};
+
 const emptyLanguageMap = () => (
   Object.fromEntries(SUPPORTED_QUESTION_LANGUAGES.map((language) => [language, []]))
 );
@@ -89,9 +95,11 @@ const normalizeTags = (tags, fallbackCategory) => {
     .filter(Boolean);
 };
 
+const normalizeCategory = (category) => legacyCategoryIdMap[category] || category || "module_1";
+
 export const normalizeQuestionRecord = (question, language, source = "base") => {
   const id = String(question.id || makeCustomQuestionId());
-  const category = question.category || "phishing_awareness";
+  const category = normalizeCategory(question.category);
   const options = Array.isArray(question.options)
     ? question.options.slice(0, 4)
     : ["", "", "", ""];

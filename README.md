@@ -86,7 +86,7 @@ Create a JSON file with language keys and question arrays:
   "en": [
     {
       "id": "phish-001",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Suspicious Messages",
       "difficulty": "beginner",
@@ -100,7 +100,7 @@ Create a JSON file with language keys and question arrays:
   "es": [
     {
       "id": "phish-001",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Mensajes sospechosos",
       "difficulty": "beginner",
@@ -117,7 +117,7 @@ Create a JSON file with language keys and question arrays:
 Fields:
 
 - `id`: stable identifier for the question.
-- `category`: module key used by Home, Quiz, Progress, and Settings.
+- `category`: generic module key used by Home, Quiz, Progress, and Settings. The starter bank uses `module_1`, `module_2`, and `module_3` so visible labels can be changed for any domain.
 - `block_id`: numeric topic group used by study filters.
 - `block_name`: visible topic name.
 - `difficulty`: optional level such as `beginner`, `intermediate`, or `advanced`.
@@ -133,11 +133,11 @@ To replace the sample, import your file in:
 src/components/data/index.jsx
 ```
 
-Then update labels and module cards in:
+Then update labels and module cards from the editable exam profile in Settings. If you want to change source defaults, edit:
 
 ```txt
 src/components/language/LanguageProvider.jsx
-src/pages/Home.jsx
+src/components/profile/examProfileStorage.js
 ```
 
 ## Managing Questions In The App
@@ -177,6 +177,8 @@ Settings also includes an editable exam profile. Without changing source code, u
 - Passing score.
 - Number of questions per test.
 - Module names and descriptions in English and Spanish.
+
+The starter app currently ships with English and Spanish UI/content. Additional languages such as French can be added by extending `SUPPORTED_QUESTION_LANGUAGES`, `LanguageProvider.jsx`, and the question bank JSON.
 
 The profile is stored locally in:
 

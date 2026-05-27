@@ -46,7 +46,7 @@ At runtime, profile edits are stored in:
 
 - `smartquiz_exam_profile`
 
-The profile controls app name, subtitle, hero copy, domain label, module labels/descriptions, passing score, quiz length, and category defaults. This keeps the visual interface reusable across domains while preserving stable category ids for analytics and question matching.
+The profile controls app name, subtitle, hero copy, domain label, module labels/descriptions, passing score, quiz length, and category defaults. This keeps the visual interface reusable across domains while preserving generic category ids (`module_1`, `module_2`, `module_3`) for analytics and question matching.
 
 ## Quiz Behavior
 
@@ -95,9 +95,9 @@ The bundled JSON file remains read-only at runtime. User edits are stored as a l
 
 ## Customization Path
 
-1. Add or replace a JSON question bank.
-2. Update category labels in `LanguageProvider.jsx`.
-3. Update category cards in `Home.jsx`.
+1. Add or replace a JSON question bank using generic module ids.
+2. Update the exam profile defaults in `src/components/profile/examProfileStorage.js`, or edit labels directly in Settings.
+3. Extend `LanguageProvider.jsx` and `SUPPORTED_QUESTION_LANGUAGES` when adding a new UI/content language such as French.
 4. Optionally adjust colors, app name, and documentation.
 5. Use Settings to create/export local question packs without editing source files.
 

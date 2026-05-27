@@ -2,7 +2,7 @@
   "en": [
     {
       "id": "phish-001",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Suspicious Messages",
       "question": "You receive an email saying your payroll account will be closed in one hour unless you click a link. What should you do first?",
@@ -23,7 +23,7 @@
     },
     {
       "id": "phish-002",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Suspicious Messages",
       "question": "Which sign most strongly suggests a message may be phishing?",
@@ -44,7 +44,7 @@
     },
     {
       "id": "phish-003",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 2,
       "block_name": "Links and Attachments",
       "question": "A link text says 'company.com', but hovering over it shows a different unfamiliar domain. What is the safest response?",
@@ -65,7 +65,7 @@
     },
     {
       "id": "phish-004",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 2,
       "block_name": "Links and Attachments",
       "question": "A vendor asks you by email to change their payment bank account. What should you do?",
@@ -86,7 +86,7 @@
     },
     {
       "id": "malware-001",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 3,
       "block_name": "Unsafe Downloads",
       "question": "A website says you must install a new video player to view a file. What is the safest choice?",
@@ -107,7 +107,7 @@
     },
     {
       "id": "malware-002",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 3,
       "block_name": "Unsafe Downloads",
       "question": "Which behavior can indicate a device may be infected?",
@@ -128,7 +128,7 @@
     },
     {
       "id": "malware-003",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 4,
       "block_name": "Safe Response",
       "question": "You accidentally opened a suspicious attachment. What should you do next?",
@@ -149,7 +149,7 @@
     },
     {
       "id": "malware-004",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 4,
       "block_name": "Safe Response",
       "question": "Why are software updates important for everyday users?",
@@ -170,7 +170,7 @@
     },
     {
       "id": "data-001",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 5,
       "block_name": "Passwords and Access",
       "question": "What is the best password habit?",
@@ -191,7 +191,7 @@
     },
     {
       "id": "data-002",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 5,
       "block_name": "Passwords and Access",
       "question": "A sign-in prompt asks for a multi-factor code you did not request. What should you do?",
@@ -212,7 +212,7 @@
     },
     {
       "id": "data-003",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 6,
       "block_name": "Privacy and Reporting",
       "question": "Which information should you avoid sending through an unverified chat or email request?",
@@ -233,7 +233,7 @@
     },
     {
       "id": "data-004",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 6,
       "block_name": "Privacy and Reporting",
       "question": "Why should suspicious activity be reported even when you are not sure?",
@@ -254,7 +254,7 @@
     },
     {
       "id": "phish-005",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 7,
       "block_name": "Sender Verification",
       "question": "A message appears to come from your manager and asks you to buy gift cards right away. What should you do?",
@@ -275,7 +275,7 @@
     },
     {
       "id": "phish-006",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 7,
       "block_name": "Sender Verification",
       "question": "An email address looks almost correct but has one extra letter in the company name. What is the safest conclusion?",
@@ -296,7 +296,7 @@
     },
     {
       "id": "phish-007",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 8,
       "block_name": "Urgent Requests",
       "question": "A text message says a package delivery failed and asks you to pay a small fee through a link. What should you do?",
@@ -317,7 +317,7 @@
     },
     {
       "id": "malware-005",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 9,
       "block_name": "Pop-ups and Warnings",
       "question": "A pop-up says your computer is infected and gives a phone number to call. What is the safest response?",
@@ -338,7 +338,7 @@
     },
     {
       "id": "malware-006",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 9,
       "block_name": "Pop-ups and Warnings",
       "question": "You find an unknown USB drive in a meeting room. What should you do?",
@@ -359,7 +359,7 @@
     },
     {
       "id": "malware-007",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 10,
       "block_name": "Safe Response",
       "question": "After clicking a suspicious link, your browser starts downloading a file automatically. What should you do?",
@@ -380,7 +380,7 @@
     },
     {
       "id": "data-005",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 11,
       "block_name": "Data Sharing",
       "question": "A coworker asks you to send a customer list through a personal email account because they are locked out. What should you do?",
@@ -401,7 +401,7 @@
     },
     {
       "id": "data-006",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 11,
       "block_name": "Data Sharing",
       "question": "Which habit best protects sensitive information during screen sharing?",
@@ -422,7 +422,7 @@
     },
     {
       "id": "data-007",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 12,
       "block_name": "Account Safety",
       "question": "A browser asks to save the password for a shared kiosk or public computer. What is the safest choice?",
@@ -443,7 +443,7 @@
     },
     {
       "id": "phish-008",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 13,
       "block_name": "Unexpected Attachments",
       "question": "You receive an invoice attachment from a company you do not recognize. What should you do first?",
@@ -464,7 +464,7 @@
     },
     {
       "id": "phish-009",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 13,
       "block_name": "Unexpected Attachments",
       "question": "A message says you won a prize but must sign in with your work account to claim it. What is the safest response?",
@@ -485,7 +485,7 @@
     },
     {
       "id": "malware-008",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 14,
       "block_name": "Approved Software",
       "question": "You need a tool for a task, and a website offers a free cracked version. What should you do?",
@@ -506,7 +506,7 @@
     },
     {
       "id": "malware-009",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 14,
       "block_name": "Approved Software",
       "question": "A browser extension asks for permission to read and change all data on every website. What is the safest next step?",
@@ -527,7 +527,7 @@
     },
     {
       "id": "data-008",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 15,
       "block_name": "Clean Desk and Devices",
       "question": "You step away from your desk for a quick break. Which action best protects your account?",
@@ -548,7 +548,7 @@
     },
     {
       "id": "data-009",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 15,
       "block_name": "Clean Desk and Devices",
       "question": "What should you do with printed documents that contain sensitive information?",
@@ -569,7 +569,7 @@
     },
     {
       "id": "phish-010",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 16,
       "block_name": "Calendar and Meeting Scams",
       "question": "You receive an unexpected calendar invite with a link to review a document. What should you do before opening it?",
@@ -590,7 +590,7 @@
     },
     {
       "id": "phish-011",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 16,
       "block_name": "Calendar and Meeting Scams",
       "question": "A video meeting link asks you to install a new plug-in before joining. What is the safest action?",
@@ -611,7 +611,7 @@
     },
     {
       "id": "phish-012",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 17,
       "block_name": "Account Alerts",
       "question": "An email says your mailbox is full and asks you to sign in through a link to keep receiving mail. What should you do?",
@@ -632,7 +632,7 @@
     },
     {
       "id": "malware-010",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 18,
       "block_name": "Mobile Device Safety",
       "question": "A phone app asks for access to contacts, microphone, camera, and location even though it is only a flashlight app. What should you do?",
@@ -653,7 +653,7 @@
     },
     {
       "id": "malware-011",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 18,
       "block_name": "Mobile Device Safety",
       "question": "Your device warns that an app came from an unknown source. What is the safest response?",
@@ -674,7 +674,7 @@
     },
     {
       "id": "malware-012",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 19,
       "block_name": "Ransomware Awareness",
       "question": "Several files suddenly cannot be opened and a note demands payment to restore them. What should you do?",
@@ -695,7 +695,7 @@
     },
     {
       "id": "data-010",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 20,
       "block_name": "Cloud File Sharing",
       "question": "You need to share a document with one external partner. Which sharing setting is safest?",
@@ -716,7 +716,7 @@
     },
     {
       "id": "data-011",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 20,
       "block_name": "Cloud File Sharing",
       "question": "What should you check before uploading sensitive files to a shared folder?",
@@ -737,7 +737,7 @@
     },
     {
       "id": "data-012",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 21,
       "block_name": "Public Wi-Fi",
       "question": "You are working from a cafe on public Wi-Fi. What is the safest habit?",
@@ -758,7 +758,7 @@
     },
     {
       "id": "data-013",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 21,
       "block_name": "Public Wi-Fi",
       "question": "A public charging station offers a free cable to connect your phone. What is a safer option?",
@@ -779,7 +779,7 @@
     },
     {
       "id": "phish-013",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 22,
       "block_name": "QR Code Scams",
       "question": "A poster in the office has a QR code promising a free company gift. What should you do before scanning it?",
@@ -800,7 +800,7 @@
     },
     {
       "id": "phish-014",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 22,
       "block_name": "QR Code Scams",
       "question": "A QR code takes you to a sign-in page that looks like your company portal but the address is unfamiliar. What is safest?",
@@ -821,7 +821,7 @@
     },
     {
       "id": "phish-015",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 23,
       "block_name": "Social Media Messages",
       "question": "A social media message from a coworker asks for a work file urgently. What should you do?",
@@ -842,7 +842,7 @@
     },
     {
       "id": "phish-016",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 23,
       "block_name": "Social Media Messages",
       "question": "A recruiter message offers a job interview but asks you to upload a copy of your ID before any call. What is safest?",
@@ -863,7 +863,7 @@
     },
     {
       "id": "malware-013",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 24,
       "block_name": "File Types",
       "question": "Which file should make you extra cautious when it arrives unexpectedly?",
@@ -884,7 +884,7 @@
     },
     {
       "id": "malware-014",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 24,
       "block_name": "File Types",
       "question": "A compressed ZIP file from an unknown sender asks you to enable content after opening. What should you do?",
@@ -905,7 +905,7 @@
     },
     {
       "id": "malware-015",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 25,
       "block_name": "Device Behavior",
       "question": "Your computer suddenly shows many browser tabs, ads, and toolbars you did not install. What should you do?",
@@ -926,7 +926,7 @@
     },
     {
       "id": "malware-016",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 25,
       "block_name": "Device Behavior",
       "question": "A support caller asks you to install a remote-control tool to fix a problem you did not report. What is safest?",
@@ -947,7 +947,7 @@
     },
     {
       "id": "data-014",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 26,
       "block_name": "Data Classification",
       "question": "A document is marked confidential. What does that usually mean?",
@@ -968,7 +968,7 @@
     },
     {
       "id": "data-015",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 26,
       "block_name": "Data Classification",
       "question": "You are unsure whether a file contains sensitive data. What should you do?",
@@ -989,7 +989,7 @@
     },
     {
       "id": "data-016",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 27,
       "block_name": "Multi-Factor Authentication",
       "question": "Which response is safest if you receive repeated multi-factor prompts you did not start?",
@@ -1010,7 +1010,7 @@
     },
     {
       "id": "data-017",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 27,
       "block_name": "Multi-Factor Authentication",
       "question": "Why is multi-factor authentication useful?",
@@ -1031,7 +1031,7 @@
     },
     {
       "id": "data-018",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 28,
       "block_name": "Travel Security",
       "question": "When traveling for work, what should you do with devices in public places?",
@@ -1054,7 +1054,7 @@
   "es": [
     {
       "id": "phish-001",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Mensajes sospechosos",
       "question": "Recibes un correo que dice que tu cuenta de nomina se cerrara en una hora si no haces clic en un enlace. Que deberias hacer primero?",
@@ -1075,7 +1075,7 @@
     },
     {
       "id": "phish-002",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 1,
       "block_name": "Mensajes sospechosos",
       "question": "Que senal sugiere con mas fuerza que un mensaje puede ser phishing?",
@@ -1096,7 +1096,7 @@
     },
     {
       "id": "phish-003",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 2,
       "block_name": "Enlaces y adjuntos",
       "question": "El texto de un enlace dice 'empresa.com', pero al pasar el cursor aparece otro dominio desconocido. Cual es la respuesta mas segura?",
@@ -1117,7 +1117,7 @@
     },
     {
       "id": "phish-004",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 2,
       "block_name": "Enlaces y adjuntos",
       "question": "Un proveedor pide por correo cambiar su cuenta bancaria de pago. Que deberias hacer?",
@@ -1138,7 +1138,7 @@
     },
     {
       "id": "malware-001",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 3,
       "block_name": "Descargas inseguras",
       "question": "Un sitio web dice que debes instalar un nuevo reproductor para ver un archivo. Cual es la opcion mas segura?",
@@ -1159,7 +1159,7 @@
     },
     {
       "id": "malware-002",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 3,
       "block_name": "Descargas inseguras",
       "question": "Que comportamiento puede indicar que un dispositivo esta infectado?",
@@ -1180,7 +1180,7 @@
     },
     {
       "id": "malware-003",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 4,
       "block_name": "Respuesta segura",
       "question": "Abriste por accidente un adjunto sospechoso. Que deberias hacer despues?",
@@ -1201,7 +1201,7 @@
     },
     {
       "id": "malware-004",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 4,
       "block_name": "Respuesta segura",
       "question": "Por que son importantes las actualizaciones para usuarios finales?",
@@ -1222,7 +1222,7 @@
     },
     {
       "id": "data-001",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 5,
       "block_name": "Contrasenas y acceso",
       "question": "Cual es el mejor habito con contrasenas?",
@@ -1243,7 +1243,7 @@
     },
     {
       "id": "data-002",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 5,
       "block_name": "Contrasenas y acceso",
       "question": "Una solicitud de inicio de sesion pide un codigo multifactor que tu no solicitaste. Que haces?",
@@ -1264,7 +1264,7 @@
     },
     {
       "id": "data-003",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 6,
       "block_name": "Privacidad y reporte",
       "question": "Que informacion debes evitar enviar por un chat o correo no verificado?",
@@ -1285,7 +1285,7 @@
     },
     {
       "id": "data-004",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 6,
       "block_name": "Privacidad y reporte",
       "question": "Por que conviene reportar actividad sospechosa incluso si no estas seguro?",
@@ -1306,7 +1306,7 @@
     },
     {
       "id": "phish-005",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 7,
       "block_name": "Verificacion del remitente",
       "question": "Un mensaje parece venir de tu gerente y te pide comprar tarjetas de regalo de inmediato. Que deberias hacer?",
@@ -1327,7 +1327,7 @@
     },
     {
       "id": "phish-006",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 7,
       "block_name": "Verificacion del remitente",
       "question": "Una direccion de correo parece casi correcta pero tiene una letra extra en el nombre de la empresa. Cual es la conclusion mas segura?",
@@ -1348,7 +1348,7 @@
     },
     {
       "id": "phish-007",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 8,
       "block_name": "Solicitudes urgentes",
       "question": "Un mensaje de texto dice que una entrega fallo y te pide pagar una pequena tarifa mediante un enlace. Que deberias hacer?",
@@ -1369,7 +1369,7 @@
     },
     {
       "id": "malware-005",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 9,
       "block_name": "Ventanas emergentes y alertas",
       "question": "Una ventana emergente dice que tu computadora esta infectada y muestra un numero para llamar. Cual es la respuesta mas segura?",
@@ -1390,7 +1390,7 @@
     },
     {
       "id": "malware-006",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 9,
       "block_name": "Ventanas emergentes y alertas",
       "question": "Encuentras una memoria USB desconocida en una sala de reuniones. Que deberias hacer?",
@@ -1411,7 +1411,7 @@
     },
     {
       "id": "malware-007",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 10,
       "block_name": "Respuesta segura",
       "question": "Despues de hacer clic en un enlace sospechoso, tu navegador empieza a descargar un archivo automaticamente. Que deberias hacer?",
@@ -1432,7 +1432,7 @@
     },
     {
       "id": "data-005",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 11,
       "block_name": "Compartir datos",
       "question": "Un companero te pide enviar una lista de clientes por correo personal porque no puede entrar a su cuenta. Que deberias hacer?",
@@ -1453,7 +1453,7 @@
     },
     {
       "id": "data-006",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 11,
       "block_name": "Compartir datos",
       "question": "Que habito protege mejor la informacion sensible durante una pantalla compartida?",
@@ -1474,7 +1474,7 @@
     },
     {
       "id": "data-007",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 12,
       "block_name": "Seguridad de cuentas",
       "question": "Un navegador pregunta si quieres guardar la contrasena en un kiosco o computador publico. Cual es la opcion mas segura?",
@@ -1495,7 +1495,7 @@
     },
     {
       "id": "phish-008",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 13,
       "block_name": "Adjuntos inesperados",
       "question": "Recibes un adjunto de factura de una empresa que no reconoces. Que deberias hacer primero?",
@@ -1516,7 +1516,7 @@
     },
     {
       "id": "phish-009",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 13,
       "block_name": "Adjuntos inesperados",
       "question": "Un mensaje dice que ganaste un premio pero debes iniciar sesion con tu cuenta laboral para reclamarlo. Cual es la respuesta mas segura?",
@@ -1537,7 +1537,7 @@
     },
     {
       "id": "malware-008",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 14,
       "block_name": "Software aprobado",
       "question": "Necesitas una herramienta para una tarea y un sitio ofrece una version gratuita pirateada. Que deberias hacer?",
@@ -1558,7 +1558,7 @@
     },
     {
       "id": "malware-009",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 14,
       "block_name": "Software aprobado",
       "question": "Una extension del navegador pide permiso para leer y cambiar todos los datos en cada sitio web. Cual es el siguiente paso mas seguro?",
@@ -1579,7 +1579,7 @@
     },
     {
       "id": "data-008",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 15,
       "block_name": "Escritorio y dispositivos",
       "question": "Te alejas de tu escritorio por una pausa corta. Que accion protege mejor tu cuenta?",
@@ -1600,7 +1600,7 @@
     },
     {
       "id": "data-009",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 15,
       "block_name": "Escritorio y dispositivos",
       "question": "Que deberias hacer con documentos impresos que contienen informacion sensible?",
@@ -1621,7 +1621,7 @@
     },
     {
       "id": "phish-010",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 16,
       "block_name": "Estafas de calendario y reuniones",
       "question": "Recibes una invitacion de calendario inesperada con un enlace para revisar un documento. Que deberias hacer antes de abrirlo?",
@@ -1642,7 +1642,7 @@
     },
     {
       "id": "phish-011",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 16,
       "block_name": "Estafas de calendario y reuniones",
       "question": "Un enlace de videollamada pide instalar un nuevo complemento antes de entrar. Cual es la accion mas segura?",
@@ -1663,7 +1663,7 @@
     },
     {
       "id": "phish-012",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 17,
       "block_name": "Alertas de cuenta",
       "question": "Un correo dice que tu buzon esta lleno y pide iniciar sesion mediante un enlace para seguir recibiendo correo. Que deberias hacer?",
@@ -1684,7 +1684,7 @@
     },
     {
       "id": "malware-010",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 18,
       "block_name": "Seguridad en dispositivos moviles",
       "question": "Una app del telefono pide acceso a contactos, microfono, camara y ubicacion aunque solo es una linterna. Que deberias hacer?",
@@ -1705,7 +1705,7 @@
     },
     {
       "id": "malware-011",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 18,
       "block_name": "Seguridad en dispositivos moviles",
       "question": "Tu dispositivo advierte que una app viene de una fuente desconocida. Cual es la respuesta mas segura?",
@@ -1726,7 +1726,7 @@
     },
     {
       "id": "malware-012",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 19,
       "block_name": "Conciencia sobre ransomware",
       "question": "Varios archivos de pronto no abren y una nota exige pago para restaurarlos. Que deberias hacer?",
@@ -1747,7 +1747,7 @@
     },
     {
       "id": "data-010",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 20,
       "block_name": "Compartir archivos en la nube",
       "question": "Necesitas compartir un documento con un socio externo. Que configuracion es mas segura?",
@@ -1768,7 +1768,7 @@
     },
     {
       "id": "data-011",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 20,
       "block_name": "Compartir archivos en la nube",
       "question": "Que deberias revisar antes de subir archivos sensibles a una carpeta compartida?",
@@ -1789,7 +1789,7 @@
     },
     {
       "id": "data-012",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 21,
       "block_name": "Wi-Fi publico",
       "question": "Estas trabajando desde una cafeteria con Wi-Fi publico. Cual es el habito mas seguro?",
@@ -1810,7 +1810,7 @@
     },
     {
       "id": "data-013",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 21,
       "block_name": "Wi-Fi publico",
       "question": "Una estacion publica de carga ofrece un cable gratis para conectar tu telefono. Cual es una opcion mas segura?",
@@ -1831,7 +1831,7 @@
     },
     {
       "id": "phish-013",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 22,
       "block_name": "Estafas con codigos QR",
       "question": "Un aviso en la oficina tiene un codigo QR que promete un regalo de la empresa. Que deberias hacer antes de escanearlo?",
@@ -1852,7 +1852,7 @@
     },
     {
       "id": "phish-014",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 22,
       "block_name": "Estafas con codigos QR",
       "question": "Un codigo QR te lleva a una pagina de inicio de sesion que parece el portal de la empresa, pero la direccion es desconocida. Que es mas seguro?",
@@ -1873,7 +1873,7 @@
     },
     {
       "id": "phish-015",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 23,
       "block_name": "Mensajes en redes sociales",
       "question": "Un mensaje en redes sociales de un companero pide un archivo laboral con urgencia. Que deberias hacer?",
@@ -1894,7 +1894,7 @@
     },
     {
       "id": "phish-016",
-      "category": "phishing_awareness",
+      "category": "module_1",
       "block_id": 23,
       "block_name": "Mensajes en redes sociales",
       "question": "Un mensaje de reclutador ofrece una entrevista pero pide subir copia de tu ID antes de cualquier llamada. Que es mas seguro?",
@@ -1915,7 +1915,7 @@
     },
     {
       "id": "malware-013",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 24,
       "block_name": "Tipos de archivo",
       "question": "Que archivo debe causar mas cautela cuando llega inesperadamente?",
@@ -1936,7 +1936,7 @@
     },
     {
       "id": "malware-014",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 24,
       "block_name": "Tipos de archivo",
       "question": "Un archivo ZIP de un remitente desconocido pide habilitar contenido al abrirlo. Que deberias hacer?",
@@ -1957,7 +1957,7 @@
     },
     {
       "id": "malware-015",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 25,
       "block_name": "Comportamiento del dispositivo",
       "question": "Tu computador muestra de pronto muchas pestanas, anuncios y barras que no instalaste. Que deberias hacer?",
@@ -1978,7 +1978,7 @@
     },
     {
       "id": "malware-016",
-      "category": "malware_basics",
+      "category": "module_2",
       "block_id": 25,
       "block_name": "Comportamiento del dispositivo",
       "question": "Una llamada de soporte te pide instalar una herramienta de control remoto para arreglar un problema que no reportaste. Que es mas seguro?",
@@ -1999,7 +1999,7 @@
     },
     {
       "id": "data-014",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 26,
       "block_name": "Clasificacion de datos",
       "question": "Un documento esta marcado como confidencial. Que significa normalmente?",
@@ -2020,7 +2020,7 @@
     },
     {
       "id": "data-015",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 26,
       "block_name": "Clasificacion de datos",
       "question": "No estas seguro si un archivo contiene datos sensibles. Que deberias hacer?",
@@ -2041,7 +2041,7 @@
     },
     {
       "id": "data-016",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 27,
       "block_name": "Autenticacion multifactor",
       "question": "Cual es la respuesta mas segura si recibes repetidas solicitudes multifactor que no iniciaste?",
@@ -2062,7 +2062,7 @@
     },
     {
       "id": "data-017",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 27,
       "block_name": "Autenticacion multifactor",
       "question": "Por que es util la autenticacion multifactor?",
@@ -2083,7 +2083,7 @@
     },
     {
       "id": "data-018",
-      "category": "safe_data_habits",
+      "category": "module_3",
       "block_id": 28,
       "block_name": "Seguridad en viajes",
       "question": "Cuando viajas por trabajo, que deberias hacer con dispositivos en lugares publicos?",

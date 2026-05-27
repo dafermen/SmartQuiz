@@ -48,17 +48,11 @@ import {
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { getExamProfile, getLocalizedProfileText } from "@/components/profile/examProfileStorage";
 
-const categoryOptions = [
-  "phishing_awareness",
-  "malware_basics",
-  "safe_data_habits"
-];
-
 const difficultyOptions = ["beginner", "intermediate", "advanced"];
 
 const emptyForm = {
   id: "",
-  category: "phishing_awareness",
+  category: "module_1",
   difficulty: "beginner",
   tags: "",
   block_id: 1,
@@ -125,6 +119,7 @@ export default function QuestionBankManager() {
   const [importText, setImportText] = useState("");
 
   const questions = getQuestionsData()[activeLanguage] || [];
+  const categoryOptions = examProfile.categories.map((category) => category.id);
 
   useEffect(() => {
     const debounceTimer = window.setTimeout(() => {

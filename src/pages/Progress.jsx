@@ -8,7 +8,8 @@ import { getGamificationProfile, getLevelProgress } from "../components/gamifica
 import {
   getExamProfile,
   getLocalizedProfileText,
-  getPracticeCategoryProfile
+  getPracticeCategoryProfile,
+  normalizeCategoryId
 } from "../components/profile/examProfileStorage";
 
 /**
@@ -150,12 +151,14 @@ export default function Progress() {
    * @returns {string}
    */
   const getCategoryName = (category) => {
-    if (category === "practice_quiz") {
+    const normalizedCategory = normalizeCategoryId(category);
+
+    if (normalizedCategory === "practice_quiz") {
       return getLocalizedProfileText(getPracticeCategoryProfile(language).label, language);
     }
 
-    const categoryProfile = examProfile.categories.find((item) => item.id === category);
-    return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : category;
+    const categoryProfile = examProfile.categories.find((item) => item.id === normalizedCategory);
+    return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : normalizedCategory;
   };
 
   /**

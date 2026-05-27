@@ -17,7 +17,8 @@ import {
   getExamProfile,
   getLocalizedProfileText,
   getPracticeCategoryProfile,
-  getQuizSettingsDefaults
+  getQuizSettingsDefaults,
+  normalizeCategoryId
 } from "../components/profile/examProfileStorage";
 
 /**
@@ -81,7 +82,7 @@ export default function Quiz() {
   const navigate = useNavigate();
   const { t, language } = useLanguage();
   const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get("category") || "phishing_awareness";
+  const category = normalizeCategoryId(urlParams.get("category") || "module_1");
   const [examProfile, setExamProfile] = useState(getExamProfile);
 
   const [allQuestions, setAllQuestions] = useState([]);

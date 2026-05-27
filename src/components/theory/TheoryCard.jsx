@@ -32,16 +32,16 @@ export default function TheoryCard({ question, index, examProfile }) {
    */
   const getCategoryBadge = () => {
     const colors = {
-      phishing_awareness: "bg-teal-50 text-teal-800 ring-1 ring-teal-100",
-      malware_basics: "bg-slate-100 text-slate-800",
-      safe_data_habits: "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100"
+      module_1: "bg-teal-50 text-teal-800 ring-1 ring-teal-100",
+      module_2: "bg-slate-100 text-slate-800",
+      module_3: "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-100"
     };
     
     const categoryProfile = examProfile?.categories.find((category) => category.id === question.category);
     const label = categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : t(question.category);
 
     return (
-      <Badge className={colors[question.category]}>
+      <Badge className={colors[question.category] || "bg-slate-100 text-slate-700"}>
         {label}
       </Badge>
     );

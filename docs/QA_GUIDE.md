@@ -19,9 +19,9 @@
 
 Validate each category:
 
-- `phishing_awareness`
-- `malware_basics`
-- `safe_data_habits`
+- `module_1`
+- `module_2`
+- `module_3`
 - `practice_quiz`
 
 Expected behavior:
@@ -52,6 +52,8 @@ Expected behavior:
 - Edit the exam profile name, subtitle, passing score, and questions per test.
 - Save the exam profile and confirm Home, Quiz, Progress, and the browser title reflect the update.
 - Edit module labels/descriptions in EN/ES and confirm Home/Theory/Quiz/Progress use the new labels.
+- Confirm Settings shows generic module names such as `Modulo 1` / `Module 1`, not cybersecurity-specific internal keys.
+- Confirm the language note explains that the starter app currently ships with EN/ES content.
 - Restore the default exam profile and confirm the cybersecurity sample labels return.
 - Limits save to local storage.
 - Counters reset without deleting attempt history.

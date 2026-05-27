@@ -14,7 +14,7 @@
 - `src/pages/Theory.jsx`: study mode using question explanations.
 - `src/pages/Quiz.jsx`: randomized test generation, scoring, attempt persistence, and gamification updates.
 - `src/pages/Progress.jsx`: learning level, saved attempt metrics, category performance, question review insights, and chart.
-- `src/pages/Settings.jsx`: exam profile, Theme Studio, question bank CRUD, local limits, and counter reset.
+- `src/pages/Settings.jsx`: tabbed admin workspace for exam profile, Theme Studio, question bank CRUD, local limits, and counter reset.
 
 ## Data
 

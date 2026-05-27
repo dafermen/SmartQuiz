@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Settings as SettingsIcon, Save, RotateCcw } from "lucide-react";
+import { FileQuestion, Palette, Settings as SettingsIcon, Save, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "../components/language/LanguageProvider";
 import QuestionBankManager from "../components/settings/QuestionBankManager";
 import ThemeStudio from "../components/settings/ThemeStudio";
@@ -206,6 +207,29 @@ export default function Settings() {
         </Alert>
       )}
 
+      <Tabs defaultValue="profile" className="space-y-6">
+        <div className="overflow-x-auto pb-1">
+          <TabsList className="h-auto min-w-max justify-start gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
+            <TabsTrigger value="profile" className="gap-2 rounded-xl px-4 py-2.5">
+              <SettingsIcon className="h-4 w-4" />
+              {t("examProfile")}
+            </TabsTrigger>
+            <TabsTrigger value="theme" className="gap-2 rounded-xl px-4 py-2.5">
+              <Palette className="h-4 w-4" />
+              {t("themeStudio")}
+            </TabsTrigger>
+            <TabsTrigger value="questions" className="gap-2 rounded-xl px-4 py-2.5">
+              <FileQuestion className="h-4 w-4" />
+              {t("questionBankManager")}
+            </TabsTrigger>
+            <TabsTrigger value="limits" className="gap-2 rounded-xl px-4 py-2.5">
+              <SlidersHorizontal className="h-4 w-4" />
+              {t("testLimits")}
+            </TabsTrigger>
+          </TabsList>
+        </div>
+
+        <TabsContent value="profile" className="mt-0 space-y-6">
       <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -353,10 +377,19 @@ export default function Settings() {
         </CardContent>
       </Card>
 
+        </TabsContent>
+
+        <TabsContent value="theme" className="mt-0">
       <ThemeStudio />
 
+        </TabsContent>
+
+        <TabsContent value="questions" className="mt-0">
       <QuestionBankManager />
 
+        </TabsContent>
+
+        <TabsContent value="limits" className="mt-0 space-y-6">
       <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -449,6 +482,8 @@ export default function Settings() {
           </ul>
         </CardContent>
       </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

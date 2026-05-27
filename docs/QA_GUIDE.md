@@ -49,6 +49,8 @@ Expected behavior:
 
 ## Settings
 
+- Confirm Settings is organized into Perfil/Profile, Theme Studio, Question Bank, and Limits tabs.
+- Switch between tabs and confirm each section opens without losing saved local data.
 - Edit the exam profile name, subtitle, passing score, and questions per test.
 - Save the exam profile and confirm Home, Quiz, Progress, and the browser title reflect the update.
 - Edit module labels/descriptions in EN/ES and confirm Home/Theory/Quiz/Progress use the new labels.

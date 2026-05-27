@@ -48,6 +48,15 @@ src/components/data/cybersecurityAwarenessQuestions.json
 - JSON import/export for backups and content migration
 - Responsive app shell with modern SaaS-style design
 
+## Settings Workspace
+
+Settings is organized as a tabbed admin workspace so large projects do not become one long scrolling form:
+
+- **Exam Profile:** app name, subtitle, domain, hero copy, passing score, quiz length, and module labels.
+- **Theme Studio:** presets, brand colors, live preview, save, and reset.
+- **Question Bank Manager:** search, pagination, CRUD, duplicate, import, export, and restore sample bank.
+- **Test Limits:** per-module limits, taken counters, reset counters, and local storage notes.
+
 ## Tech Stack
 
 - React 18
@@ -144,7 +153,7 @@ src/components/profile/examProfileStorage.js
 
 ## Managing Questions In The App
 
-SmartQuiz includes a local question bank manager in `Settings`.
+SmartQuiz includes a local question bank manager in the `Settings > Question Bank Manager` tab.
 
 From the UI, users can:
 
@@ -171,7 +180,7 @@ This keeps the project safe for static hosting while still giving users a practi
 
 ## Adapting The Exam Profile
 
-Settings also includes an editable exam profile. Without changing source code, users can customize:
+The `Settings > Exam Profile` tab lets users customize the app without changing source code:
 
 - App name and subtitle.
 - Hero headline and description.
@@ -192,7 +201,7 @@ This lets the same interface support cybersecurity awareness, AWS/Azure exam pre
 
 ## Customizing The Theme
 
-Settings includes a Theme Studio for brand customization. Users can:
+The `Settings > Theme Studio` tab handles brand customization. Users can:
 
 - Apply presets such as corporate blue, healthcare, education, security, or minimal gray.
 - Edit primary, secondary, accent, background, surface, text, success, warning, and danger colors.

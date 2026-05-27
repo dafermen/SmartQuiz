@@ -41,6 +41,7 @@
 - `src/components/quiz/QuestionCard.jsx`: interactive question and feedback.
 - `src/components/quiz/ResultsCard.jsx`: emotional result summary, XP reward, level progress, and celebration animation.
 - `src/components/quiz/TestLimitBadge.jsx`: local limit indicator.
+- `src/components/settings/ThemeStudio.jsx`: visual theme editor with presets, color inputs, preview, save, and reset.
 - `src/components/settings/QuestionBankManager.jsx`: local question CRUD, base overrides, delete, import, export, and reset.
 - `src/components/theory/TheoryCard.jsx`: study card with explanation.
 - `src/components/language/LanguageProvider.jsx`: English/Spanish strings and language state.

@@ -9,7 +9,7 @@ SmartQuiz is a client-only React/Vite app. It reads localized question data from
 3. `src/pages/index.jsx` defines lazy-loaded pages.
 4. `src/pages/Layout.jsx` provides the app shell, navigation, and language switcher.
 5. Pages load question data through `getQuestionsData()`.
-6. UI copy and quiz rules can be customized through the local exam profile.
+6. UI copy, quiz rules, theme colors, question content, and limits can be customized through the tabbed Settings workspace.
 
 ## Data
 
@@ -78,7 +78,16 @@ No private credentials, access codes, or backend secrets are required.
 - `Theory`: searchable study view backed by question explanations.
 - `Quiz`: randomized test flow with scoring and feedback.
 - `Progress`: learning level, chart, category performance, per-question review insights, and recent attempt history.
-- `Settings`: local test limit, counter management, and question bank editing.
+- `Settings`: tabbed admin workspace for Exam Profile, Theme Studio, Question Bank Manager, and Test Limits.
+
+## Settings Workspace
+
+Settings is intentionally split into tabs to keep the administration surface usable as the project grows:
+
+- `Exam Profile`: controls app identity, domain copy, pass score, quiz size, and visible module labels.
+- `Theme Studio`: stores brand colors in `smartquiz_theme` and applies them through CSS variables.
+- `Question Bank Manager`: manages local question additions, overrides, deletions, import, export, and restore.
+- `Test Limits`: manages per-module attempt limits, taken counters, and counter reset actions.
 
 ## Gamification
 
@@ -99,8 +108,9 @@ The bundled JSON file remains read-only at runtime. User edits are stored as a l
 1. Add or replace a JSON question bank using generic module ids.
 2. Update the exam profile defaults in `src/components/profile/examProfileStorage.js`, or edit labels directly in Settings.
 3. Extend `LanguageProvider.jsx` and `SUPPORTED_QUESTION_LANGUAGES` when adding a new UI/content language such as French.
-4. Optionally adjust colors, app name, and documentation.
+4. Use Theme Studio to adjust colors without rebuilding the app.
 5. Use Settings to create/export local question packs without editing source files.
+6. Update documentation for the new target domain before publishing.
 
 ## Publishing Notes
 

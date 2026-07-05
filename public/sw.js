@@ -1,6 +1,12 @@
 const CACHE_NAME = "smartquiz-shell-v2";
 const RUNTIME_CACHE = "smartquiz-runtime-v2";
-const APP_SHELL = ["/", "/index.html", "/manifest.webmanifest", "/favicon.svg"];
+const scope = self.registration.scope;
+const APP_SHELL = [
+  scope,
+  new URL("index.html", scope).toString(),
+  new URL("manifest.webmanifest", scope).toString(),
+  new URL("favicon.svg", scope).toString()
+];
 const MAX_RUNTIME_ITEMS = 80;
 
 const trimRuntimeCache = async () => {
@@ -34,7 +40,7 @@ self.addEventListener("fetch", (event) => {
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match("/index.html"))
+      fetch(event.request).catch(() => caches.match(new URL("index.html", scope).toString()))
     );
     return;
   }

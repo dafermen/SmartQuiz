@@ -122,6 +122,20 @@ Use this structure:
 
 SmartQuiz is a Vite app. If deploying to GitHub Pages, confirm the correct `base` path in `vite.config.js` if the app is served from a repository subpath.
 
+This repository is configured for:
+
+```txt
+https://dafermen.github.io/SmartQuiz/
+```
+
+Publish with:
+
+```bash
+npm run deploy
+```
+
+The deploy script builds `dist`, creates `dist/404.html` for SPA route refresh support, and publishes the output to the `gh-pages` branch.
+
 For a user/organization site at root, `/` is usually fine.
 
 For a project page like:

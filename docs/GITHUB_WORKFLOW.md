@@ -120,12 +120,24 @@ Use this structure:
 
 ## GitHub Pages
 
-SmartQuiz is a Vite app. If deploying to GitHub Pages, confirm the correct `base` path in `vite.config.js` if the app is served from a repository subpath.
+SmartQuiz is a Vite app. If deploying to GitHub Pages, confirm the correct `base` path in `vite.config.js` for the target URL.
 
 This repository is configured for:
 
 ```txt
-https://dafermen.github.io/SmartQuiz/
+https://smartquiz.innovalogic.tech/
+```
+
+The custom domain is stored in:
+
+```txt
+public/CNAME
+```
+
+For this custom-domain setup, Vite should use:
+
+```js
+base: "/"
 ```
 
 Publish with:
@@ -134,7 +146,7 @@ Publish with:
 npm run deploy
 ```
 
-The deploy script builds `dist`, creates `dist/404.html` for SPA route refresh support, and publishes the output to the `gh-pages` branch.
+The `predeploy` script builds `dist`, `postbuild` creates `dist/404.html` for SPA route refresh support, and `deploy` publishes the output to the `gh-pages` branch.
 
 For a user/organization site at root, `/` is usually fine.
 
@@ -149,6 +161,8 @@ you may need:
 ```js
 base: "/SmartQuiz/"
 ```
+
+Only use `/SmartQuiz/` when serving from the GitHub repository subpath instead of the custom domain.
 
 ## Netlify Or Vercel
 

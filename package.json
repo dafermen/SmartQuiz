@@ -1,6 +1,7 @@
 {
   "name": "smartquiz",
   "private": false,
+  "homepage": "https://smartquiz.innovalogic.tech/",
   "version": "0.0.0",
   "description": "A modern JSON-powered quiz and study platform for exams, training, interviews, and awareness programs.",
   "license": "MIT",
@@ -22,7 +23,8 @@
     "cap:sync": "npm run build && cap sync",
     "cap:android": "npm run build && cap open android",
     "cap:ios": "npm run build && cap open ios",
-    "deploy": "npm run build && gh-pages -d dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },

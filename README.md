@@ -4,6 +4,10 @@ SmartQuiz is a bilingual, JSON-powered quiz, study, and exam-simulation platform
 
 The app runs without a backend. Question banks, progress, themes, limits, XP, favorites, missed questions, onboarding, and mobile preferences are stored locally. It can be published as a web app, installed as a PWA, or packaged for Android and iOS with Capacitor.
 
+## Demo
+
+Live demo: [https://smartquiz.innovalogic.tech/](https://smartquiz.innovalogic.tech/)
+
 ## What It Includes
 
 - Multiple local question banks with separate progress, themes, limits, and XP.

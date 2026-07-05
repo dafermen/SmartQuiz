@@ -1,3 +1,9 @@
+import {
+  createEmptyQuestionBankCustomizations as createEmptyCatalogQuestionBankCustomizations,
+  getActiveQuestionBank,
+  persistActiveQuestionBankSlice
+} from "./questionBankCatalogStorage";
+
 export const QUESTION_BANK_CUSTOMIZATIONS_KEY = "smartquiz_question_bank_customizations";
 
 export const SUPPORTED_QUESTION_LANGUAGES = ["en", "es"];
@@ -16,11 +22,7 @@ const emptyOverrideMap = () => (
   Object.fromEntries(SUPPORTED_QUESTION_LANGUAGES.map((language) => [language, {}]))
 );
 
-export const createEmptyQuestionBankCustomizations = () => ({
-  customQuestions: emptyLanguageMap(),
-  questionOverrides: emptyOverrideMap(),
-  deletedQuestionKeys: []
-});
+export const createEmptyQuestionBankCustomizations = createEmptyCatalogQuestionBankCustomizations;
 
 const canUseLocalStorage = () => typeof window !== "undefined" && window.localStorage;
 
@@ -39,6 +41,9 @@ const normalizeCustomizations = (rawCustomizations = {}) => ({
 });
 
 export const getQuestionBankCustomizations = () => {
+  const activeBankCustomizations = getActiveQuestionBank()?.customizations;
+  if (activeBankCustomizations) return normalizeCustomizations(activeBankCustomizations);
+
   if (!canUseLocalStorage()) return createEmptyQuestionBankCustomizations();
 
   try {
@@ -59,6 +64,12 @@ export const saveQuestionBankCustomizations = (customizations) => {
       JSON.stringify(normalizedCustomizations)
     );
   }
+
+  persistActiveQuestionBankSlice(
+    "customizations",
+    normalizedCustomizations,
+    "smartquiz-question-bank-updated"
+  );
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("smartquiz-question-bank-updated"));
@@ -115,6 +126,11 @@ export const normalizeQuestionRecord = (question, language, source = "base") => 
     question: question.question || "",
     options: [...options, "", "", "", ""].slice(0, 4),
     correct_answer: Math.max(0, Math.min(3, correctAnswer)),
+    correct_answers: Array.isArray(question.correct_answers)
+      ? question.correct_answers
+        .map((answer) => Number(answer))
+        .filter((answer) => Number.isInteger(answer) && answer >= 0 && answer <= 3)
+      : [Math.max(0, Math.min(3, correctAnswer))],
     explanation: question.explanation || "",
     difficulty: question.difficulty || "beginner",
     tags: normalizeTags(question.tags, category),

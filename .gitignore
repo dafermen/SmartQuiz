@@ -20,6 +20,3 @@ pnpm-debug.log*
 .idea/
 .vscode/
 
-# Local mobile/native output if added later
-android/
-ios/

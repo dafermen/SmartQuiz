@@ -1,0 +1,40 @@
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-bottom {
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+}
+
+.mobile-bottom-space {
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 768px) {
+  .mobile-bottom-space {
+    padding-bottom: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  h1 {
+    overflow-wrap: anywhere;
+  }
+
+  .compact-mobile-card {
+    border-radius: 0.875rem;
+  }
+
+  table {
+    min-width: 720px;
+  }
+
+  [data-radix-dialog-content] {
+    width: calc(100vw - 1.5rem);
+  }
+
+  button,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+}

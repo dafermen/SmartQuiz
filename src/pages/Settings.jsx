@@ -4,12 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { FileQuestion, Palette, Settings as SettingsIcon, Save, RotateCcw, SlidersHorizontal } from "lucide-react";
+import { Bell, Database, FileQuestion, Palette, Settings as SettingsIcon, Save, RotateCcw, SlidersHorizontal, Smartphone } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Switch } from "@/components/ui/switch";
 import { useLanguage } from "../components/language/LanguageProvider";
 import QuestionBankManager from "../components/settings/QuestionBankManager";
+import QuestionBankCatalogManager from "../components/settings/QuestionBankCatalogManager";
 import ThemeStudio from "../components/settings/ThemeStudio";
+import { getMobileSettings, saveMobileSettings } from "../components/data/learningStorage";
+import { readScopedJson, writeScopedJson } from "../components/data/activeBankStorage";
 import {
   getExamProfile,
   getLocalizedProfileText,
@@ -34,6 +38,7 @@ export default function Settings() {
   const [message, setMessage] = useState(null);
   const [examProfileForm, setExamProfileForm] = useState(getExamProfile);
   const [formData, setFormData] = useState(getQuizSettingsDefaults(examProfileForm));
+  const [mobileSettings, setMobileSettings] = useState(getMobileSettings);
 
   /**
    * Loads settings from localStorage or creates default limits/counters.
@@ -42,17 +47,18 @@ export default function Settings() {
     try {
       const currentProfile = getExamProfile();
       const defaultSettings = getQuizSettingsDefaults(currentProfile);
-      const settingsJSON = localStorage.getItem("user_quiz_settings");
-      const nextSettings = settingsJSON
-        ? { ...defaultSettings, ...JSON.parse(settingsJSON) }
+      const savedSettings = readScopedJson("user_quiz_settings", null, "user_quiz_settings");
+      const nextSettings = savedSettings
+        ? { ...defaultSettings, ...savedSettings }
         : defaultSettings;
 
-      if (!settingsJSON) {
-        localStorage.setItem("user_quiz_settings", JSON.stringify(nextSettings));
+      if (!savedSettings) {
+        writeScopedJson("user_quiz_settings", nextSettings);
       }
 
       setExamProfileForm(currentProfile);
       setFormData(nextSettings);
+      setMobileSettings(getMobileSettings());
     } catch {
       setMessage({ type: "error", text: t("errorLoadingSettings") });
     } finally {
@@ -62,6 +68,11 @@ export default function Settings() {
 
   useEffect(() => {
     loadSettings();
+  }, [loadSettings]);
+
+  useEffect(() => {
+    window.addEventListener("smartquiz-question-bank-catalog-updated", loadSettings);
+    return () => window.removeEventListener("smartquiz-question-bank-catalog-updated", loadSettings);
   }, [loadSettings]);
 
   /**
@@ -112,7 +123,7 @@ export default function Settings() {
         ...formData
       };
 
-      localStorage.setItem("user_quiz_settings", JSON.stringify(nextSettings));
+      writeScopedJson("user_quiz_settings", nextSettings);
       setExamProfileForm(savedProfile);
       setFormData(nextSettings);
       setMessage({ type: "success", text: t("examProfileSaved") });
@@ -133,7 +144,7 @@ export default function Settings() {
       ...formData
     };
 
-    localStorage.setItem("user_quiz_settings", JSON.stringify(nextSettings));
+    writeScopedJson("user_quiz_settings", nextSettings);
     setExamProfileForm(resetProfile);
     setFormData(nextSettings);
     setMessage({ type: "success", text: t("examProfileReset") });
@@ -147,8 +158,22 @@ export default function Settings() {
     setMessage(null);
     
     try {
-      localStorage.setItem("user_quiz_settings", JSON.stringify(formData));
+      writeScopedJson("user_quiz_settings", formData);
       setMessage({ type: "success", text: t("settingsSaved") });
+    } catch {
+      setMessage({ type: "error", text: t("errorSaving") });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleSaveMobileSettings = () => {
+    setSaving(true);
+    setMessage(null);
+
+    try {
+      setMobileSettings(saveMobileSettings(mobileSettings));
+      setMessage({ type: "success", text: t("mobileSettingsSaved") });
     } catch {
       setMessage({ type: "error", text: t("errorSaving") });
     } finally {
@@ -171,7 +196,7 @@ export default function Settings() {
         ...formData,
         ...resetTakenCounters
       };
-      localStorage.setItem("user_quiz_settings", JSON.stringify(updatedSettings));
+      writeScopedJson("user_quiz_settings", updatedSettings);
       setFormData(updatedSettings);
       setMessage({ type: "success", text: t("counterReset") });
     } catch {
@@ -207,9 +232,13 @@ export default function Settings() {
         </Alert>
       )}
 
-      <Tabs defaultValue="profile" className="space-y-6">
+      <Tabs defaultValue="banks" className="space-y-6">
         <div className="overflow-x-auto pb-1">
           <TabsList className="h-auto min-w-max justify-start gap-1 rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm">
+            <TabsTrigger value="banks" className="gap-2 rounded-xl px-4 py-2.5">
+              <Database className="h-4 w-4" />
+              {t("questionBanks")}
+            </TabsTrigger>
             <TabsTrigger value="profile" className="gap-2 rounded-xl px-4 py-2.5">
               <SettingsIcon className="h-4 w-4" />
               {t("examProfile")}
@@ -226,8 +255,17 @@ export default function Settings() {
               <SlidersHorizontal className="h-4 w-4" />
               {t("testLimits")}
             </TabsTrigger>
+            <TabsTrigger value="mobile" className="gap-2 rounded-xl px-4 py-2.5">
+              <Smartphone className="h-4 w-4" />
+              {t("mobile")}
+            </TabsTrigger>
           </TabsList>
         </div>
+
+        <TabsContent value="banks" className="mt-0">
+      <QuestionBankCatalogManager />
+
+        </TabsContent>
 
         <TabsContent value="profile" className="mt-0 space-y-6">
       <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
@@ -482,6 +520,70 @@ export default function Settings() {
           </ul>
         </CardContent>
       </Card>
+        </TabsContent>
+
+        <TabsContent value="mobile" className="mt-0">
+          <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Smartphone className="h-5 w-5" />
+                {t("mobileExperience")}
+              </CardTitle>
+              <p className="text-sm text-slate-500">{t("mobileExperienceDesc")}</p>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <Label>{t("dailyGoal")}</Label>
+                  <Input
+                    type="number"
+                    min="1"
+                    max="100"
+                    value={mobileSettings.dailyGoal}
+                    onChange={(event) => setMobileSettings((currentSettings) => ({
+                      ...currentSettings,
+                      dailyGoal: Math.max(1, Math.min(100, Number(event.target.value) || 10))
+                    }))}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label>{t("reminderHour")}</Label>
+                  <Input
+                    type="number"
+                    min="0"
+                    max="23"
+                    value={mobileSettings.reminderHour}
+                    onChange={(event) => setMobileSettings((currentSettings) => ({
+                      ...currentSettings,
+                      reminderHour: Math.max(0, Math.min(23, Number(event.target.value) || 19))
+                    }))}
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-center gap-3">
+                  <Bell className="h-5 w-5 text-teal-700" />
+                  <div>
+                    <p className="font-semibold text-slate-950">{t("dailyReminder")}</p>
+                    <p className="text-sm text-slate-500">{t("dailyReminderDesc")}</p>
+                  </div>
+                </div>
+                <Switch
+                  checked={mobileSettings.remindersEnabled}
+                  onCheckedChange={(checked) => setMobileSettings((currentSettings) => ({
+                    ...currentSettings,
+                    remindersEnabled: checked
+                  }))}
+                />
+              </div>
+
+              <Button onClick={handleSaveMobileSettings} disabled={saving} className="bg-teal-600 text-white hover:bg-teal-700">
+                <Save className="mr-2 h-4 w-4" />
+                {t("saveChanges")}
+              </Button>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>

@@ -1,117 +1,335 @@
 # QA Guide
 
-## Smoke Test
-
-1. Run `npm install`.
-2. Run `npm run dev`.
-3. Open the Vite URL.
-4. Confirm the header shows `SmartQuiz`.
-5. Confirm the app opens directly without login or access code.
-6. Switch language between EN and ES.
-
-## Home
-
-- Module cards appear for phishing awareness, malware basics, safe data habits, and mixed practice.
-- Each card shows a question count and local test limit badge.
-- The study card opens the theory page.
-
-## Quiz
-
-Validate each category:
-
-- `module_1`
-- `module_2`
-- `module_3`
-- `practice_quiz`
-
-Expected behavior:
-
-- The test picker opens.
-- Questions render with four options.
-- Submit shows correct/incorrect feedback and explanation.
-- The final screen shows score, pass/fail status, and retry/home actions.
-- The final screen awards XP, shows the current level, and celebrates passing or high scores.
-- Completed tests appear in progress.
-
-## Theory
-
-- Category filter works.
-- Topic filter works.
-- Each card shows question text, category badge, difficulty, tags, and explanation.
-
-## Progress
-
-- Empty state appears before attempts.
-- After a completed test, totals, pass rate, best score, average time, chart, and recent attempts update.
-- Learning level and total XP appear after completing a quiz.
-- Category performance shows accuracy and attempt counts by module.
-- Per-question review cards appear after completing a new quiz attempt.
-
-## Settings
-
-- Confirm Settings is organized into Perfil/Profile, Theme Studio, Question Bank, and Limits tabs.
-- Switch between tabs and confirm each section opens without losing saved local data.
-- Edit the exam profile name, subtitle, passing score, and questions per test.
-- Save the exam profile and confirm Home, Quiz, Progress, and the browser title reflect the update.
-- Edit module labels/descriptions in EN/ES and confirm Home/Theory/Quiz/Progress use the new labels.
-- Confirm Settings shows generic module names such as `Modulo 1` / `Module 1`, not cybersecurity-specific internal keys.
-- Confirm the language note explains that the starter app currently ships with EN/ES content.
-- Apply a Theme Studio preset and confirm header, module cards, buttons, charts, and preview colors update after saving.
-- Change a single color manually, save, refresh the browser, and confirm the color persists.
-- Restore the default theme and confirm the SmartQuiz palette returns.
-- Restore the default exam profile and confirm the cybersecurity sample labels return.
-- Limits save to local storage.
-- Counters reset without deleting attempt history.
-- Values clamp between 1 and 100.
-
-## Question CRUD
-
-- Create a new question and confirm it appears in the list.
-- Use search to find the new question.
-- Change rows per page and confirm pagination updates without losing filters.
-- Move between pages and confirm the range indicator is correct.
-- Edit the question text, options, correct answer, and explanation.
-- Set difficulty and comma-separated tags, then confirm they appear in study mode and quiz questions.
-- Confirm the editor opens in a side panel and closes after saving.
-- Duplicate the question and confirm a second custom record appears.
-- Delete one custom question and confirm it disappears.
-- Edit a bundled base question and confirm it is marked as edited.
-- Delete a bundled base question and confirm it is hidden locally.
-- Export JSON and confirm it includes `customizations`.
-- Import the exported JSON and confirm the question bank restores.
-- Restore the sample bank and confirm local edits are removed.
-
-## Question Bank Manager
-
-- Add a new question in EN and confirm it appears in the list.
-- Edit a base question and confirm its badge changes to edited base.
-- Delete a custom question and confirm it disappears.
-- Delete a base question and confirm it no longer appears in Theory/Quiz.
-- Export JSON and confirm the downloaded file contains `customizations`.
-- Paste the exported JSON into import and confirm questions restore.
-- Restore the sample bank and confirm custom edits are removed.
-- Switch to ES and repeat add/edit validation for Spanish content.
+Use this guide before publishing or pushing major changes.
 
 ## Automated Checks
 
 Run:
 
 ```bash
-npm run build
 npm run lint
+npm run build
 ```
 
-Expected result:
-
-- Build exits successfully.
-- Lint exits successfully with no errors.
-
-## Brand Check Before Publishing
-
-Run:
+If mobile or Capacitor files changed:
 
 ```bash
-rg -n "legacy-brand|private-email|private-apk|old-domain|old-exam-category" --glob '!node_modules/**' --glob '!dist/**'
+npx cap sync
 ```
 
-Expected result: no matches.
+Optional dependency check:
+
+```bash
+npm audit
+```
+
+## First Load
+
+1. Run `npm run dev`.
+2. Open the Vite URL.
+3. Confirm the app opens without console errors.
+4. Confirm onboarding appears on a fresh local storage profile.
+5. Select language, daily goal, and reminder preference.
+6. Confirm the app reaches Home.
+
+## Language
+
+Test both:
+
+- English.
+- Spanish.
+
+Confirm these areas update:
+
+- Navigation.
+- Home.
+- Quiz.
+- Flashcards.
+- Progress.
+- Settings tabs.
+- Question bank manager.
+- Onboarding.
+- Mobile settings.
+
+## Question Banks
+
+Go to `Settings > Question Banks`.
+
+Validate:
+
+- Search works.
+- Sort columns work.
+- Pagination works.
+- Active bank badge appears.
+- Activate Cybersecurity.
+- Activate US Citizenship 2025.
+- Activate CompTIA Security+ SY0-701.
+- Duplicate a bank.
+- Create a bank with each template:
+  - General.
+  - Certification.
+  - Citizenship.
+- Export active bank.
+- Export full backup.
+- Import full backup.
+
+## Home
+
+Validate for each bundled bank:
+
+- Hero copy changes.
+- Theme changes.
+- Question count changes.
+- Module labels change.
+- Start Practice opens quiz.
+- Study Question Bank opens Theory.
+- Exam Simulator opens quiz in exam mode.
+- Favorites opens review mode.
+- Missed Questions opens review mode.
+- Flashcards opens card mode.
+
+## Practice Quiz
+
+For each category:
+
+- `module_1`
+- `module_2`
+- `module_3`
+- `practice_quiz`
+
+Expected:
+
+- Test picker appears.
+- Questions render.
+- Four options appear.
+- Submit gives immediate feedback.
+- Explanation appears.
+- Favorite star works.
+- Next question works.
+- Final results appear.
+- Attempt appears in Progress.
+
+## Exam Simulator
+
+Open:
+
+```txt
+/Quiz?category=practice_quiz&mode=exam
+```
+
+Expected:
+
+- Start button appears directly.
+- No immediate feedback appears after answering.
+- Questions advance after submit.
+- Result appears at the end.
+- Attempt is saved.
+
+## Favorites
+
+1. Start a quiz.
+2. Mark a question as favorite.
+3. Finish or return Home.
+4. Open Favorites.
+
+Expected:
+
+- Favorite count updates.
+- Favorite review shows the saved question.
+- Removing favorite updates the list.
+
+## Missed Questions
+
+1. Answer a question incorrectly.
+2. Return Home.
+3. Open Missed Questions.
+
+Expected:
+
+- Missed count updates.
+- Missed-question review shows the missed question.
+- Review mode does not consume normal test limits.
+
+## Flashcards
+
+Validate filters:
+
+- All questions.
+- Favorites.
+- Missed questions.
+
+Expected:
+
+- Card shows question first.
+- Reveal shows answer and explanation.
+- Previous and Next work.
+- Favorite star works.
+
+## Theory
+
+Expected:
+
+- Category filter works.
+- Topic filter works.
+- Explanations render.
+- Difficulty and tags render.
+- Data changes when active bank changes.
+
+## Progress
+
+Before attempts:
+
+- Empty state appears.
+
+After attempts:
+
+- Total tests updates.
+- Pass rate updates.
+- Best score updates.
+- Average time updates.
+- XP and level update.
+- Score trend appears.
+- Category stats appear.
+- Questions to review appear.
+- Difficulty stats appear.
+- Weak topics appear.
+- Favorites and missed counts appear.
+
+## Question Manager
+
+Go to `Settings > Question Manager`.
+
+Validate:
+
+- Search works.
+- Language switch works.
+- Category filter works.
+- Source filter works.
+- Pagination works.
+- Add question.
+- Edit question.
+- Duplicate question.
+- Delete custom question.
+- Edit bundled question as local override.
+- Delete bundled question locally.
+- Export JSON.
+- Import JSON.
+- Import simple text format:
+
+```txt
+What is MFA?|Password only|Second factor|Open Wi-Fi|No login|1|MFA adds another verification factor.|module_1|beginner|Identity
+```
+
+Expected:
+
+- Imported question appears in the selected language.
+- Imported question appears in Theory and Quiz.
+
+## Exam Profile
+
+Go to `Settings > Exam Profile`.
+
+Validate:
+
+- App name saves.
+- Subtitle saves.
+- Hero copy saves.
+- Passing score saves.
+- Questions per test saves.
+- Module labels save in English and Spanish.
+- Reset profile works.
+
+## Theme Studio
+
+Validate:
+
+- Presets apply.
+- Manual colors apply.
+- Save persists after refresh.
+- Reset returns default.
+- Home and Progress reflect theme.
+
+## Test Limits
+
+Validate:
+
+- Limits save.
+- Counters increase after normal practice/exam.
+- Review modes do not increase counters.
+- Reset counters works.
+- Attempt history remains.
+
+## Mobile Settings
+
+Go to `Settings > Mobile`.
+
+Validate:
+
+- Daily goal saves.
+- Reminder hour saves.
+- Reminder toggle saves.
+- Native notification permission is requested on device when reminders are enabled.
+
+## Offline
+
+Web/PWA:
+
+1. Open the app online.
+2. Let the service worker register.
+3. Refresh once.
+4. Disconnect network.
+5. Reload.
+
+Expected:
+
+- App shell loads.
+- Bundled/local banks are usable.
+- Local progress remains.
+
+Native:
+
+- Confirm bundled banks load without network.
+- Confirm imported banks remain after restart.
+
+## Android
+
+After `npx cap sync`:
+
+- Open Android Studio.
+- Build debug.
+- Confirm app opens.
+- Confirm notification permission prompt on Android 13+ when enabling reminders.
+- Confirm icons and splash screen.
+
+## iOS
+
+After `npx cap sync`:
+
+- Open Xcode on macOS.
+- Build simulator/device.
+- Confirm app opens.
+- Confirm notification permission prompt when enabling reminders.
+- Confirm icons and splash screen.
+
+## GitHub Publishing Checklist
+
+Before commit:
+
+```bash
+git status
+npm run lint
+npm run build
+npx cap sync
+```
+
+Before public release, also review:
+
+```bash
+rg -n "password|secret|token|apikey|api_key|private|keystore" --glob "!node_modules/**" --glob "!dist/**"
+```
+
+Expected:
+
+- No private secrets committed.
+- No `node_modules`.
+- No `dist` unless intentionally publishing build output.

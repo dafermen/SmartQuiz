@@ -1,3 +1,5 @@
+import { readScopedJson, writeScopedJson } from "../data/activeBankStorage";
+
 export const GAMIFICATION_PROFILE_KEY = "smartquiz_gamification_profile";
 
 const XP_PER_LEVEL = 250;
@@ -25,12 +27,8 @@ export const getLevelProgress = (xp) => {
 };
 
 export const getGamificationProfile = () => {
-  if (!canUseLocalStorage()) return emptyProfile;
-
   try {
-    const storedValue = localStorage.getItem(GAMIFICATION_PROFILE_KEY);
-    if (!storedValue) return emptyProfile;
-    const parsedProfile = JSON.parse(storedValue);
+    const parsedProfile = readScopedJson("gamification_profile", emptyProfile, GAMIFICATION_PROFILE_KEY);
     const totalXp = Number(parsedProfile.totalXp) || 0;
 
     return {
@@ -83,7 +81,7 @@ export const applyQuizGamification = ({ percentage, passed, answerResults }) => 
   };
 
   if (canUseLocalStorage()) {
-    localStorage.setItem(GAMIFICATION_PROFILE_KEY, JSON.stringify(nextProfile));
+    writeScopedJson("gamification_profile", nextProfile);
   }
 
   return {

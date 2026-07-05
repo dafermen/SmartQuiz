@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Clock, Loader2, Star, TriangleAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
@@ -12,6 +12,8 @@ import QuestionCard from "../components/quiz/QuestionCard";
 import ResultsCard from "../components/quiz/ResultsCard";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getQuestionsData } from "../components/data/index";
+import { readScopedJson, writeScopedJson } from "../components/data/activeBankStorage";
+import { getReviewQuestionKeys, recordQuestionAnswer } from "../components/data/learningStorage";
 import { applyQuizGamification } from "../components/gamification/gamification";
 import {
   getExamProfile,
@@ -67,6 +69,17 @@ const getQuestionsForCategory = (questions, category) => {
   return questions.filter(q => q.category === category);
 };
 
+const filterQuestionsForMode = (questions, category, mode) => {
+  const categoryQuestions = getQuestionsForCategory(questions, category);
+
+  if (!["favorites", "mistakes"].includes(mode)) {
+    return categoryQuestions;
+  }
+
+  const reviewKeys = new Set(getReviewQuestionKeys(mode));
+  return categoryQuestions.filter((question) => reviewKeys.has(question.question_key));
+};
+
 /**
  * Quiz page.
  *
@@ -83,6 +96,9 @@ export default function Quiz() {
   const { t, language } = useLanguage();
   const urlParams = new URLSearchParams(window.location.search);
   const category = normalizeCategoryId(urlParams.get("category") || "module_1");
+  const mode = urlParams.get("mode") || "practice";
+  const isExamMode = mode === "exam";
+  const isReviewMode = ["favorites", "mistakes"].includes(mode);
   const [examProfile, setExamProfile] = useState(getExamProfile);
 
   const [allQuestions, setAllQuestions] = useState([]);
@@ -115,13 +131,13 @@ export default function Quiz() {
     const questionsData = getQuestionsData();
     const currentQuestions = questionsData[language] || questionsData.en;
     
-    const filtered = getQuestionsForCategory(currentQuestions, category);
+    const filtered = filterQuestionsForMode(currentQuestions, category, mode);
     
     setAllQuestions(filtered);
     setTotalTests(filtered.length > 0 ? examProfile.testsPerCategory : 0);
     
     setLoading(false);
-  }, [category, examProfile, language]);
+  }, [category, examProfile, language, mode]);
 
   /**
    * Checks whether the user can start another test before loading questions.
@@ -133,16 +149,15 @@ export default function Quiz() {
   const checkLimitAndLoad = useCallback(() => {
     setLoading(true);
     try {
-      const settingsJSON = localStorage.getItem("user_quiz_settings");
       const settings = {
         ...getQuizSettingsDefaults(examProfile),
-        ...(settingsJSON ? JSON.parse(settingsJSON) : {})
+        ...readScopedJson("user_quiz_settings", {}, "user_quiz_settings")
       };
       
       const takenField = `${category}_taken`;
       const limitField = `${category}_limit`;
       
-      if (settings[takenField] >= settings[limitField]) {
+      if (!isReviewMode && settings[takenField] >= settings[limitField]) {
         setError(t("testLimitError"));
         setLoading(false);
         return;
@@ -153,7 +168,7 @@ export default function Quiz() {
       setError("Error loading quiz. Please try again.");
       setLoading(false);
     }
-  }, [category, examProfile, loadQuestions, t]);
+  }, [category, examProfile, isReviewMode, loadQuestions, t]);
 
   useEffect(() => {
     const handleExamProfileUpdate = () => {
@@ -173,7 +188,7 @@ export default function Quiz() {
       const questionsData = getQuestionsData();
       const currentQuestions = questionsData[language] || questionsData.en;
 
-      const fetchedQuestions = getQuestionsForCategory(currentQuestions, category);
+      const fetchedQuestions = filterQuestionsForMode(currentQuestions, category, mode);
       setAllQuestions(fetchedQuestions);
       setQuestions(resolveQuestionsByKey(fetchedQuestions, selectedQuestionKeys));
     }
@@ -183,7 +198,8 @@ export default function Quiz() {
     selectedTestNumber,
     showTestSelection,
     showResults,
-    category
+    category,
+    mode
   ]);
 
   /**
@@ -192,7 +208,10 @@ export default function Quiz() {
    * @param {string | number} testNumber - One-based test number from the UI.
    */
   const handleTestSelect = (testNumber) => {
-    const questionKeys = buildRandomTestQuestionKeys(allQuestions, examProfile.questionsPerTest);
+    const questionCount = isReviewMode
+      ? Math.min(allQuestions.length, examProfile.questionsPerTest)
+      : examProfile.questionsPerTest;
+    const questionKeys = buildRandomTestQuestionKeys(allQuestions, questionCount);
     setSelectedTestNumber(parseInt(testNumber));
     setSelectedQuestionKeys(questionKeys);
     setQuestions(resolveQuestionsByKey(allQuestions, questionKeys));
@@ -211,6 +230,7 @@ export default function Quiz() {
    */
   const handleAnswer = (answerResult) => {
     const nextAnswerResults = [...answerResults, answerResult];
+    recordQuestionAnswer(answerResult);
     setAnswerResults(nextAnswerResults);
 
     if (answerResult.is_correct) {
@@ -237,6 +257,7 @@ export default function Quiz() {
 
     const attempt = {
       category,
+      mode,
       score: finalScore,
       total_questions: questions.length,
       percentage,
@@ -247,19 +268,19 @@ export default function Quiz() {
       created_date: new Date().toISOString()
     };
 
-    const attemptsJSON = localStorage.getItem("quiz_attempts") || "[]";
-    const attempts = JSON.parse(attemptsJSON);
+    const attempts = readScopedJson("quiz_attempts", [], "quiz_attempts");
     attempts.push(attempt);
-    localStorage.setItem("quiz_attempts", JSON.stringify(attempts));
+    writeScopedJson("quiz_attempts", attempts);
 
-    const settingsJSON = localStorage.getItem("user_quiz_settings");
     const settings = {
       ...getQuizSettingsDefaults(examProfile),
-      ...(settingsJSON ? JSON.parse(settingsJSON) : {})
+      ...readScopedJson("user_quiz_settings", {}, "user_quiz_settings")
     };
-    const takenField = `${category}_taken`;
-    settings[takenField] = settings[takenField] + 1;
-    localStorage.setItem("user_quiz_settings", JSON.stringify(settings));
+    if (!isReviewMode) {
+      const takenField = `${category}_taken`;
+      settings[takenField] = settings[takenField] + 1;
+      writeScopedJson("user_quiz_settings", settings);
+    }
 
     const nextGamificationResult = applyQuizGamification({
       percentage,
@@ -272,7 +293,7 @@ export default function Quiz() {
       gamification: nextGamificationResult
     };
     attempts[attempts.length - 1] = attemptWithGamification;
-    localStorage.setItem("quiz_attempts", JSON.stringify(attempts));
+    writeScopedJson("quiz_attempts", attempts);
 
     setScore(finalScore);
     setGamificationResult(nextGamificationResult);
@@ -306,6 +327,13 @@ export default function Quiz() {
 
     const categoryProfile = examProfile.categories.find((item) => item.id === category);
     return categoryProfile ? getLocalizedProfileText(categoryProfile.label, language) : t("quiz");
+  };
+
+  const getModeLabel = () => {
+    if (isExamMode) return t("examSimulator");
+    if (mode === "favorites") return t("favoriteQuestions");
+    if (mode === "mistakes") return t("missedQuestions");
+    return t("practiceMode");
   };
 
   if (loading) {
@@ -376,28 +404,37 @@ export default function Quiz() {
       {showTestSelection ? (
         <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
           <CardHeader>
-            <CardTitle>{t("selectTest")}</CardTitle>
+            <CardTitle>{isExamMode ? t("examSimulator") : t("selectTest")}</CardTitle>
             <p className="text-sm text-slate-500">
-              {totalTests} {t("test")}{totalTests > 1 ? 's' : ''} {t("totalAvailable")} • {examProfile.questionsPerTest} {t("questions")} {t("per")} {t("test")}
+              {getModeLabel()} - {allQuestions.length} {t("questions")} {t("totalAvailable")}
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-3">
-              <Label htmlFor="test-select" className="text-base font-semibold">
-                {t("chooseTestNumber")}
-              </Label>
-              <Select onValueChange={handleTestSelect}>
-                <SelectTrigger id="test-select" className="h-12 text-lg">
-                  <SelectValue placeholder={t("selectTestPlaceholder")} />
-                </SelectTrigger>
-                <SelectContent>
-                  {Array.from({ length: totalTests }, (_, i) => i + 1).map((num) => (
-                    <SelectItem key={num} value={num.toString()} className="text-lg">
-                      {t("test")} {num}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              {isExamMode || isReviewMode ? (
+                <Button onClick={() => handleTestSelect(1)} className="h-12 w-full bg-teal-600 text-base font-semibold text-white hover:bg-teal-700">
+                  {isExamMode ? <Clock className="mr-2 h-4 w-4" /> : mode === "favorites" ? <Star className="mr-2 h-4 w-4" /> : <TriangleAlert className="mr-2 h-4 w-4" />}
+                  {isExamMode ? t("startExamSimulator") : t("startReview")}
+                </Button>
+              ) : (
+                <>
+                  <Label htmlFor="test-select" className="text-base font-semibold">
+                    {t("chooseTestNumber")}
+                  </Label>
+                  <Select onValueChange={handleTestSelect}>
+                    <SelectTrigger id="test-select" className="h-12 text-lg">
+                      <SelectValue placeholder={t("selectTestPlaceholder")} />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Array.from({ length: totalTests }, (_, i) => i + 1).map((num) => (
+                        <SelectItem key={num} value={num.toString()} className="text-lg">
+                          {t("test")} {num}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
             </div>
 
             <div className="bg-slate-50 p-6 rounded-lg border border-slate-200 border-l-4 border-l-teal-500">
@@ -413,7 +450,7 @@ export default function Quiz() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 rounded-full bg-teal-500 flex-shrink-0" />
-                  <span>{t("testInfo3")}</span>
+                  <span>{isExamMode ? t("examSimulatorInfo") : t("testInfo3")}</span>
                 </li>
               </ul>
             </div>
@@ -423,14 +460,20 @@ export default function Quiz() {
         <div>
           <div className="mb-4 flex items-center justify-between">
             <div className="text-sm text-slate-600 bg-slate-100 px-4 py-2 rounded-full font-medium">
-              {t("test")} #{selectedTestNumber}
+              {getModeLabel()} #{selectedTestNumber}
             </div>
+            {isExamMode && (
+              <div className="rounded-full bg-amber-50 px-4 py-2 text-sm font-medium text-amber-900 ring-1 ring-amber-100">
+                {t("noImmediateFeedback")}
+              </div>
+            )}
           </div>
           <QuestionCard
             question={questions[currentQuestionIndex]}
             questionNumber={currentQuestionIndex + 1}
             totalQuestions={questions.length}
             onAnswer={handleAnswer}
+            instantFeedback={!isExamMode}
           />
         </div>
       ) : (

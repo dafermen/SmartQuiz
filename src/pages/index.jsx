@@ -8,6 +8,7 @@ const Quiz = lazy(() => import("./Quiz"));
 const Progress = lazy(() => import("./Progress"));
 const Settings = lazy(() => import("./Settings"));
 const Theory = lazy(() => import("./Theory"));
+const Flashcards = lazy(() => import("./Flashcards"));
 
 const PAGES = {
     
@@ -20,6 +21,8 @@ const PAGES = {
     Settings: Settings,
     
     Theory: Theory,
+
+    Flashcards: Flashcards,
 
 }
 
@@ -79,6 +82,8 @@ function PagesContent() {
                     <Route path="/Settings" element={<Settings />} />
 
                     <Route path="/Theory" element={<Theory />} />
+
+                    <Route path="/Flashcards" element={<Flashcards />} />
 
                     <Route path="/VideoLessons" element={<Navigate to="/Home" replace />} />
                 </Routes>

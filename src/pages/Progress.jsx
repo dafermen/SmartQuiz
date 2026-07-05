@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import { AlertTriangle, Clock, Layers3, Target, TrendingUp, Trophy } from "lucide-react";
+import { AlertTriangle, Clock, Layers3, Star, Tags, Target, TrendingUp, Trophy } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getGamificationProfile, getLevelProgress } from "../components/gamification/gamification";
+import { readScopedJson } from "../components/data/activeBankStorage";
+import { getLearningState } from "../components/data/learningStorage";
 import {
   getExamProfile,
   getLocalizedProfileText,
@@ -24,6 +26,9 @@ export default function Progress() {
   const [attempts, setAttempts] = useState([]);
   const [categoryPerformance, setCategoryPerformance] = useState([]);
   const [questionPerformance, setQuestionPerformance] = useState([]);
+  const [difficultyPerformance, setDifficultyPerformance] = useState([]);
+  const [tagPerformance, setTagPerformance] = useState([]);
+  const [learningState, setLearningState] = useState(getLearningState);
   const [gamificationProfile, setGamificationProfile] = useState(getGamificationProfile);
   const [examProfile, setExamProfile] = useState(getExamProfile);
   const [stats, setStats] = useState({
@@ -93,6 +98,33 @@ export default function Progress() {
       .slice(0, 8);
   };
 
+  const buildGroupedPerformance = (stats, getKeys) => {
+    const groups = new Map();
+
+    Object.values(stats || {}).forEach((question) => {
+      getKeys(question).forEach((key) => {
+        const current = groups.get(key) || {
+          name: key,
+          attempts: 0,
+          correct: 0,
+          incorrect: 0
+        };
+
+        current.attempts += question.attempts || 0;
+        current.correct += question.correct || 0;
+        current.incorrect += question.incorrect || 0;
+        groups.set(key, current);
+      });
+    });
+
+    return Array.from(groups.values())
+      .map((item) => ({
+        ...item,
+        accuracy: item.attempts > 0 ? Math.round((item.correct / item.attempts) * 100) : 0
+      }))
+      .sort((a, b) => a.accuracy - b.accuracy || b.attempts - a.attempts);
+  };
+
   /**
    * Loads attempts and calculates aggregate progress metrics.
    *
@@ -100,16 +132,25 @@ export default function Progress() {
    * - `quiz_attempts` from localStorage.
    */
   const loadData = useCallback(() => {
-    const attemptsJSON = localStorage.getItem("quiz_attempts") || "[]";
-    const loadedAttempts = JSON.parse(attemptsJSON);
+    const loadedAttempts = readScopedJson("quiz_attempts", [], "quiz_attempts");
     const currentGamificationProfile = getGamificationProfile();
     const currentExamProfile = getExamProfile();
+    const currentLearningState = getLearningState();
     
     setAttempts(loadedAttempts.slice(0, 10).reverse());
     setCategoryPerformance(buildCategoryPerformance(loadedAttempts));
     setQuestionPerformance(buildQuestionPerformance(loadedAttempts));
+    setDifficultyPerformance(buildGroupedPerformance(
+      currentLearningState.questionStats,
+      (question) => [question.difficulty || "beginner"]
+    ));
+    setTagPerformance(buildGroupedPerformance(
+      currentLearningState.questionStats,
+      (question) => question.tags?.length ? question.tags.slice(0, 6) : [question.block_name || "General"]
+    ).slice(0, 8));
     setGamificationProfile(currentGamificationProfile);
     setExamProfile(currentExamProfile);
+    setLearningState(currentLearningState);
 
     if (loadedAttempts.length > 0) {
       const passedCount = loadedAttempts.filter(a => a.passed).length;
@@ -136,6 +177,15 @@ export default function Progress() {
 
   useEffect(() => {
     loadData();
+  }, [loadData]);
+
+  useEffect(() => {
+    window.addEventListener("smartquiz-question-bank-catalog-updated", loadData);
+    window.addEventListener("smartquiz-learning-state-updated", loadData);
+    return () => {
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", loadData);
+      window.removeEventListener("smartquiz-learning-state-updated", loadData);
+    };
   }, [loadData]);
 
   const chartData = attempts.map((attempt, index) => ({
@@ -237,6 +287,50 @@ export default function Progress() {
               </CardHeader>
               <CardContent>
                 <p className="text-4xl font-bold">{formatTime(stats.avgTime)}</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                  <Star className="w-4 h-4 text-amber-600" />
+                  {t("favoriteQuestions")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-4xl font-bold text-slate-950">
+                  {Object.keys(learningState.favorites || {}).length}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-amber-600" />
+                  {t("missedQuestions")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-4xl font-bold text-slate-950">
+                  {Object.keys(learningState.mistakes || {}).length}
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-medium text-slate-500 flex items-center gap-2">
+                  <Tags className="w-4 h-4 text-teal-700" />
+                  {t("trackedQuestions")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-4xl font-bold text-slate-950">
+                  {Object.keys(learningState.questionStats || {}).length}
+                </p>
               </CardContent>
             </Card>
           </div>
@@ -367,6 +461,57 @@ export default function Progress() {
                     ))}
                   </div>
                 )}
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>{t("difficultyStats")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {difficultyPerformance.length === 0 ? (
+                  <p className="text-sm text-slate-500">{t("questionStatsNeedNewAttempts")}</p>
+                ) : difficultyPerformance.map((item) => (
+                  <div key={item.name} className="rounded-xl bg-slate-50 p-4">
+                    <div className="mb-2 flex items-center justify-between">
+                      <p className="font-semibold text-slate-950">{t(item.name)}</p>
+                      <Badge className={item.accuracy >= 70 ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-900"}>
+                        {item.accuracy}%
+                      </Badge>
+                    </div>
+                    <p className="text-sm text-slate-500">
+                      {item.correct}/{item.attempts} {t("correctAnswers")}
+                    </p>
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <CardHeader>
+                <CardTitle>{t("weakTopics")}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {tagPerformance.length === 0 ? (
+                  <p className="text-sm text-slate-500">{t("questionStatsNeedNewAttempts")}</p>
+                ) : tagPerformance.map((item) => (
+                  <div key={item.name} className="rounded-xl bg-slate-50 p-4">
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <p className="font-semibold text-slate-950">{item.name}</p>
+                      <Badge className={item.accuracy >= 70 ? "bg-green-100 text-green-800" : "bg-amber-100 text-amber-900"}>
+                        {item.accuracy}%
+                      </Badge>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+                      <div
+                        className="h-full rounded-full bg-teal-500"
+                        style={{ width: `${item.accuracy}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
           </div>

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
 import { LanguageProvider, useLanguage } from "@/components/language/LanguageProvider";
+import Onboarding from "@/components/mobile/Onboarding";
 import { getExamProfile } from "@/components/profile/examProfileStorage";
 import { applyThemeToDocument, getTheme } from "@/components/theme/themeStorage";
 
@@ -88,7 +89,7 @@ function LayoutContent({ children }) {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: theme.background, color: theme.text }}>
       {/* Header */}
       <header
-        className="sticky top-0 backdrop-blur-xl border-b z-50 shadow-[0_1px_0_rgba(15,23,42,0.04)]"
+        className="safe-top sticky top-0 backdrop-blur-xl border-b z-50 shadow-[0_1px_0_rgba(15,23,42,0.04)]"
         style={{ backgroundColor: `${theme.surface}e6`, borderColor: "var(--sq-border)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -215,12 +216,37 @@ function LayoutContent({ children }) {
       </AnimatePresence>
 
       {/* Main Content */}
-      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <Onboarding />
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full mobile-bottom-space">
         {children}
       </main>
 
+      <nav
+        className="safe-bottom fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 px-2 pb-2 pt-2 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur-xl md:hidden"
+        style={{ borderColor: "var(--sq-border)" }}
+      >
+        <div className="mx-auto grid max-w-md grid-cols-5 gap-1">
+          {navItems.map((item) => {
+            const active = location.pathname === item.path;
+            return (
+              <Link
+                key={item.name}
+                to={item.path}
+                className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-lg px-1 text-[11px] font-semibold transition-colors ${
+                  active ? "text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-950"
+                }`}
+                style={active ? { backgroundColor: theme.secondary } : undefined}
+              >
+                <item.icon className="h-5 w-5" />
+                <span className="max-w-full truncate">{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
+
       {/* Footer */}
-      <footer className="backdrop-blur-md border-t mt-auto" style={{ backgroundColor: `${theme.surface}cc`, borderColor: "var(--sq-border)" }}>
+      <footer className="hidden backdrop-blur-md border-t mt-auto md:block" style={{ backgroundColor: `${theme.surface}cc`, borderColor: "var(--sq-border)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">

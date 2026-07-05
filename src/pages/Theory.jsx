@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { BookOpen, ArrowLeft, Library } from "lucide-react";
@@ -26,20 +26,33 @@ export default function Theory() {
   const [selectedBlock, setSelectedBlock] = useState("all");
   const [questions, setQuestions] = useState([]);
 
-  useEffect(() => {
+  const loadQuestions = useCallback(() => {
     const questionsData = getQuestionsData();
     const currentQuestions = questionsData[language] || questionsData.en;
     setQuestions(currentQuestions);
   }, [language]);
 
   useEffect(() => {
+    loadQuestions();
+  }, [loadQuestions]);
+
+  useEffect(() => {
     const handleExamProfileUpdate = () => {
       setExamProfile(getExamProfile());
+      loadQuestions();
+      setSelectedCategory("all");
+      setSelectedBlock("all");
     };
 
     window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
-    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
-  }, []);
+    window.addEventListener("smartquiz-question-bank-updated", handleExamProfileUpdate);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    return () => {
+      window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+      window.removeEventListener("smartquiz-question-bank-updated", handleExamProfileUpdate);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    };
+  }, [loadQuestions]);
 
   const filteredQuestions = questions.filter((question) => {
     const matchesCategory = selectedCategory === "all" || question.category === selectedCategory;

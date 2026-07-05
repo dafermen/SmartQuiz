@@ -1,3 +1,8 @@
+import {
+  getActiveQuestionBank,
+  persistActiveQuestionBankSlice
+} from "../data/questionBankCatalogStorage";
+
 export const THEME_KEY = "smartquiz_theme";
 
 const defaultThemeColors = {
@@ -219,6 +224,9 @@ export const applyThemeToDocument = (theme) => {
 };
 
 export const getTheme = () => {
+  const activeBankTheme = getActiveQuestionBank()?.theme;
+  if (activeBankTheme) return normalizeTheme(activeBankTheme);
+
   if (!canUseLocalStorage()) return defaultThemeColors;
 
   try {
@@ -236,6 +244,12 @@ export const saveTheme = (theme) => {
   if (canUseLocalStorage()) {
     localStorage.setItem(THEME_KEY, JSON.stringify(normalizedTheme));
   }
+
+  persistActiveQuestionBankSlice(
+    "theme",
+    normalizedTheme,
+    "smartquiz-theme-updated"
+  );
 
   applyThemeToDocument(normalizedTheme);
 

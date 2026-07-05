@@ -1,3 +1,8 @@
+import {
+  getActiveQuestionBank,
+  persistActiveQuestionBankSlice
+} from "../data/questionBankCatalogStorage";
+
 export const EXAM_PROFILE_KEY = "smartquiz_exam_profile";
 
 const legacyCategoryIdMap = {
@@ -116,6 +121,9 @@ export const normalizeExamProfile = (profile = {}) => ({
 });
 
 export const getExamProfile = () => {
+  const activeBankProfile = getActiveQuestionBank()?.profile;
+  if (activeBankProfile) return normalizeExamProfile(activeBankProfile);
+
   if (!canUseLocalStorage()) return defaultExamProfile;
 
   try {
@@ -133,6 +141,12 @@ export const saveExamProfile = (profile) => {
   if (canUseLocalStorage()) {
     localStorage.setItem(EXAM_PROFILE_KEY, JSON.stringify(normalizedProfile));
   }
+
+  persistActiveQuestionBankSlice(
+    "profile",
+    normalizedProfile,
+    "smartquiz-exam-profile-updated"
+  );
 
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event("smartquiz-exam-profile-updated"));

@@ -1,65 +1,90 @@
 # Code Map
 
+This map shows where the main SmartQuiz features live.
+
 ## App Shell
 
 - `src/main.jsx`: React entry point.
-- `src/App.jsx`: top-level app component.
-- `src/pages/index.jsx`: router and lazy page loading.
-- `src/pages/Layout.jsx`: header, drawer navigation, language switcher, footer.
-- `src/components/brand/brand.js`: shared product constants.
+- `src/App.jsx`: native setup, service worker setup, notification setup, routes, toaster.
+- `src/pages/index.jsx`: React Router routes and lazy loading.
+- `src/pages/Layout.jsx`: `LanguageProvider`, header, drawer, mobile nav, theme application, onboarding.
+- `src/App.css`: app-level responsive and mobile styles.
+- `src/index.css`: Tailwind and design tokens.
 
 ## Pages
 
-- `src/pages/Home.jsx`: dashboard, module cards, and project use cases.
-- `src/pages/Theory.jsx`: study mode using question explanations.
-- `src/pages/Quiz.jsx`: randomized test generation, scoring, attempt persistence, and gamification updates.
-- `src/pages/Progress.jsx`: learning level, saved attempt metrics, category performance, question review insights, and chart.
-- `src/pages/Settings.jsx`: tabbed admin workspace for exam profile, Theme Studio, question bank CRUD, local limits, and counter reset.
+- `src/pages/Home.jsx`: dashboard, bank summary, quick actions, module cards.
+- `src/pages/Theory.jsx`: study mode.
+- `src/pages/Quiz.jsx`: practice, exam simulator, favorites review, missed review.
+- `src/pages/Flashcards.jsx`: flashcard review.
+- `src/pages/Progress.jsx`: analytics, XP, weak topics, recent attempts.
+- `src/pages/Settings.jsx`: tabbed admin workspace.
 
-## Data
+## Data And Storage
 
-- `src/components/data/cybersecurityAwarenessQuestions.json`: sample cybersecurity awareness bank.
-- `src/components/data/index.jsx`: question bank adapter and optional video hook.
-- `src/components/data/questionBankStorage.js`: local customization storage, normalization, and import/export support helpers.
-- `src/components/profile/examProfileStorage.js`: editable exam profile, module labels, passing score, quiz length, and defaults.
-- `src/components/theme/themeStorage.js`: editable visual theme, presets, CSS variable adapter, and local theme storage.
-- `src/components/gamification/gamification.js`: XP, level, reward calculation, and local gamification profile storage.
+- `src/components/data/cybersecurityAwarenessQuestions.json`: bundled cybersecurity bank.
+- `src/components/data/usCitizenship2025Questions.json`: bundled US Citizenship 2025 bank.
+- `src/components/data/comptiaSecurity701Questions.json`: bundled Security+ SY0-701 bank.
+- `src/components/data/index.jsx`: active-bank question adapter.
+- `src/components/data/questionBankCatalogStorage.js`: multi-bank catalog.
+- `src/components/data/questionBankStorage.js`: local question customizations.
+- `src/components/data/activeBankStorage.js`: per-bank scoped local storage.
+- `src/components/data/learningStorage.js`: favorites, mistakes, question stats, onboarding, mobile settings.
 
-## State And Persistence
+## Domain Configuration
 
-- `smartquiz_language`: selected UI/data language.
-- `quiz_attempts`: completed quiz attempts used by Progress.
-- `user_quiz_settings`: category limits and taken counters used by Home, Quiz, and Settings.
-- `smartquiz_question_bank_customizations`: local question bank edits used by Home, Theory, Quiz, and Settings.
-- `smartquiz_gamification_profile`: XP, level, and quiz reward totals used by Quiz and Progress.
-- `smartquiz_exam_profile`: editable exam profile used by Layout, Home, Theory, Quiz, Progress, and Settings.
-- `smartquiz_theme`: editable brand colors used by Layout, Settings, and global CSS variables.
+- `src/components/profile/examProfileStorage.js`: exam profile defaults and persistence.
+- `src/components/theme/themeStorage.js`: theme presets, theme persistence, CSS variable application.
+- `src/components/language/LanguageProvider.jsx`: English and Spanish UI strings.
+- `src/components/brand/brand.js`: shared product constants.
 
-## Components
+## Quiz Components
 
 - `src/components/quiz/CategoryCard.jsx`: module cards.
-- `src/components/quiz/QuestionCard.jsx`: interactive question and feedback.
-- `src/components/quiz/ResultsCard.jsx`: emotional result summary, XP reward, level progress, and celebration animation.
-- `src/components/quiz/TestLimitBadge.jsx`: local limit indicator.
-- `src/components/settings/ThemeStudio.jsx`: visual theme editor with presets, color inputs, preview, save, and reset.
-- `src/components/settings/QuestionBankManager.jsx`: local question CRUD, base overrides, delete, import, export, and reset.
-- `src/components/theory/TheoryCard.jsx`: study card with explanation.
-- `src/components/language/LanguageProvider.jsx`: English/Spanish strings and language state.
-- `src/components/ui/*`: reusable UI primitives.
+- `src/components/quiz/QuestionCard.jsx`: answer selection, feedback, explanations, favorites.
+- `src/components/quiz/ResultsCard.jsx`: final result, pass/fail, XP, level progress.
+- `src/components/quiz/TestLimitBadge.jsx`: remaining attempts.
 
-## Styling
+## Settings Components
 
-- `src/index.css`: Tailwind base and design tokens.
-- `src/App.css`: app-level styles.
-- `src/components/theme/themeStorage.js`: theme presets, local storage, and CSS variable application.
-- `tailwind.config.js`: Tailwind configuration.
+- `src/components/settings/QuestionBankCatalogManager.jsx`: banks table, activation, import/export, full backup, templates.
+- `src/components/settings/QuestionBankManager.jsx`: visual question editor and flexible import.
+- `src/components/settings/ThemeStudio.jsx`: theme editor.
+
+## Study Components
+
+- `src/components/theory/TheoryCard.jsx`: study cards.
+
+## Mobile Components
+
+- `src/components/mobile/mobileApp.js`: native mobile configuration.
+- `src/components/mobile/pwa.js`: service worker registration.
+- `src/components/mobile/notifications.js`: local daily reminders.
+- `src/components/mobile/Onboarding.jsx`: first-run setup.
+- `public/sw.js`: offline service worker.
+- `public/manifest.webmanifest`: PWA manifest.
+- `capacitor.config.json`: Capacitor app config.
+- `android/`: Android native project.
+- `ios/`: iOS native project.
+
+## Scripts
+
+- `scripts/generate-mobile-assets.py`: app icons and splash assets.
+- `scripts/generate-citizenship-bank.py`: citizenship bank generation.
+- `scripts/generate-security701-bank.py`: Security+ bank generation.
+
+## UI Primitives
+
+- `src/components/ui/*`: reusable Radix/shadcn-style components.
 
 ## Best Places To Customize
 
-- New brand name: `src/components/brand/brand.js`.
-- New app/profile copy: Settings UI or `src/components/profile/examProfileStorage.js`.
-- New categories: update the question bank categories and `src/components/profile/examProfileStorage.js`.
-- New translations: `src/components/language/LanguageProvider.jsx`.
-- Gamification tuning: `src/components/gamification/gamification.js`.
-- New visual identity: Settings Theme Studio or `src/components/theme/themeStorage.js`.
-- Question editing workflow: `src/components/settings/QuestionBankManager.jsx`.
+- Add a bank: `questionBankCatalogStorage.js`.
+- Edit bundled JSON: `src/components/data/*.json`.
+- Change labels: Settings or `examProfileStorage.js`.
+- Change colors: Theme Studio or `themeStorage.js`.
+- Add translations: `LanguageProvider.jsx`.
+- Change quiz behavior: `Quiz.jsx` and `QuestionCard.jsx`.
+- Change analytics: `Progress.jsx` and `learningStorage.js`.
+- Change mobile onboarding: `Onboarding.jsx`.
+- Change notifications: `notifications.js`.

@@ -1,0 +1,2556 @@
+{
+  "en": [
+    {
+      "id": "security-701-001",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "General Security Concepts",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which principle ensures that only authorized users can view sensitive data?",
+      "options": [
+        "Confidentiality",
+        "Availability",
+        "Non-repudiation",
+        "Resilience"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Confidentiality limits access to information so only authorized subjects can view it."
+    },
+    {
+      "id": "security-701-002",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "General Security Concepts",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "A system uses hashes to detect whether a file changed. Which CIA principle is being supported?",
+      "options": [
+        "Integrity",
+        "Availability",
+        "Confidentiality",
+        "Obfuscation"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Hashes help verify that data has not been modified."
+    },
+    {
+      "id": "security-701-003",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "General Security Concepts",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which control type is a security awareness policy?",
+      "options": [
+        "Managerial",
+        "Physical",
+        "Technical",
+        "Compensating"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Policies and risk governance are managerial controls."
+    },
+    {
+      "id": "security-701-004",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "General Security Concepts",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "A camera records activity after business hours. Which control function is this?",
+      "options": [
+        "Detective",
+        "Corrective",
+        "Directive",
+        "Preventive"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Detective controls identify or record suspicious activity."
+    },
+    {
+      "id": "security-701-005",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "General Security Concepts",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "What does non-repudiation provide?",
+      "options": [
+        "Proof that an action cannot reasonably be denied",
+        "Guaranteed system uptime",
+        "Anonymous communication",
+        "Automatic malware removal"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Digital signatures and logs can support non-repudiation."
+    },
+    {
+      "id": "security-701-006",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "A user receives a targeted email that appears to come from their manager. What attack is most likely?",
+      "options": [
+        "Spear phishing",
+        "Bluejacking",
+        "SQL injection",
+        "Directory traversal"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Spear phishing is a targeted phishing attempt against a specific person or group."
+    },
+    {
+      "id": "security-701-007",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which attack poisons a local mapping table to intercept traffic on a LAN?",
+      "options": [
+        "ARP spoofing",
+        "DNSSEC",
+        "Typosquatting",
+        "Password spraying"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "ARP spoofing can redirect traffic through the attacker on a local network."
+    },
+    {
+      "id": "security-701-008",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which vulnerability is most directly reduced by parameterized queries?",
+      "options": [
+        "SQL injection",
+        "Replay attack",
+        "Evil twin",
+        "Rootkit"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Parameterized queries separate code from user input."
+    },
+    {
+      "id": "security-701-009",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "A login page allows unlimited attempts against one account. Which attack is most likely?",
+      "options": [
+        "Brute force",
+        "Watering hole",
+        "Cross-site scripting",
+        "Race condition"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Brute-force attacks repeatedly try credentials until one works."
+    },
+    {
+      "id": "security-701-010",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which mitigation best reduces credential stuffing risk?",
+      "options": [
+        "Multi-factor authentication",
+        "Longer DHCP leases",
+        "Open guest Wi-Fi",
+        "Disabling logs"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "MFA reduces the usefulness of stolen reused passwords."
+    },
+    {
+      "id": "security-701-011",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "What is the best first action when ransomware is suspected on a workstation?",
+      "options": [
+        "Isolate the device from the network",
+        "Pay the ransom",
+        "Disable backups",
+        "Delete all logs"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Isolation helps contain spread while preserving evidence."
+    },
+    {
+      "id": "security-701-012",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which malware hides at a low system level to maintain stealthy access?",
+      "options": [
+        "Rootkit",
+        "Adware",
+        "Logic bomb",
+        "Key escrow"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Rootkits are designed to hide and maintain privileged access."
+    },
+    {
+      "id": "security-701-013",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identity and Access",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which access model grants permissions based on job function?",
+      "options": [
+        "RBAC",
+        "DAC",
+        "MAC",
+        "PAP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Role-based access control maps access to roles."
+    },
+    {
+      "id": "security-701-014",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identity and Access",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "What does the principle of least privilege require?",
+      "options": [
+        "Users receive only the access needed for their tasks",
+        "All users are administrators",
+        "Passwords never expire",
+        "Data is public by default"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Least privilege limits unnecessary access and reduces impact."
+    },
+    {
+      "id": "security-701-015",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identity and Access",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which factor is something you are?",
+      "options": [
+        "Fingerprint",
+        "Password",
+        "Smart card",
+        "One-time code"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Biometrics are inherence factors."
+    },
+    {
+      "id": "security-701-016",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Why would an organization place public web servers in a DMZ?",
+      "options": [
+        "To isolate public services from the internal network",
+        "To remove the need for firewalls",
+        "To store private keys publicly",
+        "To disable monitoring"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A DMZ limits exposure between public services and internal assets."
+    },
+    {
+      "id": "security-701-017",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "What is a primary goal of network segmentation?",
+      "options": [
+        "Limit the impact of a compromise",
+        "Increase password length",
+        "Replace encryption",
+        "Remove authentication"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Segmentation constrains lateral movement."
+    },
+    {
+      "id": "security-701-018",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which cloud model places most infrastructure responsibility on the provider?",
+      "options": [
+        "SaaS",
+        "IaaS",
+        "On-premises",
+        "Colocation"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "In SaaS, the provider manages the application platform and much of the stack."
+    },
+    {
+      "id": "security-701-019",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which technology centrally controls network behavior through software?",
+      "options": [
+        "SDN",
+        "NAT",
+        "RAID",
+        "TPM"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Software-defined networking separates control from forwarding."
+    },
+    {
+      "id": "security-701-020",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which control protects data at rest if a laptop is lost?",
+      "options": [
+        "Full-disk encryption",
+        "DNS filtering",
+        "Load balancing",
+        "Port mirroring"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Full-disk encryption protects stored data on the device."
+    },
+    {
+      "id": "security-701-021",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "What does a digital certificate primarily bind?",
+      "options": [
+        "An identity to a public key",
+        "A password to a hash",
+        "A VLAN to a subnet",
+        "A log to a SIEM"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Certificates help prove that a public key belongs to an identity."
+    },
+    {
+      "id": "security-701-022",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which protocol is most appropriate for securing web traffic?",
+      "options": [
+        "TLS",
+        "Telnet",
+        "SNMPv1",
+        "FTP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "TLS encrypts and authenticates web sessions when used with HTTPS."
+    },
+    {
+      "id": "security-701-023",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which list identifies certificates that should no longer be trusted?",
+      "options": [
+        "CRL",
+        "ACL",
+        "NAT",
+        "MTBF"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A certificate revocation list identifies revoked certificates."
+    },
+    {
+      "id": "security-701-024",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which tool aggregates events from many systems for correlation and alerting?",
+      "options": [
+        "SIEM",
+        "TPM",
+        "HSM",
+        "NAC"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A SIEM collects and correlates logs for security monitoring."
+    },
+    {
+      "id": "security-701-025",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "What is the purpose of EDR?",
+      "options": [
+        "Detect and respond to endpoint threats",
+        "Replace backups",
+        "Create VLANs",
+        "Issue certificates"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Endpoint detection and response monitors endpoint activity and supports response."
+    },
+    {
+      "id": "security-701-026",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which process restores systems after a tested outage scenario?",
+      "options": [
+        "Disaster recovery",
+        "Reconnaissance",
+        "Tokenization",
+        "Data masking"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Disaster recovery focuses on restoring systems and data after disruption."
+    },
+    {
+      "id": "security-701-027",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which activity should happen before applying patches broadly?",
+      "options": [
+        "Test patches in a controlled environment",
+        "Disable monitoring",
+        "Delete rollback plans",
+        "Share admin passwords"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Testing reduces the chance of breaking production systems."
+    },
+    {
+      "id": "security-701-028",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Security Program Management",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "What is the purpose of a risk register?",
+      "options": [
+        "Track identified risks, owners, likelihood, impact, and treatment",
+        "Store encryption keys",
+        "Replace incident reports",
+        "List public IP addresses only"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A risk register supports governance and risk tracking."
+    },
+    {
+      "id": "security-701-029",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Security Program Management",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which risk response accepts the risk without additional controls?",
+      "options": [
+        "Acceptance",
+        "Transfer",
+        "Mitigation",
+        "Avoidance"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Acceptance means leadership chooses to live with the risk."
+    },
+    {
+      "id": "security-701-030",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Security Program Management",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which document defines expected employee technology behavior?",
+      "options": [
+        "Acceptable use policy",
+        "Certificate signing request",
+        "Network packet capture",
+        "Hash digest"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "An acceptable use policy sets rules for proper technology use."
+    },
+    {
+      "id": "security-701-031",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Security Program Management",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which metric estimates expected yearly financial loss from a risk?",
+      "options": [
+        "ALE",
+        "RTO",
+        "MTTR",
+        "RPO"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Annualized loss expectancy estimates yearly loss."
+    },
+    {
+      "id": "security-701-032",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which regulation is most associated with payment card data?",
+      "options": [
+        "PCI DSS",
+        "HIPAA",
+        "SOX",
+        "FERPA"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "PCI DSS focuses on protecting cardholder data."
+    },
+    {
+      "id": "security-701-033",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which regulation is most associated with protected health information in the United States?",
+      "options": [
+        "HIPAA",
+        "PCI DSS",
+        "GDPR",
+        "FISMA"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "HIPAA applies to protected health information in covered healthcare contexts."
+    },
+    {
+      "id": "security-701-034",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "What is data minimization?",
+      "options": [
+        "Collecting only data needed for a stated purpose",
+        "Keeping all data forever",
+        "Publishing logs publicly",
+        "Removing encryption"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Data minimization reduces privacy and breach impact."
+    },
+    {
+      "id": "security-701-035",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which assessment identifies gaps between current controls and desired requirements?",
+      "options": [
+        "Gap analysis",
+        "Packet capture",
+        "Credential stuffing",
+        "Token replay"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Gap analysis compares current and target states."
+    },
+    {
+      "id": "security-701-036",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which practice helps prove that evidence was not tampered with?",
+      "options": [
+        "Chain of custody",
+        "Load balancing",
+        "NAT overload",
+        "Bluejacking"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Chain of custody documents evidence handling from collection to presentation."
+    },
+    {
+      "id": "security-701-037",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Security Awareness",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which training topic helps users identify suspicious emails?",
+      "options": [
+        "Phishing awareness",
+        "Subnetting only",
+        "RAID levels",
+        "Printer calibration"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Phishing awareness teaches users to identify and report suspicious messages."
+    },
+    {
+      "id": "security-701-038",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Security Awareness",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which behavior is a possible insider threat indicator?",
+      "options": [
+        "Accessing unusual amounts of data outside normal duties",
+        "Using approved MFA",
+        "Reporting phishing",
+        "Locking a screen"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Unusual access patterns can indicate insider risk."
+    },
+    {
+      "id": "security-701-039",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Security Awareness",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "What should users do with an unexpected USB drive found in a parking lot?",
+      "options": [
+        "Report it according to policy",
+        "Plug it in to identify the owner",
+        "Copy files from it",
+        "Disable antivirus first"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Unknown removable media can carry malware and should be handled by policy."
+    },
+    {
+      "id": "security-701-040",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which attack tricks users by creating a malicious wireless access point that resembles a legitimate one?",
+      "options": [
+        "Evil twin",
+        "Replay",
+        "Smurf",
+        "Birthday attack"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "An evil twin access point impersonates a trusted wireless network."
+    },
+    {
+      "id": "security-701-041",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Threats, Vulnerabilities, and Mitigations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which vulnerability occurs when an application exposes more data than necessary through an API?",
+      "options": [
+        "Excessive data exposure",
+        "SQL deadlock",
+        "Key stretching",
+        "RAID mismatch"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "APIs should return only the data required by the client and authorization context."
+    },
+    {
+      "id": "security-701-042",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identity and Access",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Which approach adapts access decisions using context such as location, device health, and risk?",
+      "options": [
+        "Context-aware access",
+        "Static routing",
+        "Open relay",
+        "Disk striping"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Context-aware access evaluates environmental and behavioral signals."
+    },
+    {
+      "id": "security-701-043",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which zero trust idea removes automatic trust from internal networks?",
+      "options": [
+        "Never trust, always verify",
+        "Trust but verify annually",
+        "Permit all internal traffic",
+        "Use passwords only"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Zero trust requires continuous verification rather than implicit trust."
+    },
+    {
+      "id": "security-701-044",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Security Architecture",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which device can enforce whether endpoints meet policy before joining a network?",
+      "options": [
+        "NAC",
+        "UPS",
+        "KVM",
+        "CDN"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Network Access Control can check posture before granting access."
+    },
+    {
+      "id": "security-701-045",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which cryptographic method uses the same key to encrypt and decrypt?",
+      "options": [
+        "Symmetric encryption",
+        "Asymmetric encryption",
+        "Hashing",
+        "Tokenization"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Symmetric encryption uses one shared secret key."
+    },
+    {
+      "id": "security-701-046",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Cryptography and PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which technique replaces sensitive data with non-sensitive placeholders?",
+      "options": [
+        "Tokenization",
+        "Salting",
+        "Compression",
+        "Packet filtering"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Tokenization substitutes sensitive values while preserving business workflows."
+    },
+    {
+      "id": "security-701-047",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which response platform automates and coordinates incident response workflows?",
+      "options": [
+        "SOAR",
+        "DHCP",
+        "RAID",
+        "BGP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "SOAR helps orchestrate and automate response actions."
+    },
+    {
+      "id": "security-701-048",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Security Operations",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "Which backup metric defines the maximum acceptable amount of data loss measured in time?",
+      "options": [
+        "RPO",
+        "RTO",
+        "MTBF",
+        "MTTR"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Recovery Point Objective defines how much data loss is acceptable."
+    },
+    {
+      "id": "security-701-049",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Security Program Management",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which agreement commonly defines uptime and support expectations with a provider?",
+      "options": [
+        "SLA",
+        "CSR",
+        "CRL",
+        "MOU"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A service level agreement documents expected service performance."
+    },
+    {
+      "id": "security-701-050",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Governance, Risk, and Compliance",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which privacy role determines why and how personal data is processed?",
+      "options": [
+        "Controller",
+        "Processor",
+        "Custodian",
+        "Auditor"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "A controller determines the purpose and means of processing personal data."
+    },
+    {
+      "id": "security-701-051",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Security Awareness",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "Which practice helps remote workers protect traffic on untrusted networks?",
+      "options": [
+        "Use a VPN or secure access solution",
+        "Disable endpoint protection",
+        "Share credentials with family",
+        "Use open Wi-Fi for admin tasks"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Secure remote access reduces exposure on untrusted networks."
+    }
+  ],
+  "es": [
+    {
+      "id": "security-701-001",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "Conceptos generales de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué principio asegura que solo usuarios autorizados puedan ver datos sensibles?",
+      "options": [
+        "Confidencialidad",
+        "Disponibilidad",
+        "No repudio",
+        "Resiliencia"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La confidencialidad limita el acceso para que solo sujetos autorizados puedan ver la informacion."
+    },
+    {
+      "id": "security-701-002",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "Conceptos generales de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Un sistema usa hashes para detectar si un archivo cambio. ¿Qué principio de la triada CIA se apoya?",
+      "options": [
+        "Integridad",
+        "Disponibilidad",
+        "Confidencialidad",
+        "Ofuscacion"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Los hashes ayudan a verificar que los datos no fueron modificados."
+    },
+    {
+      "id": "security-701-003",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "Conceptos generales de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué tipo de control es una politica de concientizacion de seguridad?",
+      "options": [
+        "Gerencial",
+        "Fisico",
+        "Tecnico",
+        "Compensatorio"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Las politicas y la gobernanza de riesgos son controles gerenciales."
+    },
+    {
+      "id": "security-701-004",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "Conceptos generales de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Una camara registra actividad fuera del horario laboral. ¿Qué funcion de control cumple?",
+      "options": [
+        "Detectiva",
+        "Correctiva",
+        "Directiva",
+        "Preventiva"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Los controles detectivos identifican o registran actividad sospechosa."
+    },
+    {
+      "id": "security-701-005",
+      "category": "module_1",
+      "block_id": 1,
+      "block_name": "Conceptos generales de seguridad",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué proporciona el no repudio?",
+      "options": [
+        "Prueba de que una accion no puede negarse razonablemente",
+        "Disponibilidad garantizada",
+        "Comunicacion anonima",
+        "Eliminacion automatica de malware"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Las firmas digitales y registros pueden apoyar el no repudio."
+    },
+    {
+      "id": "security-701-006",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Un usuario recibe un correo dirigido que parece venir de su gerente. ¿Qué ataque es mas probable?",
+      "options": [
+        "Spear phishing",
+        "Bluejacking",
+        "Inyeccion SQL",
+        "Directory traversal"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Spear phishing es un intento dirigido contra una persona o grupo especifico."
+    },
+    {
+      "id": "security-701-007",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué ataque envenena una tabla local de mapeo para interceptar trafico en una LAN?",
+      "options": [
+        "Suplantacion ARP",
+        "DNSSEC",
+        "Typosquatting",
+        "Password spraying"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La suplantacion ARP puede redirigir trafico a traves del atacante en una red local."
+    },
+    {
+      "id": "security-701-008",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué vulnerabilidad se reduce mas directamente con consultas parametrizadas?",
+      "options": [
+        "Inyeccion SQL",
+        "Ataque de repeticion",
+        "Evil twin",
+        "Rootkit"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Las consultas parametrizadas separan el codigo de la entrada del usuario."
+    },
+    {
+      "id": "security-701-009",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "Una pagina de inicio de sesion permite intentos ilimitados contra una cuenta. ¿Qué ataque es mas probable?",
+      "options": [
+        "Fuerza bruta",
+        "Watering hole",
+        "Cross-site scripting",
+        "Condicion de carrera"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Los ataques de fuerza bruta prueban credenciales repetidamente hasta acertar."
+    },
+    {
+      "id": "security-701-010",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué mitigacion reduce mejor el riesgo de credential stuffing?",
+      "options": [
+        "Autenticacion multifactor",
+        "Concesiones DHCP mas largas",
+        "Wi-Fi de invitado abierto",
+        "Deshabilitar registros"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "MFA reduce la utilidad de contrasenas reutilizadas robadas."
+    },
+    {
+      "id": "security-701-011",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Cuál es la mejor primera accion cuando se sospecha ransomware en una estacion de trabajo?",
+      "options": [
+        "Aislar el dispositivo de la red",
+        "Pagar el rescate",
+        "Deshabilitar respaldos",
+        "Eliminar todos los logs"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El aislamiento ayuda a contener la propagacion y preservar evidencia."
+    },
+    {
+      "id": "security-701-012",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué malware se oculta a bajo nivel del sistema para mantener acceso sigiloso?",
+      "options": [
+        "Rootkit",
+        "Adware",
+        "Bomba logica",
+        "Custodia de claves"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Los rootkits se diseñan para ocultarse y mantener acceso privilegiado."
+    },
+    {
+      "id": "security-701-013",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identidad y acceso",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué modelo de acceso otorga permisos segun la funcion laboral?",
+      "options": [
+        "RBAC",
+        "DAC",
+        "MAC",
+        "PAP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El control de acceso basado en roles asigna permisos a roles."
+    },
+    {
+      "id": "security-701-014",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identidad y acceso",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué requiere el principio de minimo privilegio?",
+      "options": [
+        "Usuarios reciben solo el acceso necesario para sus tareas",
+        "Todos son administradores",
+        "Las contrasenas nunca expiran",
+        "Los datos son publicos por defecto"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El minimo privilegio limita acceso innecesario y reduce impacto."
+    },
+    {
+      "id": "security-701-015",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identidad y acceso",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué factor es algo que eres?",
+      "options": [
+        "Huella digital",
+        "Contrasena",
+        "Tarjeta inteligente",
+        "Codigo de un solo uso"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La biometria es un factor de inherencia."
+    },
+    {
+      "id": "security-701-016",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Por qué una organizacion colocaria servidores web publicos en una DMZ?",
+      "options": [
+        "Para aislar servicios publicos de la red interna",
+        "Para eliminar la necesidad de firewalls",
+        "Para publicar claves privadas",
+        "Para deshabilitar monitoreo"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Una DMZ limita la exposicion entre servicios publicos y activos internos."
+    },
+    {
+      "id": "security-701-017",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Cuál es el objetivo principal de la segmentacion de red?",
+      "options": [
+        "Limitar el impacto de un compromiso",
+        "Aumentar longitud de contrasenas",
+        "Reemplazar cifrado",
+        "Eliminar autenticacion"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La segmentacion limita el movimiento lateral."
+    },
+    {
+      "id": "security-701-018",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué modelo de nube coloca la mayor responsabilidad de infraestructura en el proveedor?",
+      "options": [
+        "SaaS",
+        "IaaS",
+        "Local/on-premises",
+        "Colocation"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "En SaaS, el proveedor administra la aplicacion y gran parte de la pila."
+    },
+    {
+      "id": "security-701-019",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué tecnologia controla centralmente el comportamiento de red mediante software?",
+      "options": [
+        "SDN",
+        "NAT",
+        "RAID",
+        "TPM"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "SDN separa el control del reenvio de trafico."
+    },
+    {
+      "id": "security-701-020",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué control protege datos en reposo si se pierde una laptop?",
+      "options": [
+        "Cifrado de disco completo",
+        "Filtrado DNS",
+        "Balanceo de carga",
+        "Port mirroring"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El cifrado de disco completo protege datos almacenados en el dispositivo."
+    },
+    {
+      "id": "security-701-021",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué vincula principalmente un certificado digital?",
+      "options": [
+        "Una identidad a una clave publica",
+        "Una contrasena a un hash",
+        "Una VLAN a una subred",
+        "Un log a un SIEM"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Los certificados ayudan a probar que una clave publica pertenece a una identidad."
+    },
+    {
+      "id": "security-701-022",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué protocolo es mas apropiado para asegurar trafico web?",
+      "options": [
+        "TLS",
+        "Telnet",
+        "SNMPv1",
+        "FTP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "TLS cifra y autentica sesiones web cuando se usa con HTTPS."
+    },
+    {
+      "id": "security-701-023",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué lista identifica certificados que ya no deben ser confiables?",
+      "options": [
+        "CRL",
+        "ACL",
+        "NAT",
+        "MTBF"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Una lista de revocacion de certificados identifica certificados revocados."
+    },
+    {
+      "id": "security-701-024",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué herramienta agrega eventos de muchos sistemas para correlacion y alertas?",
+      "options": [
+        "SIEM",
+        "TPM",
+        "HSM",
+        "NAC"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Un SIEM recopila y correlaciona logs para monitoreo de seguridad."
+    },
+    {
+      "id": "security-701-025",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Cuál es el proposito de EDR?",
+      "options": [
+        "Detectar y responder a amenazas en endpoints",
+        "Reemplazar respaldos",
+        "Crear VLANs",
+        "Emitir certificados"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "EDR monitorea actividad en endpoints y apoya la respuesta."
+    },
+    {
+      "id": "security-701-026",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué proceso restaura sistemas despues de un escenario probado de interrupcion?",
+      "options": [
+        "Recuperacion ante desastres",
+        "Reconocimiento",
+        "Tokenizacion",
+        "Enmascaramiento de datos"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La recuperacion ante desastres restaura sistemas y datos tras una interrupcion."
+    },
+    {
+      "id": "security-701-027",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué actividad debe ocurrir antes de aplicar parches ampliamente?",
+      "options": [
+        "Probar parches en un entorno controlado",
+        "Deshabilitar monitoreo",
+        "Eliminar planes de reversa",
+        "Compartir contrasenas admin"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Las pruebas reducen el riesgo de afectar sistemas de produccion."
+    },
+    {
+      "id": "security-701-028",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Gestion del programa de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Cuál es el proposito de un registro de riesgos?",
+      "options": [
+        "Rastrear riesgos, duenos, probabilidad, impacto y tratamiento",
+        "Guardar claves de cifrado",
+        "Reemplazar reportes de incidentes",
+        "Listar solo IPs publicas"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Un registro de riesgos apoya la gobernanza y el seguimiento de riesgos."
+    },
+    {
+      "id": "security-701-029",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Gestion del programa de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué respuesta al riesgo acepta el riesgo sin controles adicionales?",
+      "options": [
+        "Aceptacion",
+        "Transferencia",
+        "Mitigacion",
+        "Evitacion"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Aceptacion significa que la direccion decide convivir con el riesgo."
+    },
+    {
+      "id": "security-701-030",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Gestion del programa de seguridad",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué documento define el comportamiento esperado de empleados con tecnologia?",
+      "options": [
+        "Politica de uso aceptable",
+        "Solicitud de firma de certificado",
+        "Captura de paquetes",
+        "Resumen hash"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Una politica de uso aceptable establece reglas para uso correcto de tecnologia."
+    },
+    {
+      "id": "security-701-031",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Gestion del programa de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué metrica estima la perdida financiera anual esperada de un riesgo?",
+      "options": [
+        "ALE",
+        "RTO",
+        "MTTR",
+        "RPO"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La expectativa de perdida anual estima la perdida anual."
+    },
+    {
+      "id": "security-701-032",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué regulacion se asocia mas con datos de tarjetas de pago?",
+      "options": [
+        "PCI DSS",
+        "HIPAA",
+        "SOX",
+        "FERPA"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "PCI DSS se enfoca en proteger datos de titulares de tarjetas."
+    },
+    {
+      "id": "security-701-033",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué regulacion se asocia mas con informacion de salud protegida en Estados Unidos?",
+      "options": [
+        "HIPAA",
+        "PCI DSS",
+        "GDPR",
+        "FISMA"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "HIPAA aplica a informacion de salud protegida en contextos de salud cubiertos."
+    },
+    {
+      "id": "security-701-034",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué es la minimizacion de datos?",
+      "options": [
+        "Recolectar solo datos necesarios para un proposito definido",
+        "Guardar todos los datos para siempre",
+        "Publicar logs",
+        "Eliminar cifrado"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La minimizacion reduce impacto de privacidad y brechas."
+    },
+    {
+      "id": "security-701-035",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué evaluacion identifica brechas entre controles actuales y requisitos deseados?",
+      "options": [
+        "Analisis de brechas",
+        "Captura de paquetes",
+        "Credential stuffing",
+        "Repeticion de token"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El analisis de brechas compara estado actual y objetivo."
+    },
+    {
+      "id": "security-701-036",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué practica ayuda a probar que la evidencia no fue manipulada?",
+      "options": [
+        "Cadena de custodia",
+        "Balanceo de carga",
+        "NAT overload",
+        "Bluejacking"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La cadena de custodia documenta el manejo de evidencia desde recoleccion hasta presentacion."
+    },
+    {
+      "id": "security-701-037",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Concientizacion de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué tema de entrenamiento ayuda a identificar correos sospechosos?",
+      "options": [
+        "Concientizacion sobre phishing",
+        "Solo subnetting",
+        "Niveles RAID",
+        "Calibracion de impresora"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La concientizacion sobre phishing ensena a identificar y reportar mensajes sospechosos."
+    },
+    {
+      "id": "security-701-038",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Concientizacion de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué comportamiento puede indicar una amenaza interna?",
+      "options": [
+        "Acceder a cantidades inusuales de datos fuera de sus funciones",
+        "Usar MFA aprobado",
+        "Reportar phishing",
+        "Bloquear pantalla"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Patrones inusuales de acceso pueden indicar riesgo interno."
+    },
+    {
+      "id": "security-701-039",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Concientizacion de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué deben hacer los usuarios con una USB inesperada encontrada en un estacionamiento?",
+      "options": [
+        "Reportarla segun la politica",
+        "Conectarla para identificar al dueno",
+        "Copiar sus archivos",
+        "Deshabilitar antivirus primero"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Medios removibles desconocidos pueden traer malware y deben manejarse segun politica."
+    },
+    {
+      "id": "security-701-040",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué ataque engana a usuarios creando un punto de acceso inalambrico malicioso parecido a uno legitimo?",
+      "options": [
+        "Evil twin",
+        "Repeticion",
+        "Smurf",
+        "Ataque de cumpleaños"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Un punto evil twin suplanta una red inalambrica confiable."
+    },
+    {
+      "id": "security-701-041",
+      "category": "module_1",
+      "block_id": 2,
+      "block_name": "Amenazas, vulnerabilidades y mitigaciones",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué vulnerabilidad ocurre cuando una aplicacion expone mas datos de los necesarios por una API?",
+      "options": [
+        "Exposicion excesiva de datos",
+        "SQL deadlock",
+        "Key stretching",
+        "Desajuste RAID"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Las APIs deben devolver solo los datos necesarios segun el cliente y la autorizacion."
+    },
+    {
+      "id": "security-701-042",
+      "category": "module_1",
+      "block_id": 3,
+      "block_name": "Identidad y acceso",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_1"
+      ],
+      "question": "¿Qué enfoque adapta decisiones de acceso usando contexto como ubicacion, salud del dispositivo y riesgo?",
+      "options": [
+        "Acceso consciente del contexto",
+        "Enrutamiento estatico",
+        "Open relay",
+        "Striping de disco"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El acceso contextual evalua senales ambientales y de comportamiento."
+    },
+    {
+      "id": "security-701-043",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué idea de zero trust elimina la confianza automatica en redes internas?",
+      "options": [
+        "Nunca confiar, siempre verificar",
+        "Confiar pero verificar anualmente",
+        "Permitir todo trafico interno",
+        "Usar solo contrasenas"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Zero trust requiere verificacion continua en lugar de confianza implicita."
+    },
+    {
+      "id": "security-701-044",
+      "category": "module_2",
+      "block_id": 4,
+      "block_name": "Arquitectura de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué dispositivo o tecnologia puede exigir que endpoints cumplan politicas antes de entrar a la red?",
+      "options": [
+        "NAC",
+        "UPS",
+        "KVM",
+        "CDN"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "NAC puede revisar la postura del endpoint antes de conceder acceso."
+    },
+    {
+      "id": "security-701-045",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué metodo criptografico usa la misma clave para cifrar y descifrar?",
+      "options": [
+        "Cifrado simetrico",
+        "Cifrado asimetrico",
+        "Hashing",
+        "Tokenizacion"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El cifrado simetrico usa una clave secreta compartida."
+    },
+    {
+      "id": "security-701-046",
+      "category": "module_2",
+      "block_id": 5,
+      "block_name": "Criptografia y PKI",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué tecnica reemplaza datos sensibles por valores no sensibles?",
+      "options": [
+        "Tokenizacion",
+        "Salting",
+        "Compresion",
+        "Filtrado de paquetes"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "La tokenizacion sustituye valores sensibles manteniendo flujos de negocio."
+    },
+    {
+      "id": "security-701-047",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué plataforma automatiza y coordina flujos de respuesta a incidentes?",
+      "options": [
+        "SOAR",
+        "DHCP",
+        "RAID",
+        "BGP"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "SOAR ayuda a orquestar y automatizar acciones de respuesta."
+    },
+    {
+      "id": "security-701-048",
+      "category": "module_2",
+      "block_id": 6,
+      "block_name": "Operaciones de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_2"
+      ],
+      "question": "¿Qué metrica de respaldo define la maxima perdida aceptable de datos medida en tiempo?",
+      "options": [
+        "RPO",
+        "RTO",
+        "MTBF",
+        "MTTR"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "RPO define cuanta perdida de datos es aceptable."
+    },
+    {
+      "id": "security-701-049",
+      "category": "module_3",
+      "block_id": 7,
+      "block_name": "Gestion del programa de seguridad",
+      "difficulty": "intermediate",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué acuerdo define comunmente disponibilidad y expectativas de soporte con un proveedor?",
+      "options": [
+        "SLA",
+        "CSR",
+        "CRL",
+        "MOU"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Un SLA documenta el rendimiento esperado del servicio."
+    },
+    {
+      "id": "security-701-050",
+      "category": "module_3",
+      "block_id": 8,
+      "block_name": "Gobernanza, riesgo y cumplimiento",
+      "difficulty": "beginner",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué rol de privacidad determina por qué y cómo se procesan datos personales?",
+      "options": [
+        "Controlador",
+        "Procesador",
+        "Custodio",
+        "Auditor"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "Un controlador determina el proposito y los medios del procesamiento de datos personales."
+    },
+    {
+      "id": "security-701-051",
+      "category": "module_3",
+      "block_id": 9,
+      "block_name": "Concientizacion de seguridad",
+      "difficulty": "advanced",
+      "tags": [
+        "comptia",
+        "security+",
+        "sy0-701",
+        "module_3"
+      ],
+      "question": "¿Qué practica ayuda a trabajadores remotos a proteger trafico en redes no confiables?",
+      "options": [
+        "Usar VPN o solucion de acceso seguro",
+        "Deshabilitar proteccion endpoint",
+        "Compartir credenciales con la familia",
+        "Usar Wi-Fi abierto para tareas admin"
+      ],
+      "correct_answer": 0,
+      "correct_answers": [
+        0
+      ],
+      "explanation": "El acceso remoto seguro reduce exposicion en redes no confiables."
+    }
+  ]
+}

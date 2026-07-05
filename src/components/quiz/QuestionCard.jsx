@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, XCircle, ChevronRight } from "lucide-react";
+import { CheckCircle2, XCircle, ChevronRight, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../language/LanguageProvider";
+import { isQuestionFavorite, toggleQuestionFavorite } from "../data/learningStorage";
 
 /**
  * Displays one quiz question and manages local answer feedback.
@@ -20,13 +21,26 @@ export default function QuestionCard({
   question, 
   questionNumber, 
   totalQuestions, 
-  onAnswer 
+  onAnswer,
+  instantFeedback = true
 }) {
   const [selectedOption, setSelectedOption] = useState(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [favorite, setFavorite] = useState(() => isQuestionFavorite(question.question_key));
   const { t } = useLanguage();
+  const correctAnswers = Array.isArray(question.correct_answers) && question.correct_answers.length > 0
+    ? question.correct_answers
+    : [question.correct_answer];
+
+  useEffect(() => {
+    setFavorite(isQuestionFavorite(question.question_key));
+    setSelectedOption(null);
+    setShowFeedback(false);
+    setIsCorrect(false);
+    setImageError(false);
+  }, [question.question_key]);
 
   /**
    * Stores the selected option unless feedback is already visible.
@@ -39,35 +53,53 @@ export default function QuestionCard({
   };
 
   /**
-   * Compares the selected option with `question.correct_answer`.
+   * Compares the selected option with one or more accepted answers.
    */
   const handleSubmit = () => {
     if (selectedOption === null) return;
-    const correct = selectedOption === question.correct_answer;
+    const correct = correctAnswers.includes(selectedOption);
+
+    if (!instantFeedback) {
+      onAnswer(buildAnswerResult(correct));
+      setSelectedOption(null);
+      setImageError(false);
+      return;
+    }
+
     setIsCorrect(correct);
     setShowFeedback(true);
   };
+
+  const buildAnswerResult = (correct) => ({
+    question_key: question.question_key,
+    question_id: question.id,
+    category: question.category,
+    block_name: question.block_name,
+    difficulty: question.difficulty || "beginner",
+    tags: question.tags || [],
+    question: question.question,
+    options: question.options,
+    selected_answer: selectedOption,
+    correct_answer: question.correct_answer,
+    correct_answers: correctAnswers,
+    explanation: question.explanation,
+    is_correct: correct
+  });
 
   /**
    * Reports the answer result to the parent and resets this card state.
    */
   const handleNext = () => {
-    onAnswer({
-      question_key: question.question_key,
-      question_id: question.id,
-      category: question.category,
-      block_name: question.block_name,
-      difficulty: question.difficulty || "beginner",
-      tags: question.tags || [],
-      question: question.question,
-      selected_answer: selectedOption,
-      correct_answer: question.correct_answer,
-      is_correct: isCorrect
-    });
+    onAnswer(buildAnswerResult(isCorrect));
     setSelectedOption(null);
     setShowFeedback(false);
     setIsCorrect(false);
     setImageError(false);
+  };
+
+  const handleToggleFavorite = () => {
+    toggleQuestionFavorite(question);
+    setFavorite((currentValue) => !currentValue);
   };
 
   // Prefer bundled images so the app keeps working without network access.
@@ -78,7 +110,7 @@ export default function QuestionCard({
     <Card className="rounded-2xl border border-slate-200 bg-white shadow-sm">
       <CardContent className="p-8">
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between gap-3 mb-4">
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full bg-teal-50 px-4 py-1 text-sm font-semibold text-teal-800 ring-1 ring-teal-100">
                 {t("questionOf")} {questionNumber} {t("of")} {totalQuestions}
@@ -92,9 +124,21 @@ export default function QuestionCard({
                 {t(question.difficulty || "beginner")}
               </span>
             </div>
-            <span className="text-sm text-slate-500">
-              {Math.round((questionNumber / totalQuestions) * 100)}% {t("complete")}
-            </span>
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                size="icon"
+                variant="outline"
+                className={favorite ? "border-amber-200 bg-amber-50 text-amber-700" : ""}
+                onClick={handleToggleFavorite}
+                title={favorite ? t("removeFavorite") : t("addFavorite")}
+              >
+                <Star className={`h-4 w-4 ${favorite ? "fill-current" : ""}`} />
+              </Button>
+              <span className="hidden text-sm text-slate-500 sm:inline">
+                {Math.round((questionNumber / totalQuestions) * 100)}% {t("complete")}
+              </span>
+            </div>
           </div>
           <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
             <motion.div
@@ -146,7 +190,7 @@ export default function QuestionCard({
                 disabled={showFeedback}
                 className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 ${
                   showFeedback
-                    ? index === question.correct_answer
+                    ? correctAnswers.includes(index)
                       ? "border-green-500 bg-green-50"
                       : index === selectedOption
                       ? "border-red-500 bg-red-50"
@@ -159,7 +203,7 @@ export default function QuestionCard({
                 <div className="flex items-center gap-4">
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold ${
                     showFeedback
-                      ? index === question.correct_answer
+                      ? correctAnswers.includes(index)
                         ? "bg-green-500 text-white"
                         : index === selectedOption
                         ? "bg-red-500 text-white"
@@ -171,10 +215,10 @@ export default function QuestionCard({
                     {String.fromCharCode(65 + index)}
                   </div>
                   <span className="flex-1 font-medium text-slate-900">{option}</span>
-                  {showFeedback && index === question.correct_answer && (
+                  {showFeedback && correctAnswers.includes(index) && (
                     <CheckCircle2 className="w-6 h-6 text-green-500" />
                   )}
-                  {showFeedback && index === selectedOption && index !== question.correct_answer && (
+                  {showFeedback && index === selectedOption && !correctAnswers.includes(index) && (
                     <XCircle className="w-6 h-6 text-red-500" />
                   )}
                 </div>
@@ -184,7 +228,7 @@ export default function QuestionCard({
         </div>
 
         <AnimatePresence>
-          {showFeedback && question.explanation && (
+          {showFeedback && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -194,10 +238,10 @@ export default function QuestionCard({
               }`}
             >
               <h4 className={`font-semibold mb-2 ${isCorrect ? "text-green-900" : "text-amber-950"}`}>
-                {isCorrect ? `✓ ${t("correct")}` : t("learnMore")}
+                {isCorrect ? t("correct") : t("learnMore")}
               </h4>
               <p className={`${isCorrect ? "text-green-800" : "text-amber-950"}`}>
-                {question.explanation}
+                {question.explanation || t("defaultExplanation")}
               </p>
             </motion.div>
           )}

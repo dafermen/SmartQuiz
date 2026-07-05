@@ -1,4 +1,4 @@
-import cybersecurityAwarenessQuestions from "./cybersecurityAwarenessQuestions.json";
+import { getActiveQuestionBankBase } from "./questionBankCatalogStorage";
 import {
   getQuestionBankCustomizations,
   makeQuestionKey,
@@ -10,11 +10,13 @@ const normalizeQuestionBank = (bank) => (
   Object.fromEntries(
     SUPPORTED_QUESTION_LANGUAGES.map((language) => [
       language,
-      (bank[language] || bank.en).map((question) => ({
-        ...normalizeQuestionRecord(question, language, "base"),
-        id: question.id,
-        question_key: makeQuestionKey(language, question.id)
-      }))
+      (bank[language] || bank.en).map((question) => {
+        const normalizedQuestion = normalizeQuestionRecord(question, language, "base");
+        return {
+          ...normalizedQuestion,
+          question_key: makeQuestionKey(language, normalizedQuestion.id)
+        };
+      })
     ])
   )
 );
@@ -61,7 +63,7 @@ const applyQuestionBankCustomizations = (baseBank, customizations) => (
  */
 export const getQuestionsData = () => (
   applyQuestionBankCustomizations(
-    normalizeQuestionBank(cybersecurityAwarenessQuestions),
+    normalizeQuestionBank(getActiveQuestionBankBase()),
     getQuestionBankCustomizations()
   )
 );

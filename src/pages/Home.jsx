@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { ShieldCheck, ScanSearch, Award, BookOpen, Lock, Globe2, ArrowRight, CheckCircle2, Layers3 } from "lucide-react";
+import { ShieldCheck, ScanSearch, Award, BookOpen, Lock, Globe2, ArrowRight, CheckCircle2, Layers3, Clock, Star, TriangleAlert } from "lucide-react";
 import CategoryCard from "../components/quiz/CategoryCard";
 import TestLimitBadge from "../components/quiz/TestLimitBadge";
 import { useLanguage } from "../components/language/LanguageProvider";
 import { getQuestionsData } from "../components/data/index";
+import { readScopedJson, writeScopedJson } from "../components/data/activeBankStorage";
+import { getLearningState } from "../components/data/learningStorage";
 import {
   getExamProfile,
   getLocalizedProfileText,
@@ -18,6 +20,7 @@ import { Button } from "@/components/ui/button";
 const categoryIconMap = {
   Award,
   BookOpen,
+  Layers3,
   ScanSearch,
   ShieldCheck
 };
@@ -35,6 +38,7 @@ export default function Home() {
   const { t, language } = useLanguage();
   const [examProfile, setExamProfile] = useState(getExamProfile);
   const [stats, setStats] = useState({ total: 0, passed: 0, avgScore: 0 });
+  const [learningState, setLearningState] = useState(getLearningState);
   const [questionCounts, setQuestionCounts] = useState({});
   const [userSettings, setUserSettings] = useState(getQuizSettingsDefaults(examProfile));
 
@@ -48,8 +52,7 @@ export default function Home() {
    * - `stats` React state.
    */
   const loadStats = useCallback(() => {
-    const attemptsJSON = localStorage.getItem("quiz_attempts") || "[]";
-    const attempts = JSON.parse(attemptsJSON);
+    const attempts = readScopedJson("quiz_attempts", [], "quiz_attempts");
     const total = attempts.length;
     const passed = attempts.filter(a => a.passed).length;
     const avgScore = total > 0
@@ -78,16 +81,15 @@ export default function Home() {
    * Loads quiz limits and counters, creating defaults when missing.
    */
   const loadUserSettings = useCallback(() => {
-    const settingsJSON = localStorage.getItem("user_quiz_settings");
     const defaultSettings = getQuizSettingsDefaults(examProfile);
-    if (settingsJSON) {
-      const savedSettings = JSON.parse(settingsJSON);
+    const savedSettings = readScopedJson("user_quiz_settings", null, "user_quiz_settings");
+    if (savedSettings) {
       setUserSettings({
         ...defaultSettings,
         ...savedSettings
       });
     } else {
-      localStorage.setItem("user_quiz_settings", JSON.stringify(defaultSettings));
+      writeScopedJson("user_quiz_settings", defaultSettings);
       setUserSettings(defaultSettings);
     }
   }, [examProfile]);
@@ -96,6 +98,7 @@ export default function Home() {
     loadStats();
     loadQuestionCounts();
     loadUserSettings();
+    setLearningState(getLearningState());
   }, [loadStats, loadQuestionCounts, loadUserSettings]);
 
   useEffect(() => {
@@ -108,8 +111,23 @@ export default function Home() {
     };
 
     window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
-    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    return () => {
+      window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    };
   }, []);
+
+  useEffect(() => {
+    window.addEventListener("smartquiz-question-bank-updated", loadQuestionCounts);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", loadData);
+    window.addEventListener("smartquiz-learning-state-updated", loadData);
+    return () => {
+      window.removeEventListener("smartquiz-question-bank-updated", loadQuestionCounts);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", loadData);
+      window.removeEventListener("smartquiz-learning-state-updated", loadData);
+    };
+  }, [loadData, loadQuestionCounts]);
 
   /**
    * Opens the quiz for a category when the configured limit allows it.
@@ -128,6 +146,8 @@ export default function Home() {
   };
 
   const practiceProfile = getPracticeCategoryProfile(language);
+  const favoriteCount = Object.keys(learningState.favorites || {}).length;
+  const mistakeCount = Object.keys(learningState.mistakes || {}).length;
   const categories = [
     ...examProfile.categories,
     practiceProfile
@@ -256,6 +276,60 @@ export default function Home() {
           </div>
         </CardContent>
       </Card>
+
+      <div className="grid gap-4 md:grid-cols-4">
+        <Card
+          className="cursor-pointer rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          onClick={() => navigate(createPageUrl("Quiz") + "?category=practice_quiz&mode=exam")}
+        >
+          <CardContent className="p-5">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-blue-50">
+              <Clock className="h-5 w-5 text-blue-700" />
+            </div>
+            <h3 className="font-bold text-slate-950">{t("examSimulator")}</h3>
+            <p className="mt-1 text-sm text-slate-500">{t("examSimulatorShort")}</p>
+          </CardContent>
+        </Card>
+
+        <Card
+          className="cursor-pointer rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          onClick={() => navigate(createPageUrl("Quiz") + "?category=practice_quiz&mode=mistakes")}
+        >
+          <CardContent className="p-5">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-amber-50">
+              <TriangleAlert className="h-5 w-5 text-amber-700" />
+            </div>
+            <h3 className="font-bold text-slate-950">{t("missedQuestions")}</h3>
+            <p className="mt-1 text-sm text-slate-500">{mistakeCount} {t("questions")}</p>
+          </CardContent>
+        </Card>
+
+        <Card
+          className="cursor-pointer rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          onClick={() => navigate(createPageUrl("Quiz") + "?category=practice_quiz&mode=favorites")}
+        >
+          <CardContent className="p-5">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-amber-50">
+              <Star className="h-5 w-5 text-amber-700" />
+            </div>
+            <h3 className="font-bold text-slate-950">{t("favoriteQuestions")}</h3>
+            <p className="mt-1 text-sm text-slate-500">{favoriteCount} {t("questions")}</p>
+          </CardContent>
+        </Card>
+
+        <Card
+          className="cursor-pointer rounded-2xl border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+          onClick={() => navigate(createPageUrl("Flashcards"))}
+        >
+          <CardContent className="p-5">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-teal-50">
+              <BookOpen className="h-5 w-5 text-teal-700" />
+            </div>
+            <h3 className="font-bold text-slate-950">{t("flashcards")}</h3>
+            <p className="mt-1 text-sm text-slate-500">{t("flashcardsShort")}</p>
+          </CardContent>
+        </Card>
+      </div>
 
       {/*
         Optional media lessons can be added later as a separate module. The

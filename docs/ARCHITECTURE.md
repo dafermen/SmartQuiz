@@ -1,119 +1,302 @@
 # SmartQuiz Architecture
 
-SmartQuiz is a client-only React/Vite app. It reads localized question data from JSON, renders study and quiz flows, and stores progress in `localStorage`. There is no backend dependency, which keeps the project easy to publish, fork, and customize.
+SmartQuiz is a client-only React/Vite application with optional native packaging through Capacitor. It uses local JSON question banks, local storage, a PWA service worker, and native mobile plugins. There is no backend requirement.
 
-## Runtime Flow
+## High-Level Flow
 
 1. `src/main.jsx` mounts React.
-2. `src/App.jsx` renders routes and the global toaster.
-3. `src/pages/index.jsx` defines lazy-loaded pages.
-4. `src/pages/Layout.jsx` provides the app shell, navigation, and language switcher.
-5. Pages load question data through `getQuestionsData()`.
-6. UI copy, quiz rules, theme colors, question content, and limits can be customized through the tabbed Settings workspace.
+2. `src/App.jsx` initializes native helpers, registers the service worker, configures daily reminders, renders routes, and mounts the toaster.
+3. `src/pages/index.jsx` defines lazy-loaded routes.
+4. `src/pages/Layout.jsx` wraps the app in `LanguageProvider`, renders navigation, applies the active theme, and mounts onboarding.
+5. Pages read questions through `getQuestionsData()`.
+6. Storage helpers scope user data to the active question bank.
 
-## Data
+## Major Systems
 
-The sample bank lives at:
+### Question Bank Catalog
 
-- `src/components/data/cybersecurityAwarenessQuestions.json`
+File:
 
-The adapter lives at:
+```txt
+src/components/data/questionBankCatalogStorage.js
+```
 
-- `src/components/data/index.jsx`
+Responsibilities:
 
-Each question has:
+- Defines bundled banks.
+- Stores active bank ID.
+- Normalizes imported banks.
+- Saves the bank catalog.
+- Activates, duplicates, adds, and deletes banks.
+- Keeps per-bank profile and theme.
 
-- `id`
-- `category`
-- `block_id`
-- `block_name`
-- `difficulty`
-- `tags`
-- `question`
-- `options`
-- `correct_answer`
-- `explanation`
+Bundled banks:
 
-The adapter normalizes optional metadata and adds a stable `question_key` for randomized tests, progress analytics, and language switching.
+- Cybersecurity Awareness.
+- US Citizenship 2025.
+- CompTIA Security+ SY0-701.
 
-## Exam Profile
+### Question Adapter
 
-The editable exam profile lives in:
+File:
 
-- `src/components/profile/examProfileStorage.js`
+```txt
+src/components/data/index.jsx
+```
 
-At runtime, profile edits are stored in:
+Responsibilities:
 
-- `smartquiz_exam_profile`
+- Reads the active bank.
+- Normalizes question records.
+- Adds stable `question_key`.
+- Applies local edits.
+- Hides locally deleted questions.
+- Appends custom questions.
 
-The profile controls app name, subtitle, hero copy, domain label, module labels/descriptions, passing score, quiz length, and category defaults. This keeps the visual interface reusable across domains while preserving generic category ids (`module_1`, `module_2`, `module_3`) for analytics and question matching.
+### Question Customization Layer
 
-## Quiz Behavior
+File:
 
-- `Quiz.jsx` reads `?category=...` from the URL.
-- Category tests filter the question bank by `category`.
-- Mixed practice uses the full active language bank.
-- Each selected test generates the configured number of randomized question keys.
-- Smaller category banks can repeat questions, which keeps every module usable.
-- Completed attempts are saved to `quiz_attempts` with score, timing, pass/fail state, and per-question answer details.
-- Each completed quiz also updates local XP and level progress through the gamification layer.
+```txt
+src/components/data/questionBankStorage.js
+```
 
-## Local Storage
+Runtime question changes are stored locally instead of rewriting bundled JSON.
 
-SmartQuiz uses browser storage only:
+Customization fields:
 
-- `smartquiz_language`: selected language.
-- `quiz_attempts`: completed attempts, scores, pass status, and time.
-- `user_quiz_settings`: per-module limits and counters.
-- `smartquiz_question_bank_customizations`: local question additions, edits, deletions, imports, and exports.
-- `smartquiz_gamification_profile`: total XP, level, completed quizzes, passed quizzes, and perfect scores.
-- `smartquiz_exam_profile`: app branding, module labels, passing score, and quiz length.
-- `smartquiz_theme`: brand colors applied through CSS variables.
+- `customQuestions`
+- `questionOverrides`
+- `deletedQuestionKeys`
 
-No private credentials, access codes, or backend secrets are required.
+### Scoped Storage
 
-## Main Pages
+File:
 
-- `Home`: module cards, summary stats, and use-case ideas.
-- `Theory`: searchable study view backed by question explanations.
-- `Quiz`: randomized test flow with scoring and feedback.
-- `Progress`: learning level, chart, category performance, per-question review insights, and recent attempt history.
-- `Settings`: tabbed admin workspace for Exam Profile, Theme Studio, Question Bank Manager, and Test Limits.
+```txt
+src/components/data/activeBankStorage.js
+```
 
-## Settings Workspace
+This prevents progress from different banks from mixing.
 
-Settings is intentionally split into tabs to keep the administration surface usable as the project grows:
+Scoped records include:
 
-- `Exam Profile`: controls app identity, domain copy, pass score, quiz size, and visible module labels.
-- `Theme Studio`: stores brand colors in `smartquiz_theme` and applies them through CSS variables.
-- `Question Bank Manager`: manages local question additions, overrides, deletions, import, export, and restore.
-- `Test Limits`: manages per-module attempt limits, taken counters, and counter reset actions.
+- `quiz_attempts`
+- `user_quiz_settings`
+- `gamification_profile`
+- `learning_state`
 
-## Gamification
+### Learning State
 
-Gamification is intentionally local and optional. `src/components/gamification/gamification.js` calculates XP from quiz completion, correct answers, difficulty bonuses, passing, high scores, and perfect scores. The result screen displays the attempt reward, level progress, and lightweight celebration animation. Progress reads the same profile to show the current learning level.
+File:
 
-## Question Bank Customization Layer
+```txt
+src/components/data/learningStorage.js
+```
 
-The bundled JSON file remains read-only at runtime. User edits are stored as a local customization layer:
+Stores:
 
-- `customQuestions`: new user-created questions by language.
-- `questionOverrides`: edits to bundled base questions by language and question id.
-- `deletedQuestionKeys`: locally hidden question keys.
+- favorites.
+- missed questions.
+- per-question stats.
+- onboarding state.
+- mobile settings.
 
-`getQuestionsData()` loads the bundled bank, applies deletions, applies overrides, and appends custom questions. This keeps the app static-hosting friendly while allowing rich editing in the browser.
+`Quiz.jsx` records answers. `QuestionCard.jsx` toggles favorites. `Progress.jsx` reads analytics.
 
-## Customization Path
+### Exam Profile
 
-1. Add or replace a JSON question bank using generic module ids.
-2. Update the exam profile defaults in `src/components/profile/examProfileStorage.js`, or edit labels directly in Settings.
-3. Extend `LanguageProvider.jsx` and `SUPPORTED_QUESTION_LANGUAGES` when adding a new UI/content language such as French.
-4. Use Theme Studio to adjust colors without rebuilding the app.
-5. Use Settings to create/export local question packs without editing source files.
-6. Update documentation for the new target domain before publishing.
+File:
 
-## Publishing Notes
+```txt
+src/components/profile/examProfileStorage.js
+```
 
-- `node_modules/` and `dist/` are ignored by git.
-- The app contains no private email, access code, legacy exam asset, or proprietary brand dependency.
-- Run `npm run build`, `npm run lint`, and the checks in `docs/QA_GUIDE.md` before publishing.
+Controls:
+
+- app name.
+- subtitle.
+- headline.
+- description.
+- domain.
+- passing score.
+- questions per test.
+- tests per category.
+- category labels and descriptions.
+
+Each bank can have its own profile.
+
+### Theme
+
+File:
+
+```txt
+src/components/theme/themeStorage.js
+```
+
+Controls:
+
+- primary color.
+- secondary color.
+- accent color.
+- background.
+- surface.
+- text.
+- muted.
+- success.
+- warning.
+- danger.
+
+The active theme is applied through CSS variables.
+
+### Gamification
+
+File:
+
+```txt
+src/components/gamification/gamification.js
+```
+
+Calculates:
+
+- XP.
+- levels.
+- completion rewards.
+- correct-answer rewards.
+- difficulty bonuses.
+- passing and high-score bonuses.
+
+Gamification is scoped to the active bank.
+
+### Mobile And Offline
+
+Files:
+
+```txt
+src/components/mobile/mobileApp.js
+src/components/mobile/pwa.js
+src/components/mobile/notifications.js
+src/components/mobile/Onboarding.jsx
+public/sw.js
+capacitor.config.json
+android/
+ios/
+```
+
+Responsibilities:
+
+- native status bar.
+- splash screen.
+- keyboard behavior.
+- PWA service worker registration.
+- offline runtime cache.
+- onboarding.
+- local notifications.
+- Android/iOS sync through Capacitor.
+
+## Page Responsibilities
+
+### Home
+
+Shows:
+
+- active bank summary.
+- question count.
+- attempts and average score.
+- module cards.
+- study entry.
+- exam simulator.
+- missed-question review.
+- favorite-question review.
+- flashcards.
+
+### Theory
+
+Study mode with filters and explanations.
+
+### Quiz
+
+Supports:
+
+- practice mode.
+- exam simulator mode.
+- favorites review.
+- missed-question review.
+
+URL examples:
+
+```txt
+/Quiz?category=module_1
+/Quiz?category=practice_quiz&mode=exam
+/Quiz?category=practice_quiz&mode=favorites
+/Quiz?category=practice_quiz&mode=mistakes
+```
+
+### Flashcards
+
+Card-based review for all, favorite, or missed questions.
+
+### Progress
+
+Shows:
+
+- score trend.
+- pass rate.
+- best score.
+- average time.
+- XP and level.
+- category performance.
+- difficulty performance.
+- weak topics.
+- questions to review.
+- recent attempts.
+
+### Settings
+
+Tabbed admin workspace:
+
+- Question Banks.
+- Exam Profile.
+- Theme Studio.
+- Question Manager.
+- Test Limits.
+- Mobile.
+
+## Local Storage Overview
+
+Global keys:
+
+- `smartquiz_language`
+- `smartquiz_question_bank_catalog`
+- `smartquiz_onboarding`
+- `smartquiz_mobile_settings`
+
+Scoped keys:
+
+- `quiz_attempts`
+- `user_quiz_settings`
+- `gamification_profile`
+- `learning_state`
+
+Legacy or compatibility keys may still be migrated by storage helpers.
+
+## Data Safety
+
+SmartQuiz is local-first:
+
+- No backend.
+- No API key required.
+- No server-side database.
+- No automatic upload of attempts.
+
+Users should export a full backup before clearing browser data or moving devices.
+
+## Build And Mobile Sync
+
+```bash
+npm run lint
+npm run build
+npx cap sync
+```
+
+Capacitor copies the latest web build into Android and iOS projects.

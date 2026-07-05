@@ -92,6 +92,53 @@ const validateQuestionForm = (form) => (
 
 const cloneCustomizations = (customizations) => JSON.parse(JSON.stringify(customizations));
 
+const parseFlexibleQuestions = (text, activeLanguage) => {
+  const trimmedText = text.trim();
+  if (!trimmedText) return null;
+
+  try {
+    const parsedPayload = JSON.parse(trimmedText);
+    return parsedPayload.customizations
+      ? parsedPayload.customizations
+      : {
+        ...createEmptyQuestionBankCustomizations(),
+        customQuestions: {
+          en: Array.isArray(parsedPayload.en) ? parsedPayload.en : [],
+          es: Array.isArray(parsedPayload.es) ? parsedPayload.es : []
+        }
+      };
+  } catch {
+    const rows = trimmedText
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean)
+      .map((line) => line.split(/[|;]/).map((item) => item.trim()));
+
+    if (rows.length === 0 || rows.some((row) => row.length < 6)) {
+      throw new Error("Unsupported import format");
+    }
+
+    const customizations = createEmptyQuestionBankCustomizations();
+    customizations.customQuestions[activeLanguage] = rows.map((row) => {
+      const correctAnswer = Math.max(0, Math.min(3, Number(row[5]) || 0));
+      return normalizeQuestionRecord({
+        id: makeCustomQuestionId(),
+        category: row[7] || "module_1",
+        difficulty: row[8] || "beginner",
+        tags: row[10] || "",
+        block_id: 1,
+        block_name: row[9] || "Imported",
+        question: row[0],
+        options: row.slice(1, 5),
+        correct_answer: correctAnswer,
+        explanation: row[6] || ""
+      }, activeLanguage, "custom");
+    });
+
+    return customizations;
+  }
+};
+
 /**
  * Local question bank editor.
  *
@@ -122,6 +169,10 @@ export default function QuestionBankManager() {
   const categoryOptions = examProfile.categories.map((category) => category.id);
 
   useEffect(() => {
+    setActiveLanguage(language);
+  }, [language]);
+
+  useEffect(() => {
     const debounceTimer = window.setTimeout(() => {
       setDebouncedSearchTerm(searchTerm);
     }, 250);
@@ -139,7 +190,25 @@ export default function QuestionBankManager() {
     };
 
     window.addEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
-    return () => window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    return () => {
+      window.removeEventListener("smartquiz-exam-profile-updated", handleExamProfileUpdate);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", handleExamProfileUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleQuestionBankUpdate = () => {
+      setCustomizations(getQuestionBankCustomizations());
+      setCurrentPage(1);
+    };
+
+    window.addEventListener("smartquiz-question-bank-updated", handleQuestionBankUpdate);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", handleQuestionBankUpdate);
+    return () => {
+      window.removeEventListener("smartquiz-question-bank-updated", handleQuestionBankUpdate);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", handleQuestionBankUpdate);
+    };
   }, []);
 
   const getCategoryLabel = (categoryId) => {
@@ -304,18 +373,11 @@ export default function QuestionBankManager() {
 
   const handleImport = () => {
     try {
-      const parsedPayload = JSON.parse(importText);
-      const importedCustomizations = parsedPayload.customizations
-        ? parsedPayload.customizations
-        : {
-          ...createEmptyQuestionBankCustomizations(),
-          customQuestions: {
-            en: Array.isArray(parsedPayload.en) ? parsedPayload.en : [],
-            es: Array.isArray(parsedPayload.es) ? parsedPayload.es : []
-          }
-        };
-
-      setAndPersistCustomizations(importedCustomizations);
+      const importedCustomizations = parseFlexibleQuestions(importText, activeLanguage);
+      const nextCustomizations = importedCustomizations.customizations
+        ? importedCustomizations.customizations
+        : importedCustomizations;
+      setAndPersistCustomizations(nextCustomizations);
       setImportText("");
       showMessage("success", t("questionBankImported"));
     } catch {
@@ -733,7 +795,7 @@ export default function QuestionBankManager() {
               value={importText}
               onChange={(event) => setImportText(event.target.value)}
               rows={5}
-              placeholder='{"customizations": {...}}'
+              placeholder='JSON, or one question per line: question|A|B|C|D|0|explanation|module_1|beginner|Topic'
             />
             <Button onClick={handleImport} disabled={!importText.trim()}>
               <FileUp className="mr-2 h-4 w-4" />

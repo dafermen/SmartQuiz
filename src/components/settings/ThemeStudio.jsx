@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Palette, RotateCcw, Save, Sparkles } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -41,6 +41,16 @@ export default function ThemeStudio() {
   const [themeForm, setThemeForm] = useState(getTheme);
   const [message, setMessage] = useState(null);
   const previewTheme = normalizeTheme(themeForm);
+
+  useEffect(() => {
+    const handleThemeUpdate = () => setThemeForm(getTheme());
+    window.addEventListener("smartquiz-theme-updated", handleThemeUpdate);
+    window.addEventListener("smartquiz-question-bank-catalog-updated", handleThemeUpdate);
+    return () => {
+      window.removeEventListener("smartquiz-theme-updated", handleThemeUpdate);
+      window.removeEventListener("smartquiz-question-bank-catalog-updated", handleThemeUpdate);
+    };
+  }, []);
 
   const updateColor = (key, value) => {
     setThemeForm((currentTheme) => ({

@@ -1,259 +1,113 @@
 # SmartQuiz
 
-SmartQuiz is a modern, JSON-powered quiz and study platform built with React, Vite, Tailwind CSS, Radix UI, and Recharts.
+SmartQuiz is a bilingual, JSON-powered quiz, study, and exam-simulation platform built with React, Vite, Tailwind CSS, Radix UI, Recharts, Framer Motion, and Capacitor.
 
-It ships with a cybersecurity awareness sample bank for end users, but the real value is the reusable engine: swap the JSON file and SmartQuiz becomes a practice app for certifications, official exams, language learning, interviews, onboarding, compliance training, or classroom education.
+The app runs without a backend. Question banks, progress, themes, limits, XP, favorites, missed questions, onboarding, and mobile preferences are stored locally. It can be published as a web app, installed as a PWA, or packaged for Android and iOS with Capacitor.
 
-## Why SmartQuiz
+## What It Includes
 
-- **Fast to adapt:** question banks are plain JSON, and the exam profile can be edited from Settings.
-- **No backend required:** progress, language, test limits, and attempts are stored locally in the browser.
-- **Study plus assessment:** learners can review explanations in study mode, then take randomized practice tests.
-- **Built-in question editor:** admins can add, search, paginate, edit, duplicate, delete, import, and export questions from Settings.
-- **Brandable theme:** organizations can choose presets or set corporate colors from Settings without rebuilding the app.
-- **Reusable by domain:** works for cybersecurity, PMP, Azure, AWS, CompTIA, Cisco, NCLEX, real estate, citizenship, English learning, technical interviews, K-12 practice, and internal corporate training.
-- **GitHub-friendly:** no private access codes, proprietary assets, personal emails, or vendor-specific content.
-- **Product-ready foundation:** modern responsive UI, 50-question bilingual sample content, score tracking, progress charts, gamified XP, and configurable test limits.
+- Multiple local question banks with separate progress, themes, limits, and XP.
+- Bundled banks:
+  - Cybersecurity Awareness.
+  - US Citizenship 2025, English and Spanish.
+  - CompTIA Security+ SY0-701 practice, English and Spanish.
+- Question bank catalog manager with activation, search, sorting, pagination, duplication, import, export, and full backup.
+- Visual question editor for creating, editing, duplicating, deleting, and overriding questions locally.
+- Flexible question import:
+  - SmartQuiz JSON.
+  - Full backup JSON.
+  - Simple line format: `question|A|B|C|D|0|explanation|module_1|beginner|Topic`.
+- Study mode with explanations.
+- Quiz mode with immediate feedback.
+- Exam simulator mode with no immediate feedback.
+- Favorite questions and missed-question review.
+- Flashcards mode.
+- Smart progress dashboard with score trend, category performance, difficulty performance, weak topics, favorites, missed questions, XP, and recent attempts.
+- Theme Studio for per-bank branding.
+- Onboarding with language, daily goal, and optional reminders.
+- Mobile support through Capacitor for Android and iOS.
+- Offline support through PWA service worker and bundled local JSON banks.
+- Local notifications with `@capacitor/local-notifications`.
 
-## Demo Content
+## Documentation
 
-The included sample is a 50-question high-level cybersecurity awareness assessment for non-technical users. It covers:
+Start here depending on your role:
 
-- Phishing indicators and suspicious messages
-- Unsafe links, attachments, and payment-change requests
-- Malware warning signs and safe response habits
-- Passwords, multi-factor prompts, privacy, and reporting
+- [End User Guide](docs/USER_GUIDE.md)
+- [Junior Developer Guide](docs/JUNIOR_DEVELOPER_GUIDE.md)
+- [GitHub and Publishing Guide](docs/GITHUB_WORKFLOW.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Code Map](docs/CODE_MAP.md)
+- [QA Guide](docs/QA_GUIDE.md)
 
-The sample lives in:
-
-```txt
-src/components/data/cybersecurityAwarenessQuestions.json
-```
-
-## Features
-
-- Bilingual question bank example: English and Spanish
-- Module cards with limits and availability
-- Randomized test generation
-- Answer feedback with explanations
-- Pass/fail result screen
-- Gamified results with XP, levels, level-up moments, and lightweight celebration animations
-- Study mode using the same question bank
-- Progress dashboard with learning level, score trend, category performance, per-question review insights, and recent attempts
-- Local settings for test limits and counter resets
-- Editable exam profile for app name, domain, hero copy, module labels, passing score, and quiz length
-- Theme Studio with presets, color pickers, live preview, and local persistence
-- Local question CRUD with debounced search, pagination, duplication, base-question overrides, and soft deletes
-- Optional question metadata for difficulty and tags
-- JSON import/export for backups and content migration
-- Responsive app shell with modern SaaS-style design
-
-## Settings Workspace
-
-Settings is organized as a tabbed admin workspace so large projects do not become one long scrolling form:
-
-- **Exam Profile:** app name, subtitle, domain, hero copy, passing score, quiz length, and module labels.
-- **Theme Studio:** presets, brand colors, live preview, save, and reset.
-- **Question Bank Manager:** search, pagination, CRUD, duplicate, import, export, and restore sample bank.
-- **Test Limits:** per-module limits, taken counters, reset counters, and local storage notes.
-
-## Tech Stack
-
-- React 18
-- Vite
-- Tailwind CSS
-- Radix UI primitives
-- Recharts
-- Framer Motion
-- Lucide icons
-
-## Getting Started
+## Quick Start
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the local Vite URL printed in the terminal.
+Then open the local Vite URL.
 
-Build for production:
+Production build:
 
 ```bash
 npm run build
 ```
 
-Run lint:
+Lint:
 
 ```bash
 npm run lint
 ```
 
-## Question Bank Schema
+Sync mobile projects:
 
-Create a JSON file with language keys and question arrays:
+```bash
+npx cap sync
+```
+
+Open Android:
+
+```bash
+npx cap open android
+```
+
+Open iOS:
+
+```bash
+npx cap open ios
+```
+
+## Question Schema
+
+Each bank uses language keys such as `en` and `es`:
 
 ```json
 {
   "en": [
     {
-      "id": "phish-001",
+      "id": "sample-001",
       "category": "module_1",
       "block_id": 1,
-      "block_name": "Suspicious Messages",
+      "block_name": "Topic name",
       "difficulty": "beginner",
-      "tags": ["phishing", "urgency", "verification"],
+      "tags": ["tag-one", "tag-two"],
       "question": "Question text",
       "options": ["A", "B", "C", "D"],
-      "correct_answer": 2,
-      "explanation": "Short teaching explanation."
+      "correct_answer": 0,
+      "explanation": "Teaching explanation."
     }
   ],
-  "es": [
-    {
-      "id": "phish-001",
-      "category": "module_1",
-      "block_id": 1,
-      "block_name": "Mensajes sospechosos",
-      "difficulty": "beginner",
-      "tags": ["phishing", "urgencia", "verificacion"],
-      "question": "Texto de la pregunta",
-      "options": ["A", "B", "C", "D"],
-      "correct_answer": 2,
-      "explanation": "Explicacion breve."
-    }
-  ]
+  "es": []
 }
 ```
 
-Fields:
+Supported difficulty values are `beginner`, `intermediate`, and `advanced`. The app also supports `correct_answers` for questions with more than one accepted answer.
 
-- `id`: stable identifier for the question.
-- `category`: generic module key used by Home, Quiz, Progress, and Settings. The starter bank uses `module_1`, `module_2`, and `module_3` so visible labels can be changed for any domain.
-- `block_id`: numeric topic group used by study filters.
-- `block_name`: visible topic name.
-- `difficulty`: optional level such as `beginner`, `intermediate`, or `advanced`.
-- `tags`: optional array of short labels for filtering, review, and analytics.
-- `question`: question text.
-- `options`: answer choices.
-- `correct_answer`: zero-based index of the correct option.
-- `explanation`: teaching note shown after answering and in study mode.
+## Local-First Privacy
 
-To replace the sample, import your file in:
-
-```txt
-src/components/data/index.jsx
-```
-
-Then update labels and module cards from the editable exam profile in Settings. If you want to change source defaults, edit:
-
-```txt
-src/components/language/LanguageProvider.jsx
-src/components/profile/examProfileStorage.js
-```
-
-## Managing Questions In The App
-
-SmartQuiz includes a local question bank manager in the `Settings > Question Bank Manager` tab.
-
-From the UI, users can:
-
-- Add new questions.
-- Search by question text, topic, answer option, explanation, difficulty, or tag.
-- Navigate large banks with pagination and page-size controls.
-- Use a compact desktop table or mobile-friendly question cards.
-- Add difficulty and tags to support smarter review and analytics.
-- Edit bundled sample questions through local overrides.
-- Duplicate existing questions to create variants quickly.
-- Delete bundled or custom questions locally.
-- Filter by language, category, and source.
-- Export a JSON backup of all local edits.
-- Import a SmartQuiz JSON backup or a plain `{ "en": [], "es": [] }` question bank.
-- Restore the bundled sample bank.
-
-The bundled JSON file is never modified at runtime. Local changes are stored in:
-
-```txt
-smartquiz_question_bank_customizations
-```
-
-This keeps the project safe for static hosting while still giving users a practical editing workflow.
-
-## Adapting The Exam Profile
-
-The `Settings > Exam Profile` tab lets users customize the app without changing source code:
-
-- App name and subtitle.
-- Hero headline and description.
-- Domain label, such as cybersecurity, medical, language, cloud, or interview prep.
-- Passing score.
-- Number of questions per test.
-- Module names and descriptions in English and Spanish.
-
-The starter app currently ships with English and Spanish UI/content. Additional languages such as French can be added by extending `SUPPORTED_QUESTION_LANGUAGES`, `LanguageProvider.jsx`, and the question bank JSON.
-
-The profile is stored locally in:
-
-```txt
-smartquiz_exam_profile
-```
-
-This lets the same interface support cybersecurity awareness, AWS/Azure exam prep, medical review, English learning, corporate training, or technical interview practice.
-
-## Customizing The Theme
-
-The `Settings > Theme Studio` tab handles brand customization. Users can:
-
-- Apply presets such as corporate blue, healthcare, education, security, or minimal gray.
-- Edit primary, secondary, accent, background, surface, text, success, warning, and danger colors.
-- Preview a branded module card before saving.
-- Restore the default SmartQuiz palette.
-
-The theme is stored locally in:
-
-```txt
-smartquiz_theme
-```
-
-Theme values are applied through CSS variables, so the app remains static-hosting friendly and can still be published on GitHub Pages, Netlify, Vercel, or any simple web host.
-
-## Project Structure
-
-```txt
-src/
-  components/
-    data/       JSON bank and data adapter
-    profile/    editable exam profile and defaults
-    gamification/ XP, levels, and reward calculation
-    language/   UI translations and language state
-    theme/      brand theme storage, presets, and CSS variable adapter
-    quiz/       cards, questions, results, limits
-    settings/   question bank manager
-    theory/     study-mode cards
-    ui/         reusable Radix/shadcn-style primitives
-  pages/
-    Home.jsx
-    Theory.jsx
-    Quiz.jsx
-    Progress.jsx
-    Settings.jsx
-```
-
-## Opportunities
-
-SmartQuiz can become:
-
-- A certification prep product with paid premium question packs.
-- A corporate training portal for compliance, cybersecurity, HR, and onboarding.
-- A language-learning quiz app with bilingual explanations.
-- A technical interview preparation tool by role and seniority.
-- A school or tutoring platform with topic-based practice.
-- A public-sector exam prep app for citizenship or licensing exams.
-
-Because the app is JSON-first and frontend-only, it is easy to prototype, publish, fork, and customize.
-
-## Privacy
-
-SmartQuiz does not send quiz attempts anywhere. Progress is stored in the user's browser using `localStorage`.
+SmartQuiz does not send attempts or question banks to a server. User data lives in browser or native WebView storage. Full backups can be exported manually from Settings.
 
 ## License
 

@@ -41,8 +41,17 @@ Start here depending on your role:
 - [Junior Developer Guide](docs/JUNIOR_DEVELOPER_GUIDE.md)
 - [GitHub and Publishing Guide](docs/GITHUB_WORKFLOW.md)
 - [Architecture](docs/ARCHITECTURE.md)
+- [Development](docs/DEVELOPMENT.md)
+- [API and Local Interfaces](docs/API.md)
+- [Testing Strategy](docs/TESTING.md)
+- [Deployment](docs/DEPLOYMENT.md)
+- [Operations](docs/OPERATIONS.md)
+- [Security](docs/SECURITY.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Code Map](docs/CODE_MAP.md)
 - [QA Guide](docs/QA_GUIDE.md)
+
+For future Codex sessions, start with [AGENTS.md](AGENTS.md) and [CURRENT_STATUS.md](CURRENT_STATUS.md).
 
 ## Quick Start
 

@@ -1,6 +1,6 @@
 # Testing Strategy
 
-SmartQuiz must be validated before every deployment. The current automated baseline is `npm run lint` and `npm run build`; the wider test strategy below defines the target quality gate as the project matures.
+SmartQuiz must be validated before every deployment. The current automated baseline is `npm run validate:schema`, `npm run lint` and `npm run build`; the wider test strategy below defines the target quality gate as the project matures.
 
 ## Required Before Deployment
 
@@ -12,6 +12,7 @@ SmartQuiz must be validated before every deployment. The current automated basel
 
 3. **Property and invariant tests**
    - Verify invariants such as stable question keys, no progress leakage across banks, score within `0..100`, and backup restore preserving required collections.
+   - Current automated coverage: `npm run validate:schema` checks bundled bank schemas, unique ids and valid answer indexes.
 
 4. **Mutation testing**
    - Target scoring, answer checking, question normalization and import validation once unit coverage is mature.
@@ -24,6 +25,7 @@ SmartQuiz must be validated before every deployment. The current automated basel
 
 7. **Contract tests**
    - Validate accepted question-bank schema, full-backup schema and any future API schema.
+   - Current automated coverage: `src/components/data/questionBankSchemas.js` defines executable Zod contracts for question-bank imports, catalogs and full backups.
 
 8. **End-to-end tests**
    - Run browser flows for Home, Theory, Quiz, Exam, Settings, bank manager, import/export and offline reload.
@@ -47,6 +49,7 @@ SmartQuiz must be validated before every deployment. The current automated basel
 
 ```bash
 npm run lint
+npm run validate:schema
 npm run build
 npm run preview
 npm run deploy
@@ -57,8 +60,8 @@ npm run deploy
 Do not deploy until:
 
 - critical acceptance flows pass manually or through automation;
+- `npm run validate:schema` passes;
 - `npm run lint` passes;
 - `npm run build` passes;
 - import/export and backup behavior has been checked if touched;
 - `docs/DEPLOYMENT.md` checklist is complete.
-

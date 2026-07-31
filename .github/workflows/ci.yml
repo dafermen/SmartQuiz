@@ -25,6 +25,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Validate schemas
+        run: npm run validate:schema
+
       - name: Build
         run: npm run build
-

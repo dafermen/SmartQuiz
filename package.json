@@ -23,6 +23,8 @@
     "cap:sync": "npm run build && cap sync",
     "cap:android": "npm run build && cap open android",
     "cap:ios": "npm run build && cap open ios",
+    "validate:schema": "node scripts/validate-schemas.js",
+    "test": "npm run validate:schema",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",

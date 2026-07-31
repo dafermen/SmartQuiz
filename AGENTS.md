@@ -29,6 +29,7 @@ https://smartquiz.innovalogic.tech/
 Before deployment:
 
 - Run `npm run lint`.
+- Run `npm run validate:schema`.
 - Run `npm run build`.
 - Review `docs/TESTING.md`.
 - Review `docs/DEPLOYMENT.md`.
@@ -42,6 +43,7 @@ If touching imports/backups/storage:
 
 - Validate normal, malformed and large JSON inputs.
 - Confirm progress remains scoped to the active bank.
+- Keep `src/components/data/questionBankSchemas.js` aligned with import/export behavior.
 
 ## Documentation Rules
 
@@ -62,4 +64,3 @@ Update documentation when changing:
 - Do not mix progress between banks.
 - Do not copy proprietary question banks without permission.
 - Do not deploy without build validation.
-

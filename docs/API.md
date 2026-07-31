@@ -33,6 +33,30 @@ Supported export formats:
 - Active bank JSON.
 - Full local backup JSON.
 
+## Executable Schemas
+
+Runtime and CI schema contracts live in:
+
+```txt
+src/components/data/questionBankSchemas.js
+```
+
+The current contracts validate:
+
+- individual question records;
+- language maps such as `en` and `es`;
+- question-bank imports;
+- persisted catalog shape;
+- full backup JSON.
+
+Run:
+
+```bash
+npm run validate:schema
+```
+
+This validates bundled banks, answer indexes, duplicate ids, import shapes and full-backup shape.
+
 ## Future API Notes
 
 If a backend is added later, document:
@@ -42,4 +66,3 @@ If a backend is added later, document:
 - versioning strategy;
 - migration path for existing local-first users;
 - offline behavior when the backend is unavailable.
-

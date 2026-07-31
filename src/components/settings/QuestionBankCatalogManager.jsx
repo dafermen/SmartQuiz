@@ -38,6 +38,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { getScopedStorageKeyForBank } from "@/components/data/activeBankStorage";
+import { validateFullBackup } from "@/components/data/questionBankSchemas";
 import {
   activateQuestionBank,
   addCitizenshipStarterBank,
@@ -210,6 +211,7 @@ const buildFullBackup = (catalog) => {
 };
 
 const restoreFullBackup = (backup) => {
+  validateFullBackup(backup);
   if (backup.type !== "smartquiz-full-backup" || !backup.catalog) {
     throw new Error("Invalid full backup");
   }

@@ -19,6 +19,8 @@ The Vite development server prints the local URL when it starts.
 ```bash
 npm run dev
 npm run lint
+npm run validate:schema
+npm test
 npm run build
 npm run preview
 npm run deploy
@@ -45,7 +47,7 @@ npm run cap:ios
 1. Create or select a focused branch.
 2. Make a small change.
 3. Run the narrowest relevant validation.
-4. Run `npm run lint`.
-5. Run `npm run build`.
-6. Update `CURRENT_STATUS.md` if the phase or known risks changed.
-
+4. Run `npm run validate:schema` when touching banks, imports, backups or storage.
+5. Run `npm run lint`.
+6. Run `npm run build`.
+7. Update `CURRENT_STATUS.md` if the phase or known risks changed.

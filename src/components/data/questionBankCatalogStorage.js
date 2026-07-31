@@ -1,6 +1,7 @@
 import cybersecurityAwarenessQuestions from "./cybersecurityAwarenessQuestions.json";
 import comptiaSecurity701Questions from "./comptiaSecurity701Questions.json";
 import usCitizenship2025Questions from "./usCitizenship2025Questions.json";
+import { validateQuestionBankImport } from "./questionBankSchemas";
 
 export const QUESTION_BANK_CATALOG_KEY = "smartquiz_question_bank_catalog";
 export const DEFAULT_QUESTION_BANK_ID = "cybersecurity-awareness";
@@ -520,6 +521,7 @@ export const addCitizenshipStarterBank = () => (
 
 export const parseQuestionBankImport = (payload) => {
   const parsedPayload = typeof payload === "string" ? JSON.parse(payload) : payload;
+  validateQuestionBankImport(parsedPayload);
   const bankPayload = parsedPayload.bank || parsedPayload;
   const questions = bankPayload.baseQuestions || bankPayload.questions || (
     Array.isArray(bankPayload.en) || Array.isArray(bankPayload.es)

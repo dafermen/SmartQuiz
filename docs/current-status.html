@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estado actual | SmartQuiz Docs</title>
+  <meta name="description" content="Documentacion navegable de SmartQuiz." />
+  <link rel="stylesheet" href="./assets/docs.css" />
+  <script>window.SMARTQUIZ_DOCS_INDEX = [{"title":"Inicio","section":"Producto","href":"./","text":"SmartQuiz SmartQuiz is a bilingual, JSON powered quiz, study, and exam simulation platform built with React, Vite, Tailwind CSS, Radix UI, Recharts, Framer Motion, and Capacitor. The app runs without a backend. Question banks, progress, themes, limits, XP, favorites, missed questions, onboarding, and mobile preferences are stored locally. It can be published as a web app, installed as a PWA, or packaged for Android and iOS with Capacitor. Demo Live demo: https://smartquiz.innovalogic.tech/ https://smartquiz.innovalogic.tech/ Navigable docs: https://smartquiz.innovalogic.tech/docs/ https://smartquiz.innovalogic.tech/docs/ What It Includes Multiple local question banks with separate progress, themes, limits, and XP. Bundled banks: Cybersecurity Awareness. US Citizenship 2025, English and Spanish. CompTIA Security+ SY0 701 practice, English and Spanish. Question bank catalog manager with activation, search, sorting, pagination, duplication, import, export, and full backup. Visual question editor for creating, editing, duplicating, deleting, and overriding questions locally. Flexible question import: SmartQuiz JSON. Full backup JSON. Simple line format: question A B C D 0 explanation m"},{"title":"Guia de usuario","section":"Producto","href":"./user-guide.html","text":"SmartQuiz End User Guide This guide is for learners, instructors, and non technical administrators using SmartQuiz from the browser or mobile app. First Start When the app opens for the first time, SmartQuiz shows an onboarding dialog. You can choose: Interface language: English or Spanish. Daily goal: number of questions you want to practice. Daily reminder: optional local notification on mobile. These settings are stored on your device. You can change mobile settings later in Settings Mobile . Home The Home page is your main study dashboard. You will see: Current active question bank. Total questions available. Attempts completed. Average score. Module cards for the current bank. Quick actions: Start practice. Study question bank. Exam simulator. Missed questions. Favorite questions. Flashcards. Switching Question Banks Go to Settings Question Banks . From there you can: Activate a different bank. Search banks. Sort by name, questions, attempts, and scores. Change page size. Duplicate a bank. Delete a local bank. Create a new bank from a template. Import a bank from JSON. Export the active bank. Export or import a full backup. Each bank keeps its own: Questions. Theme. Exam profi"},{"title":"Solucion de problemas","section":"Producto","href":"./troubleshooting.html","text":"Troubleshooting Blank Page After Deploy 1. Run npm run build . 2. Confirm dist/index.html exists. 3. Confirm dist/404.html exists. 4. Confirm homepage in package.json . 5. Re run npm run deploy . Custom Domain Does Not Work 1. Confirm public/CNAME contains: 2. Confirm the file is plain text, not UTF 16. 3. Confirm GitHub Pages custom domain settings. 4. Wait for DNS propagation if recently changed. User Progress Looks Wrong 1. Confirm the active bank. 2. Check whether a different browser/profile is being used. 3. Restore a full backup if available. 4. Avoid clearing storage until a backup is exported. Import Fails 1. Validate that the JSON is well formed. 2. Confirm required fields: question, options, correct answer and explanation. 3. Try a small sample bank first. 4. Check browser console for validation details. Mobile Sync Problems 1. Run npm run build . 2. Run npx cap sync . 3. Open Android or iOS from the matching script. 4. Rebuild in the native IDE."},{"title":"Guia QA","section":"Calidad","href":"./qa-guide.html","text":"QA Guide Use this guide before publishing or pushing major changes. Automated Checks Run: If mobile or Capacitor files changed: Optional dependency check: First Load 1. Run npm run dev . 2. Open the Vite URL. 3. Confirm the app opens without console errors. 4. Confirm onboarding appears on a fresh local storage profile. 5. Select language, daily goal, and reminder preference. 6. Confirm the app reaches Home. Language Test both: English. Spanish. Confirm these areas update: Navigation. Home. Quiz. Flashcards. Progress. Settings tabs. Question bank manager. Onboarding. Mobile settings. Question Banks Go to Settings Question Banks . Validate: Search works. Sort columns work. Pagination works. Active bank badge appears. Activate Cybersecurity. Activate US Citizenship 2025. Activate CompTIA Security+ SY0 701. Duplicate a bank. Create a bank with each template: General. Certification. Citizenship. Export active bank. Export full backup. Import full backup. Home Validate for each bundled bank: Hero copy changes. Theme changes. Question count changes. Module labels change. Start Practice opens quiz. Study Question Bank opens Theory. Exam Simulator opens quiz in exam mode. Favorites opens r"},{"title":"Arquitectura","section":"Arquitectura","href":"./architecture.html","text":"SmartQuiz Architecture SmartQuiz is a client only React/Vite application with optional native packaging through Capacitor. It uses local JSON question banks, local storage, a PWA service worker, and native mobile plugins. There is no backend requirement. High Level Flow 1. src/main.jsx mounts React. 2. src/App.jsx initializes native helpers, registers the service worker, configures daily reminders, renders routes, and mounts the toaster. 3. src/pages/index.jsx defines lazy loaded routes. 4. src/pages/Layout.jsx wraps the app in LanguageProvider , renders navigation, applies the active theme, and mounts onboarding. 5. Pages read questions through getQuestionsData . 6. Storage helpers scope user data to the active question bank. Major Systems Question Bank Catalog File: Responsibilities: Defines bundled banks. Stores active bank ID. Normalizes imported banks. Saves the bank catalog. Activates, duplicates, adds, and deletes banks. Keeps per bank profile and theme. Bundled banks: Cybersecurity Awareness. US Citizenship 2025. CompTIA Security+ SY0 701. Question Adapter File: Responsibilities: Reads the active bank. Normalizes question records. Adds stable question_key . Applies local ed"},{"title":"Mapa de codigo","section":"Arquitectura","href":"./code-map.html","text":"Code Map This map shows where the main SmartQuiz features live. App Shell src/main.jsx : React entry point. src/App.jsx : native setup, service worker setup, notification setup, routes, toaster. src/pages/index.jsx : React Router routes and lazy loading. src/pages/Layout.jsx : LanguageProvider , header, drawer, mobile nav, theme application, onboarding. src/App.css : app level responsive and mobile styles. src/index.css : Tailwind and design tokens. Pages src/pages/Home.jsx : dashboard, bank summary, quick actions, module cards. src/pages/Theory.jsx : study mode. src/pages/Quiz.jsx : practice, exam simulator, favorites review, missed review. src/pages/Flashcards.jsx : flashcard review. src/pages/Progress.jsx : analytics, XP, weak topics, recent attempts. src/pages/Settings.jsx : tabbed admin workspace. Data And Storage src/components/data/cybersecurityAwarenessQuestions.json : bundled cybersecurity bank. src/components/data/usCitizenship2025Questions.json : bundled US Citizenship 2025 bank. src/components/data/comptiaSecurity701Questions.json : bundled Security+ SY0 701 bank. src/components/data/index.jsx : active bank question adapter. src/components/data/questionBankCatalogStorag"},{"title":"API local","section":"Arquitectura","href":"./api.html","text":"API SmartQuiz is currently a client only application. There is no required backend API. Local Data Interfaces The app uses browser or native WebView storage for: question bank catalog; active bank id; per bank progress; quiz attempts; learning state; favorites and missed questions; gamification profile; theme/profile settings; full backups. Import And Export Interfaces Supported user facing import formats: SmartQuiz bank JSON. Full backup JSON. Simple line format: Supported export formats: Active bank JSON. Full local backup JSON. Executable Schemas Runtime and CI schema contracts live in: The current contracts validate: individual question records; language maps such as en and es ; question bank imports; persisted catalog shape; full backup JSON. Run: This validates bundled banks, answer indexes, duplicate ids, import shapes and full backup shape. Future API Notes If a backend is added later, document: authentication model; request and response schemas; versioning strategy; migration path for existing local first users; offline behavior when the backend is unavailable."},{"title":"Desarrollo","section":"Desarrollo","href":"./development.html","text":"Development Local Setup Requirements: Node.js 20 or newer. npm. The Vite development server prints the local URL when it starts. Main Scripts Mobile sync: Development Rules Keep question banks valid JSON. Keep user progress local first; do not add backend storage without an architecture update. Keep bank specific progress scoped by active bank. Update documentation when changing user flows, bank schemas, mobile behavior, backup behavior, or deployment. Add tests when a change touches import/export, scoring, storage scoping, offline behavior, or mobile specific code. Recommended Local Workflow 1. Create or select a focused branch. 2. Make a small change. 3. Run the narrowest relevant validation. 4. Run npm run validate:schema when touching banks, imports, backups or storage. 5. Run npm run lint . 6. Run npm run build . 7. Update CURRENT_STATUS.md if the phase or known risks changed. Documentation Site The navigable documentation experience is generated from the Markdown files in the repository. This writes static files to public/docs/ . The normal production build runs this step automatically, so GitHub Pages receives /docs/ together with the app. When adding, renaming or removing d"},{"title":"Guia junior","section":"Desarrollo","href":"./junior-developer-guide.html","text":"SmartQuiz Junior Developer Guide This guide explains the project for a junior developer who needs to maintain, customize, or extend SmartQuiz. Mental Model SmartQuiz is a frontend only app. There is no database server. The app reads bundled JSON files and stores user changes in local storage. The main idea is: 1. A bank provides questions. 2. A profile describes how that bank should look and behave. 3. A theme controls colors. 4. The quiz records attempts. 5. Progress reads those attempts and learning state. Install And Run Validation: Mobile sync: Important Folders Entry Points src/main.jsx : mounts React. src/App.jsx : initializes native mobile behavior, service worker, notifications, routes, and toaster. src/pages/index.jsx : defines lazy loaded routes. src/pages/Layout.jsx : wraps the app in LanguageProvider , renders navigation, applies theme, and shows onboarding. Important: components that call useLanguage must be inside LanguageProvider . Layout.jsx provides it. Pages Home.jsx : dashboard, module cards, quick actions, and summary stats. Theory.jsx : study mode. Quiz.jsx : practice, exam simulator, favorites review, and missed question review. Flashcards.jsx : card based rev"},{"title":"Pruebas","section":"Desarrollo","href":"./testing.html","text":"Testing Strategy SmartQuiz must be validated before every deployment. The current automated baseline is npm run validate:schema , npm run lint and npm run build ; the wider test strategy below defines the target quality gate as the project matures. Required Before Deployment 1. Acceptance tests Confirm the main user flows work: select bank, study, quiz, exam simulator, flashcards, favorites, missed questions, settings, import/export, backup and restore. 2. Unit tests Cover pure functions for scoring, normalization, storage scoping, bank import/export, themes, XP and progress calculations. 3. Property and invariant tests Verify invariants such as stable question keys, no progress leakage across banks, score within 0..100 , and backup restore preserving required collections. Current automated coverage: npm run validate:schema checks bundled bank schemas, unique ids and valid answer indexes. 4. Mutation testing Target scoring, answer checking, question normalization and import validation once unit coverage is mature. 5. Fuzzing Fuzz JSON imports, simple line imports, malformed backups, missing fields, duplicate ids, long text and invalid answer indexes. 6. Integration tests Validate p"},{"title":"Despliegue","section":"Entrega","href":"./deployment.html","text":"Deployment SmartQuiz is deployed as a static Vite build to GitHub Pages. Production URL: Build The build regenerates the static documentation site and creates dist/404.html for GitHub Pages SPA fallback. GitHub Pages Deploy This runs: Pre Deployment Checklist Acceptance flows verified. Unit/property/invariant tests run or consciously marked pending. Import/export touched? Validate malformed and valid JSON. Storage touched? Validate bank scoping and backup restore. Mobile touched? Run Capacitor sync and device smoke test. Offline touched? Validate service worker behavior. npm run lint passed. pm run build passed. Open /docs/ in the build or preview server and confirm the sidebar, search, theme toggle and back to app link work. public/CNAME contains smartquiz.innovalogic.tech as plain text. package.json has homepage , predeploy and deploy . Post Deployment Checks Open https://smartquiz.innovalogic.tech/. Open https://smartquiz.innovalogic.tech/docs/. Hard refresh the page. Open a nested route and refresh to confirm SPA fallback. Start a quiz. Open Settings and confirm bank manager loads. Export a backup."},{"title":"Flujo GitHub","section":"Entrega","href":"./github-workflow.html","text":"GitHub And Publishing Guide This guide explains how to work with SmartQuiz on GitHub. Repository Current repository: Local project path used during development: Recommended Branch Flow For normal work: After changes: Then open a pull request on GitHub. Direct Main Updates For a personal project, you may push directly to main if that is your preferred workflow. Before pushing: Then: What Should Be Committed Commit: src/ docs/ public/ scripts/ package.json package lock.json capacitor.config.json android/ ios/ Do not commit: node_modules/ dist/ local editor files. private keys. signing certificates. generated release APK/AAB/IPA files unless intentionally publishing them. GitHub README Checklist README should explain: What SmartQuiz is. How to run it. How to build it. How to sync Capacitor. Main features. Documentation links. License. Pull Request Template Use this structure: GitHub Pages SmartQuiz is a Vite app. If deploying to GitHub Pages, confirm the correct base path in vite.config.js for the target URL. This repository is configured for: The custom domain is stored in: For this custom domain setup, Vite should use: Publish with: The predeploy script builds dist , postbuild creat"},{"title":"Operaciones","section":"Entrega","href":"./operations.html","text":"Operations SmartQuiz has no production server to operate. Operations focus on static hosting, local data safety, PWA behavior and mobile packaging. Runtime Dependencies GitHub Pages for web hosting. Browser storage or native WebView storage for user data. Service worker for offline assets. Capacitor projects for Android and iOS packaging. Routine Checks Verify the public URL after each deploy. Check that the custom domain still resolves. Confirm GitHub Pages branch gh pages was updated. Smoke test backup export and bank switching. Smoke test mobile projects after dependency updates. Incident Response If the web app is unavailable: 1. Check GitHub Pages status and the gh pages branch. 2. Verify public/CNAME . 3. Run npm run build locally. 4. Re run npm run deploy . 5. Validate the public URL after propagation. If user data appears missing: 1. Confirm the active bank. 2. Check whether the browser/site storage was cleared. 3. Restore from full backup JSON if available. 4. Avoid destructive storage reset until the user exports a backup."},{"title":"Estado actual","section":"Gobierno","href":"./current-status.html","text":"CURRENT_STATUS.md Last updated: 2026 08 01 Current Phase Documentation navigation standardization phase. Completed SmartQuiz web app is deployed at https://smartquiz.innovalogic.tech/ . GitHub Pages deploy uses npm run deploy . package.json includes homepage , predeploy and deploy . public/CNAME points to smartquiz.innovalogic.tech . Existing docs include user, architecture, code map, GitHub workflow, QA and junior developer guides. Added standard documentation structure: development; API/local interfaces; testing strategy; deployment; operations; security; troubleshooting; ADR. Added GitHub templates and CI workflow. Added AGENTS.md for future Codex sessions. Added executable Zod schemas for question bank imports, catalogs and full backups. Added npm run validate:schema and npm test as the first automated contract/invariant validation layer. Updated CI to run schema validation before build. Added a generated static documentation site under /docs/ using the existing Markdown files as source. Added npm run docs:build and wired npm run build to regenerate docs before the Vite build. Added visible app navigation to /docs/ from the header and side drawer. Validation Completed Completed"},{"title":"Historial","section":"Gobierno","href":"./changelog.html","text":"Changelog All notable changes to SmartQuiz should be documented here. Unreleased Added standard repository documentation structure. Added GitHub issue templates, pull request template and CI workflow. Added deployment, operations, security and troubleshooting docs. Added AGENTS.md and CURRENT_STATUS.md for future Codex continuity. 2026 08 01 Added a generated documentation site under /docs/ using the repository Markdown files as source. Added npm run docs:build and made production builds regenerate the docs site before Vite builds the app. Added visible in app access to documentation from the header and side drawer."},{"title":"Contribuir","section":"Gobierno","href":"./contributing.html","text":"Contributing Workflow 1. Create a focused branch. 2. Keep changes small and documented. 3. Run validation before opening a pull request. 4. Update docs when behavior changes. Validation Review: docs/TESTING.md docs/DEPLOYMENT.md docs/SECURITY.md Pull Requests Every PR should include: summary of changes; validation performed; screenshots or notes for UI changes; migration notes for storage/import/export changes."},{"title":"Seguridad","section":"Gobierno","href":"./security.html","text":"Security SmartQuiz is local first and does not send quiz attempts or custom banks to a backend. Main Risks Malformed or malicious imported JSON. Unsafe rendering of imported text. Local data loss through browser storage clearing. Dependency vulnerabilities. Service worker caching stale assets. Mobile permission misuse. Required Practices Treat imported banks and backups as untrusted input. Render question content as text unless a feature explicitly sanitizes rich content. Validate answer indexes and required fields. Keep backups user controlled. Run dependency review before releases. Request only mobile permissions required by active features. Current Security Commands Use full npm audit when changing dependencies. Security Before Deployment Import validation reviewed if touched. Backup restore reviewed if touched. No secrets committed. .env.example documents expected variables without real values. Dependencies reviewed. Service worker behavior checked when caching changes."},{"title":"Agentes Codex","section":"Gobierno","href":"./agents.html","text":"AGENTS.md Mandatory Context SmartQuiz lives at C:\\Projects\\SmartQuiz . Repository: Public demo: First Steps For Future Codex Sessions 1. Read CURRENT_STATUS.md . 2. Read this file. 3. Run git status sb . 4. Inspect existing docs before creating new docs. 5. Preserve local first behavior unless the user explicitly approves a backend. Validation Rules Before deployment: Run npm run lint . Run npm run validate:schema . Run npm run build . Review docs/TESTING.md . Review docs/DEPLOYMENT.md . If touching mobile: Run npm run cap:sync . Smoke test Android/iOS as applicable. If touching imports/backups/storage: Validate normal, malformed and large JSON inputs. Confirm progress remains scoped to the active bank. Keep src/components/data/questionBankSchemas.js aligned with import/export behavior. Documentation Rules Update documentation when changing: bank schema; import/export; backup/restore; quiz/exam behavior; mobile/offline behavior; deployment; security assumptions; test strategy. Do Not Do not clear user storage without an export/backup path. Do not mix progress between banks. Do not copy proprietary question banks without permission. Do not deploy without build validation."},{"title":"Licencias de terceros","section":"Gobierno","href":"./third-party-licenses.html","text":"Third Party Licenses SmartQuiz depends on open source packages listed in package.json and package lock.json . Primary runtime technologies include: React Vite Tailwind CSS Radix UI Recharts Framer Motion Capacitor Before public releases, generate or review the dependency license inventory and confirm compatibility with the project license. Recommended command options:"},{"title":"ADR 0001","section":"Decisiones","href":"./adr-0001-local-first-smartquiz.html","text":"ADR 0001: Local First SmartQuiz Status Accepted Context SmartQuiz supports multiple personal question banks, offline study, progress tracking, themes and mobile packaging. The app does not currently require centralized accounts or server side persistence. Decision Keep SmartQuiz local first. Store banks, progress, themes, XP, favorites, missed questions and backups in browser or native WebView storage. Consequences Positive: Works without a backend. Supports offline usage. Keeps personal study data private by default. Simplifies GitHub Pages deployment. Tradeoffs: Users must manage backups when switching devices or browsers. Cross device sync requires a future architecture decision. Browser storage clearing can remove local progress."}];</script>
+  <script defer src="./assets/docs.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="docs-topbar">
+    <a class="brand" href="./" aria-label="SmartQuiz Docs">
+      <span class="brand-mark">SQ</span>
+      <span><strong>SmartQuiz</strong><small>Documentacion</small></span>
+    </a>
+    <nav aria-label="Navegacion superior">
+      <a href="./">Documentacion</a>
+      <a href="./user-guide.html">Producto</a>
+      <a href="./architecture.html">Arquitectura</a>
+      <a href="./current-status.html">Estado</a>
+    </nav>
+    <div class="top-actions">
+      <label class="search-label" for="docs-search">Buscar</label>
+      <input id="docs-search" type="search" placeholder="Buscar docs" autocomplete="off" />
+      <button id="theme-toggle" type="button" aria-label="Cambiar tema">Tema</button>
+      <a class="back-app" href="/">Volver a la app</a>
+    </div>
+  </header>
+
+  <div class="docs-shell">
+    <aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentos">
+      <a class="mobile-back" href="/">Volver a la aplicacion</a>
+      
+    <section class="docs-sidebar-section">
+      <h2>Producto</h2>
+      <ul>
+        <li><a class="" href="./">Inicio</a></li><li><a class="" href="./user-guide.html">Guia de usuario</a></li><li><a class="" href="./troubleshooting.html">Solucion de problemas</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Calidad</h2>
+      <ul>
+        <li><a class="" href="./qa-guide.html">Guia QA</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Arquitectura</h2>
+      <ul>
+        <li><a class="" href="./architecture.html">Arquitectura</a></li><li><a class="" href="./code-map.html">Mapa de codigo</a></li><li><a class="" href="./api.html">API local</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Desarrollo</h2>
+      <ul>
+        <li><a class="" href="./development.html">Desarrollo</a></li><li><a class="" href="./junior-developer-guide.html">Guia junior</a></li><li><a class="" href="./testing.html">Pruebas</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Entrega</h2>
+      <ul>
+        <li><a class="" href="./deployment.html">Despliegue</a></li><li><a class="" href="./github-workflow.html">Flujo GitHub</a></li><li><a class="" href="./operations.html">Operaciones</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Gobierno</h2>
+      <ul>
+        <li><a class="active" href="./current-status.html">Estado actual</a></li><li><a class="" href="./changelog.html">Historial</a></li><li><a class="" href="./contributing.html">Contribuir</a></li><li><a class="" href="./security.html">Seguridad</a></li><li><a class="" href="./agents.html">Agentes Codex</a></li><li><a class="" href="./third-party-licenses.html">Licencias de terceros</a></li>
+      </ul>
+    </section>
+
+    <section class="docs-sidebar-section">
+      <h2>Decisiones</h2>
+      <ul>
+        <li><a class="" href="./adr-0001-local-first-smartquiz.html">ADR 0001</a></li>
+      </ul>
+    </section>
+    </aside>
+
+    <main id="contenido" class="docs-main" tabindex="-1">
+      <button class="sidebar-toggle" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu de docs</button>
+      <div id="search-results" class="search-results" hidden></div>
+      <p class="eyebrow">Gobierno</p>
+      <article class="markdown-body">
+        <p># CURRENT_STATUS.md</p>
+<p>Last updated: 2026-08-01</p>
+<h2 id="current-phase">Current Phase</h2>
+<p>Documentation navigation standardization phase.</p>
+<h2 id="completed">Completed</h2>
+<ul>
+<li>SmartQuiz web app is deployed at <code>https://smartquiz.innovalogic.tech/</code>.</li>
+<li>GitHub Pages deploy uses <code>npm run deploy</code>.</li>
+<li><code>package.json</code> includes <code>homepage</code>, <code>predeploy</code> and <code>deploy</code>.</li>
+<li><code>public/CNAME</code> points to <code>smartquiz.innovalogic.tech</code>.</li>
+<li>Existing docs include user, architecture, code map, GitHub workflow, QA and junior developer guides.</li>
+<li>Added standard documentation structure:</li>
+<li>development;</li>
+<li>API/local interfaces;</li>
+<li>testing strategy;</li>
+<li>deployment;</li>
+<li>operations;</li>
+<li>security;</li>
+<li>troubleshooting;</li>
+<li>ADR.</li>
+<li>Added GitHub templates and CI workflow.</li>
+<li>Added <code>AGENTS.md</code> for future Codex sessions.</li>
+<li>Added executable Zod schemas for question-bank imports, catalogs and full backups.</li>
+<li>Added <code>npm run validate:schema</code> and <code>npm test</code> as the first automated contract/invariant validation layer.</li>
+<li>Updated CI to run schema validation before build.</li>
+<li>Added a generated static documentation site under <code>/docs/</code> using the existing Markdown files as source.</li>
+<li>Added <code>npm run docs:build</code> and wired <code>npm run build</code> to regenerate docs before the Vite build.</li>
+<li>Added visible app navigation to <code>/docs/</code> from the header and side drawer.</li>
+</ul>
+<h2 id="validation-completed">Validation Completed</h2>
+<p>Completed on 2026-07-31:</p>
+<pre><code>npm run validate:schema
+npm run lint
+npm run build</code></pre>
+<p>Completed on 2026-08-01:</p>
+<pre><code>npm run docs:build</code></pre>
+<p>Pending for this documentation phase before release:</p>
+<pre><code>npm run validate:schema
+npm test
+npm run lint
+npm run build</code></pre>
+<p>Recommended before a full release:</p>
+<ul>
+<li>Complete the deployment checklist in <code>docs/DEPLOYMENT.md</code>.</li>
+<li>Complete the remaining test matrix in <code>docs/TESTING.md</code>.</li>
+<li>Add browser-level automated coverage for settings, import/export, backup and bank-scoped storage.</li>
+<li>Verify <code>/docs/</code>, <code>/docs/architecture.html</code>, docs CSS and docs JavaScript from the production build or preview server.</li>
+</ul>
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li>Add Vitest unit tests around storage/import/export helper modules.</li>
+<li>Add Playwright smoke tests for quiz, settings, backup export and <code>/docs/</code> navigation.</li>
+<li>Add fuzz cases for malformed banks and backups.</li>
+<li>Add dependency/security automation to CI.</li>
+<li>Decide whether mobile builds need their own CI workflow.</li>
+</ol>
+      </article>
+      <nav class="pager" aria-label="Paginas cercanas">
+        <a href="./operations.html"><span>Anterior</span>Operaciones</a>
+        <a href="./changelog.html"><span>Siguiente</span>Historial</a>
+      </nav>
+    </main>
+
+    <aside class="docs-toc" aria-label="En esta pagina">
+      <a class="desktop-back" href="/">Volver a la aplicacion</a>
+      <h2>En esta pagina</h2>
+      <ol><li class="toc-level-2"><a href="#current-phase">Current Phase</a></li><li class="toc-level-2"><a href="#completed">Completed</a></li><li class="toc-level-2"><a href="#validation-completed">Validation Completed</a></li><li class="toc-level-2"><a href="#next-steps">Next Steps</a></li></ol>
+    </aside>
+  </div>
+</body>
+</html>

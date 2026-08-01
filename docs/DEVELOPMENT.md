@@ -1,4 +1,4 @@
-# Development
+﻿# Development
 
 ## Local Setup
 
@@ -51,3 +51,15 @@ npm run cap:ios
 5. Run `npm run lint`.
 6. Run `npm run build`.
 7. Update `CURRENT_STATUS.md` if the phase or known risks changed.
+
+## Documentation Site
+
+The navigable documentation experience is generated from the Markdown files in the repository.
+
+```bash
+npm run docs:build
+```
+
+This writes static files to `public/docs/`. The normal production build runs this step automatically, so GitHub Pages receives `/docs/` together with the app.
+
+When adding, renaming or removing documentation files, update `scripts/build-docs-site.js` so the sidebar, search index and previous/next links stay accurate. Do not create empty placeholder pages in the docs site.

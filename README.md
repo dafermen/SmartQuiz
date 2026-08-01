@@ -8,6 +8,8 @@ The app runs without a backend. Question banks, progress, themes, limits, XP, fa
 
 Live demo: [https://smartquiz.innovalogic.tech/](https://smartquiz.innovalogic.tech/)
 
+Navigable docs: [https://smartquiz.innovalogic.tech/docs/](https://smartquiz.innovalogic.tech/docs/)
+
 ## What It Includes
 
 - Multiple local question banks with separate progress, themes, limits, and XP.
@@ -52,6 +54,8 @@ Start here depending on your role:
 - [QA Guide](docs/QA_GUIDE.md)
 
 For future Codex sessions, start with [AGENTS.md](AGENTS.md) and [CURRENT_STATUS.md](CURRENT_STATUS.md).
+
+The navigable site is generated with `npm run docs:build` and is included automatically by `npm run build`.
 
 ## Quick Start
 

@@ -1,4 +1,4 @@
-# Deployment
+﻿# Deployment
 
 SmartQuiz is deployed as a static Vite build to GitHub Pages.
 
@@ -14,7 +14,7 @@ https://smartquiz.innovalogic.tech/
 npm run build
 ```
 
-The build also creates `dist/404.html` for GitHub Pages SPA fallback.
+The build regenerates the static documentation site and creates `dist/404.html` for GitHub Pages SPA fallback.
 
 ## GitHub Pages Deploy
 
@@ -38,16 +38,20 @@ gh-pages -d dist
 - [ ] Mobile touched? Run Capacitor sync and device smoke test.
 - [ ] Offline touched? Validate service worker behavior.
 - [ ] `npm run lint` passed.
-- [ ] `npm run build` passed.
+- [ ] 
+pm run build passed.
+- [ ] Open /docs/ in the build or preview server and confirm the sidebar, search, theme toggle and back-to-app link work.
 - [ ] `public/CNAME` contains `smartquiz.innovalogic.tech` as plain text.
 - [ ] `package.json` has `homepage`, `predeploy` and `deploy`.
 
 ## Post-Deployment Checks
 
-- [ ] Open `https://smartquiz.innovalogic.tech/`.
+- [ ] Open https://smartquiz.innovalogic.tech/.
+- [ ] Open https://smartquiz.innovalogic.tech/docs/.
 - [ ] Hard-refresh the page.
 - [ ] Open a nested route and refresh to confirm SPA fallback.
 - [ ] Start a quiz.
 - [ ] Open Settings and confirm bank manager loads.
 - [ ] Export a backup.
+
 

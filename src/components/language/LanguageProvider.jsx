@@ -10,6 +10,7 @@ const translations = {
     progress: "Progress",
     settings: "Settings",
     theory: "Theory",
+    documentation: "Documentation",
     contact: "Project",
     masterYourLicense: "Build exam-ready\nknowledge checks",
     comprehensivePrep: "A generic quiz platform for official exams, language learning, technical interviews, corporate training, citizenship prep, child education, and security awareness.",
@@ -331,6 +332,7 @@ const translations = {
     progress: "Progreso",
     settings: "Configuracion",
     theory: "Teoria",
+    documentation: "Documentacion",
     contact: "Proyecto",
     masterYourLicense: "Crea evaluaciones\nlistas para practicar",
     comprehensivePrep: "Una plataforma generica para examenes oficiales, ingles, entrevistas tecnicas, capacitacion corporativa, ciudadania, educacion infantil y seguridad informatica.",
@@ -674,3 +676,4 @@ export function useLanguage() {
   }
   return context;
 }
+

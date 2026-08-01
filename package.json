@@ -18,7 +18,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run docs:build && vite build",
     "postbuild": "node scripts/copy-spa-fallback.js",
     "cap:sync": "npm run build && cap sync",
     "cap:android": "npm run build && cap open android",
@@ -28,7 +28,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs:build": "node scripts/build-docs-site.js"
   },
   "dependencies": {
     "@capacitor/android": "^8.4.1",

@@ -73,6 +73,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .markdown-body code { background: color-mix(in srgb, var(--sq-primary) 12%, transparent); border-radius: .35rem; padding: .12rem .32rem; font-size: .92em; }
 .markdown-body pre { overflow: auto; background: var(--sq-code); color: #f8fafc; border-radius: .5rem; padding: 1rem; }
 .markdown-body pre code { background: transparent; color: inherit; padding: 0; }
+.markdown-body p:has(> .doc-image) { margin: 1.25rem 0 1.75rem; }
+.doc-image { display: block; width: 100%; height: auto; border: 1px solid var(--sq-border); border-radius: .5rem; background: var(--sq-bg); box-shadow: 0 14px 34px rgba(22, 32, 51, .12); }
 blockquote { border-left: 4px solid var(--sq-accent); margin: 1.2rem 0; padding: .2rem 1rem; color: var(--sq-muted); background: color-mix(in srgb, var(--sq-accent) 12%, transparent); }
 .table-wrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--sq-border); border-radius: .5rem; }
 table { width: 100%; border-collapse: collapse; min-width: 620px; }

@@ -31,7 +31,15 @@ question|A|B|C|D|0|explanation|module_1|beginner|Topic
 Supported export formats:
 
 - Active bank JSON.
-- Full local backup JSON.
+- Full local backup JSON with catalog, bank-scoped progress, profile/theme data, preferences and a content summary.
+
+Full-backup creation, validation and transactional restore live in:
+
+```txt
+src/components/data/fullBackupStorage.js
+```
+
+Android and iOS use the native share sheet for exported JSON. Web uses a normal file download.
 
 ## Executable Schemas
 
@@ -66,3 +74,5 @@ If a backend is added later, document:
 - versioning strategy;
 - migration path for existing local-first users;
 - offline behavior when the backend is unavailable.
+
+See `docs/adr/0002-optional-cloud-sync.md` for the proposed opt-in synchronization boundary.

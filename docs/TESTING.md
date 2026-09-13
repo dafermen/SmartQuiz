@@ -1,6 +1,15 @@
 # Testing Strategy
 
-SmartQuiz must be validated before every deployment. The current automated baseline is `npm run validate:schema`, `npm run lint` and `npm run build`; the wider test strategy below defines the target quality gate as the project matures.
+SmartQuiz must be validated before every deployment. The automated baseline now includes schema contracts, Vitest unit/property tests, coverage thresholds, Playwright browser tests, lint, dependency audit and production build.
+
+## Automated Baseline
+
+- 24 unit, property and contract checks across six files.
+- Fast-check generated cases for answer indexes, option collections and normalization invariants.
+- Coverage floor: 58% statements, 52% branches, 65% functions and 60% lines across critical data, backup, scoring, profile and theme modules.
+- Eight Playwright checks across desktop Chromium and Pixel 7 emulation.
+- Browser coverage for Home, Settings, the bank administrator, documentation, full-backup export and full-backup restore.
+- GitHub Actions workflows for CI, dependency review, scheduled security audit, Android APK build and iOS simulator build.
 
 ## Required Before Deployment
 
@@ -12,13 +21,13 @@ SmartQuiz must be validated before every deployment. The current automated basel
 
 3. **Property and invariant tests**
    - Verify invariants such as stable question keys, no progress leakage across banks, score within `0..100`, and backup restore preserving required collections.
-   - Current automated coverage: `npm run validate:schema` checks bundled bank schemas, unique ids and valid answer indexes.
+   - Current automated coverage: Vitest and fast-check verify generated answer bounds, stable keys, four-option normalization, XP ranges and bank-scoped storage.
 
 4. **Mutation testing**
    - Target scoring, answer checking, question normalization and import validation once unit coverage is mature.
 
 5. **Fuzzing**
-   - Fuzz JSON imports, simple-line imports, malformed backups, missing fields, duplicate ids, long text and invalid answer indexes.
+   - Current automated coverage includes malformed JSON, empty banks and generated invalid answer indexes. Large files, simple-line imports and duplicate-id fuzzing remain pending.
 
 6. **Integration tests**
    - Validate page-level flows that combine catalog, active bank, storage, quiz attempts and progress dashboard.
@@ -50,6 +59,10 @@ SmartQuiz must be validated before every deployment. The current automated basel
 ```bash
 npm run lint
 npm run validate:schema
+npm test
+npm run test:coverage
+npm run test:e2e
+npm run security:audit
 npm run build
 npm run preview
 npm run deploy
@@ -60,8 +73,10 @@ npm run deploy
 Do not deploy until:
 
 - critical acceptance flows pass manually or through automation;
-- `npm run validate:schema` passes;
+- `npm run test:coverage` passes;
+- `npm run test:e2e` passes;
 - `npm run lint` passes;
+- `npm run security:audit` passes;
 - `npm run build` passes;
 - import/export and backup behavior has been checked if touched;
 - `docs/DEPLOYMENT.md` checklist is complete.

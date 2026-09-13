@@ -29,7 +29,9 @@ https://smartquiz.innovalogic.tech/
 Before deployment:
 
 - Run `npm run lint`.
-- Run `npm run validate:schema`.
+- Run `npm run test:coverage`.
+- Run `npm run test:e2e`.
+- Run `npm run security:audit`.
 - Run `npm run build`.
 - Review `docs/TESTING.md`.
 - Review `docs/DEPLOYMENT.md`.
@@ -37,7 +39,8 @@ Before deployment:
 If touching mobile:
 
 - Run `npm run cap:sync`.
-- Smoke test Android/iOS as applicable.
+- Run Android unit tests and `assembleDebug` when the Android SDK is available.
+- Smoke test Android/iOS as applicable; iOS native builds require macOS.
 
 If touching imports/backups/storage:
 
@@ -46,6 +49,9 @@ If touching imports/backups/storage:
 - Keep `src/components/data/questionBankSchemas.js` aligned with import/export behavior.
 
 ## Documentation Rules
+
+- Run `npm run docs:screenshots` with the app available on port `5172` when user-facing screens change.
+- Keep screenshot sources in `docs/images/`; `npm run docs:build` copies them to the public documentation site.
 
 Update documentation when changing:
 

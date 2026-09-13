@@ -20,13 +20,16 @@ The main idea is:
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
 Validation:
 
 ```bash
 npm run lint
+npm test
+npm run test:coverage
+npm run test:e2e
 npm run build
 ```
 

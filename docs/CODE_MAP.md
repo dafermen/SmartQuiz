@@ -30,6 +30,7 @@ This map shows where the main SmartQuiz features live.
 - `src/components/data/questionBankStorage.js`: local question customizations.
 - `src/components/data/activeBankStorage.js`: per-bank scoped local storage.
 - `src/components/data/learningStorage.js`: favorites, mistakes, question stats, onboarding, mobile settings.
+- `src/components/data/fullBackupStorage.js`: validated portable backup creation and transactional restore.
 
 ## Domain Configuration
 
@@ -61,6 +62,7 @@ This map shows where the main SmartQuiz features live.
 - `src/components/mobile/pwa.js`: service worker registration.
 - `src/components/mobile/notifications.js`: local daily reminders.
 - `src/components/mobile/Onboarding.jsx`: first-run setup.
+- `src/components/mobile/jsonFileTransfer.js`: browser download or native Android/iOS share sheet.
 - `public/sw.js`: offline service worker.
 - `public/manifest.webmanifest`: PWA manifest.
 - `capacitor.config.json`: Capacitor app config.
@@ -72,6 +74,8 @@ This map shows where the main SmartQuiz features live.
 - `scripts/generate-mobile-assets.py`: app icons and splash assets.
 - `scripts/generate-citizenship-bank.py`: citizenship bank generation.
 - `scripts/generate-security701-bank.py`: Security+ bank generation.
+- `vitest.config.js`: unit/property test and coverage configuration.
+- `playwright.config.js`: desktop and mobile browser test configuration.
 
 ## UI Primitives
 

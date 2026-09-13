@@ -38,7 +38,12 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/components/language/LanguageProvider";
 import { getScopedStorageKeyForBank } from "@/components/data/activeBankStorage";
-import { validateFullBackup } from "@/components/data/questionBankSchemas";
+import {
+  buildFullBackup,
+  getFullBackupFilename,
+  restoreFullBackup
+} from "@/components/data/fullBackupStorage";
+import { exportJsonFile } from "@/components/mobile/jsonFileTransfer";
 import {
   activateQuestionBank,
   addCitizenshipStarterBank,
@@ -46,8 +51,7 @@ import {
   deleteQuestionBank,
   duplicateQuestionBank,
   getQuestionBankCatalog,
-  parseQuestionBankImport,
-  saveQuestionBankCatalog
+  parseQuestionBankImport
 } from "@/components/data/questionBankCatalogStorage";
 
 const emptyForm = {
@@ -132,10 +136,6 @@ const readJsonKey = (key, fallback) => {
   }
 };
 
-const writeJsonKey = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
-};
-
 const getBankStats = (bank) => {
   const attempts = readJsonKey(getScopedStorageKeyForBank(bank.id, "quiz_attempts"), []);
   const passed = attempts.filter((attempt) => attempt.passed).length;
@@ -166,16 +166,6 @@ const getTopicStats = (bank) => {
     .slice(0, 4);
 };
 
-const downloadJson = (payload, filename) => {
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = filename;
-  link.click();
-  URL.revokeObjectURL(url);
-};
-
 const readFileAsText = (file) => (
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -184,59 +174,6 @@ const readFileAsText = (file) => (
     reader.readAsText(file);
   })
 );
-
-const buildFullBackup = (catalog) => {
-  const scopedData = {};
-  Object.values(catalog.banks).forEach((bank) => {
-    scopedData[bank.id] = {
-      quiz_attempts: readJsonKey(getScopedStorageKeyForBank(bank.id, "quiz_attempts"), []),
-      user_quiz_settings: readJsonKey(getScopedStorageKeyForBank(bank.id, "user_quiz_settings"), null),
-      gamification_profile: readJsonKey(getScopedStorageKeyForBank(bank.id, "gamification_profile"), null),
-      learning_state: readJsonKey(getScopedStorageKeyForBank(bank.id, "learning_state"), null)
-    };
-  });
-
-  return {
-    version: 1,
-    type: "smartquiz-full-backup",
-    exported_at: new Date().toISOString(),
-    catalog,
-    scopedData,
-    global: {
-      language: localStorage.getItem("smartquiz_language") || "en",
-      onboarding: readJsonKey("smartquiz_onboarding", null),
-      mobile_settings: readJsonKey("smartquiz_mobile_settings", null)
-    }
-  };
-};
-
-const restoreFullBackup = (backup) => {
-  validateFullBackup(backup);
-  if (backup.type !== "smartquiz-full-backup" || !backup.catalog) {
-    throw new Error("Invalid full backup");
-  }
-
-  const restoredCatalog = saveQuestionBankCatalog(backup.catalog);
-  Object.entries(backup.scopedData || {}).forEach(([bankId, records]) => {
-    Object.entries(records || {}).forEach(([name, value]) => {
-      if (value !== null && value !== undefined) {
-        writeJsonKey(getScopedStorageKeyForBank(bankId, name), value);
-      }
-    });
-  });
-
-  if (backup.global?.language) {
-    localStorage.setItem("smartquiz_language", backup.global.language);
-  }
-  if (backup.global?.onboarding) {
-    writeJsonKey("smartquiz_onboarding", backup.global.onboarding);
-  }
-  if (backup.global?.mobile_settings) {
-    writeJsonKey("smartquiz_mobile_settings", backup.global.mobile_settings);
-  }
-
-  return restoredCatalog;
-};
 
 /**
  * Compact table-based manager for local JSON question banks.
@@ -438,19 +375,27 @@ export default function QuestionBankCatalogManager() {
     }
   };
 
-  const handleExportActive = () => {
-    downloadJson({
-      version: 1,
-      exported_at: new Date().toISOString(),
-      bank: activeBank
-    }, `${getBankName(activeBank).toLowerCase().replace(/[^a-z0-9]+/g, "-") || "smartquiz-bank"}.json`);
+  const handleExportActive = async () => {
+    try {
+      await exportJsonFile({
+        version: 1,
+        exported_at: new Date().toISOString(),
+        bank: activeBank
+      }, `${getBankName(activeBank).toLowerCase().replace(/[^a-z0-9]+/g, "-") || "smartquiz-bank"}.json`);
+    } catch {
+      showMessage("error", t("backupExportError"));
+    }
   };
 
-  const handleExportFullBackup = () => {
-    downloadJson(
-      buildFullBackup(catalog),
-      `smartquiz-full-backup-${new Date().toISOString().slice(0, 10)}.json`
-    );
+  const handleExportFullBackup = async () => {
+    try {
+      await exportJsonFile(
+        buildFullBackup(catalog),
+        getFullBackupFilename()
+      );
+    } catch {
+      showMessage("error", t("backupExportError"));
+    }
   };
 
   const handleImportFullBackupFile = async (event) => {
@@ -458,7 +403,7 @@ export default function QuestionBankCatalogManager() {
     if (!file) return;
 
     try {
-      const restoredCatalog = restoreFullBackup(JSON.parse(await readFileAsText(file)));
+      const restoredCatalog = restoreFullBackup(await readFileAsText(file));
       setCatalog(restoredCatalog);
       setExportOpen(false);
       showMessage("success", t("fullBackupImported"));

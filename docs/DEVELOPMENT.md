@@ -9,18 +9,23 @@ Requirements:
 
 ```bash
 npm install
-npm run dev
+npm start
 ```
 
-The Vite development server prints the local URL when it starts.
+The complete local application is available at `http://127.0.0.1:5172/`.
+Use `npm run dev` only when you want Vite to select its default development address.
 
 ## Main Scripts
 
 ```bash
+npm start
 npm run dev
 npm run lint
 npm run validate:schema
 npm test
+npm run test:coverage
+npm run test:e2e
+npm run security:audit
 npm run build
 npm run preview
 npm run deploy
@@ -47,12 +52,22 @@ npm run cap:ios
 1. Create or select a focused branch.
 2. Make a small change.
 3. Run the narrowest relevant validation.
-4. Run `npm run validate:schema` when touching banks, imports, backups or storage.
-5. Run `npm run lint`.
-6. Run `npm run build`.
-7. Update `CURRENT_STATUS.md` if the phase or known risks changed.
+4. Run `npm test` when touching banks, imports, backups, scoring or storage.
+5. Run `npm run test:coverage` to enforce the current coverage floor.
+6. Run `npm run test:e2e` for user-facing flows.
+7. Run `npm run lint` and `npm run security:audit`.
+8. Run `npm run build`.
+9. Update `CURRENT_STATUS.md` if the phase or known risks changed.
 
 ## Documentation Site
+
+Refresh the real desktop and mobile screenshots while the app is running on port `5172`:
+
+```bash
+npm run docs:screenshots
+```
+
+The capture script writes source images to `docs/images/`. The documentation build copies them to `public/docs/images/`.
 
 The navigable documentation experience is generated from the Markdown files in the repository.
 

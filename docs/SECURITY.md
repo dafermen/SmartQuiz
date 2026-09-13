@@ -23,10 +23,12 @@ SmartQuiz is local-first and does not send quiz attempts or custom banks to a ba
 ## Current Security Commands
 
 ```bash
-npm audit --omit=dev
+npm run security:audit
 ```
 
-Use full `npm audit` when changing dependencies.
+The audit includes runtime and development dependencies and fails on high-severity findings. Dependabot, dependency review and a scheduled GitHub Actions audit provide repository-level follow-up.
+
+Validated on 2026-09-10: `npm audit` reported zero known vulnerabilities after compatible dependency updates.
 
 ## Security Before Deployment
 
@@ -34,6 +36,5 @@ Use full `npm audit` when changing dependencies.
 - [ ] Backup restore reviewed if touched.
 - [ ] No secrets committed.
 - [ ] `.env.example` documents expected variables without real values.
-- [ ] Dependencies reviewed.
+- [ ] `npm run security:audit` passes.
 - [ ] Service worker behavior checked when caching changes.
-

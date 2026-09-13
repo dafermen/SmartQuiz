@@ -8,6 +8,9 @@ Run:
 
 ```bash
 npm run lint
+npm run test:coverage
+npm run test:e2e
+npm run security:audit
 npm run build
 ```
 
@@ -17,16 +20,16 @@ If mobile or Capacitor files changed:
 npx cap sync
 ```
 
-Optional dependency check:
+Dependency check:
 
 ```bash
-npm audit
+npm run security:audit
 ```
 
 ## First Load
 
-1. Run `npm run dev`.
-2. Open the Vite URL.
+1. Run `npm start`.
+2. Open `http://127.0.0.1:5172/`.
 3. Confirm the app opens without console errors.
 4. Confirm onboarding appears on a fresh local storage profile.
 5. Select language, daily goal, and reminder preference.

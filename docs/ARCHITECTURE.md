@@ -176,6 +176,7 @@ Files:
 src/components/mobile/mobileApp.js
 src/components/mobile/pwa.js
 src/components/mobile/notifications.js
+src/components/mobile/jsonFileTransfer.js
 src/components/mobile/Onboarding.jsx
 public/sw.js
 capacitor.config.json
@@ -192,7 +193,14 @@ Responsibilities:
 - offline runtime cache.
 - onboarding.
 - local notifications.
+- native JSON sharing for banks and complete backups.
 - Android/iOS sync through Capacitor.
+
+### Portable Backup Boundary
+
+`src/components/data/fullBackupStorage.js` builds and validates versioned full backups. Restore validates the complete payload before writing, keeps data scoped by bank, and attempts to roll back touched keys if device storage fails during restoration.
+
+This is the current cross-device transfer mechanism. Automatic account synchronization is not implemented; the proposed boundary is documented in `docs/adr/0002-optional-cloud-sync.md`.
 
 ## Page Responsibilities
 

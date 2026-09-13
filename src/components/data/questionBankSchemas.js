@@ -56,6 +56,19 @@ export const languageQuestionBankSchema = z.object(
   ]))
 ).partial().passthrough();
 
+const importLanguageQuestionBankSchema = languageQuestionBankSchema.superRefine((bank, context) => {
+  const questionCount = supportedQuestionLanguages.reduce((total, language) => (
+    total + (Array.isArray(bank[language]) ? bank[language].length : 0)
+  ), 0);
+
+  if (questionCount === 0) {
+    context.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Question bank must include at least one question."
+    });
+  }
+});
+
 export const questionBankCustomizationsSchema = z.object({
   customQuestions: languageQuestionBankSchema.optional(),
   questionOverrides: z.object(
@@ -125,7 +138,7 @@ export const questionBankSchema = z.object({
 export const questionBankImportSchema = z.union([
   questionBankSchema,
   z.object({ bank: questionBankSchema }).passthrough(),
-  languageQuestionBankSchema
+  importLanguageQuestionBankSchema
 ]);
 
 export const questionBankCatalogSchema = z.object({
@@ -175,4 +188,3 @@ export const parseWithSchema = (schema, payload, label = "payload") => {
 export const validateQuestionBankImport = (payload) => parseWithSchema(questionBankImportSchema, payload, "question bank import");
 export const validateQuestionBankCatalog = (payload) => parseWithSchema(questionBankCatalogSchema, payload, "question bank catalog");
 export const validateFullBackup = (payload) => parseWithSchema(fullBackupSchema, payload, "full backup");
-

@@ -14,6 +14,36 @@ You can choose:
 
 These settings are stored on your device. You can change mobile settings later in `Settings > Mobile`.
 
+## Application Tour
+
+The following images are captured from the real application in Spanish. SmartQuiz offers the same workflows in English.
+
+### Desktop Home
+
+The main dashboard keeps the active bank, study actions, modules, and recent progress in one place.
+
+![SmartQuiz desktop home dashboard](images/smartquiz-home-desktop.png)
+
+### Question Bank Administration
+
+The bank table supports search, sorting, pagination, activation, duplication, import, export, and complete backups.
+
+![SmartQuiz question bank administration](images/smartquiz-banks-desktop.png)
+
+### Progress Dashboard
+
+Progress is isolated per bank and highlights scores, trends, difficult topics, favorites, and missed questions.
+
+![SmartQuiz progress dashboard](images/smartquiz-progress-desktop.png)
+
+### Mobile Experience
+
+The same local-first study flow adapts to narrow screens and touch controls.
+
+![SmartQuiz mobile home](images/smartquiz-home-mobile.png)
+
+![SmartQuiz mobile quiz](images/smartquiz-quiz-mobile.png)
+
 ## Home
 
 The Home page is your main study dashboard.
@@ -233,6 +263,10 @@ Import a complete SmartQuiz bank from `Settings > Question Banks > Import`.
 ### Full Backup
 
 Use full backup when moving all banks and progress to another device.
+
+On Android and iOS, exporting opens the system share sheet so the JSON can be saved to Files, Drive, email or another destination available on the device. In a browser, SmartQuiz downloads the JSON file normally. Import the same file from `Settings > Question Banks > Backup` on the destination device.
+
+SmartQuiz validates the complete file before replacing local data. Keep at least one recent backup outside the device.
 
 The backup includes:
 

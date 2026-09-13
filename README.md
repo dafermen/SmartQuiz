@@ -10,6 +10,10 @@ Live demo: [https://smartquiz.innovalogic.tech/](https://smartquiz.innovalogic.t
 
 Navigable docs: [https://smartquiz.innovalogic.tech/docs/](https://smartquiz.innovalogic.tech/docs/)
 
+![SmartQuiz home dashboard](docs/images/smartquiz-home-desktop.png)
+
+See the [illustrated end-user guide](docs/USER_GUIDE.md) for the desktop and mobile workflows.
+
 ## What It Includes
 
 - Multiple local question banks with separate progress, themes, limits, and XP.
@@ -18,6 +22,7 @@ Navigable docs: [https://smartquiz.innovalogic.tech/docs/](https://smartquiz.inn
   - US Citizenship 2025, English and Spanish.
   - CompTIA Security+ SY0-701 practice, English and Spanish.
 - Question bank catalog manager with activation, search, sorting, pagination, duplication, import, export, and full backup.
+- Portable full backups with validated restore, progress preservation, and native Android/iOS sharing.
 - Visual question editor for creating, editing, duplicating, deleting, and overriding questions locally.
 - Flexible question import:
   - SmartQuiz JSON.
@@ -59,12 +64,19 @@ The navigable site is generated with `npm run docs:build` and is included automa
 
 ## Quick Start
 
+Start the complete local application on port `5172` with one command:
+
 ```bash
-npm install
-npm run dev
+npm start
 ```
 
-Then open the local Vite URL.
+First installation only:
+
+```bash
+npm install
+```
+
+Then open `http://127.0.0.1:5172/`.
 
 Production build:
 
@@ -76,6 +88,15 @@ Lint:
 
 ```bash
 npm run lint
+```
+
+Automated quality checks:
+
+```bash
+npm test
+npm run test:coverage
+npm run test:e2e
+npm run security:audit
 ```
 
 Sync mobile projects:

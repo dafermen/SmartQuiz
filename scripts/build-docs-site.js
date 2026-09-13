@@ -5,6 +5,8 @@ import process from "node:process";
 const rootDir = path.resolve(process.cwd());
 const outputDir = path.join(rootDir, "public", "docs");
 const assetDir = path.join(outputDir, "assets");
+const sourceImageDir = path.join(rootDir, "docs", "images");
+const outputImageDir = path.join(outputDir, "images");
 
 const docs = [
   { section: "Producto", title: "Inicio", source: "README.md", slug: "index" },
@@ -26,7 +28,8 @@ const docs = [
   { section: "Gobierno", title: "Seguridad", source: "docs/SECURITY.md", slug: "security" },
   { section: "Gobierno", title: "Agentes Codex", source: "AGENTS.md", slug: "agents" },
   { section: "Gobierno", title: "Licencias de terceros", source: "THIRD_PARTY_LICENSES.md", slug: "third-party-licenses" },
-  { section: "Decisiones", title: "ADR 0001", source: "docs/adr/0001-local-first-smartquiz.md", slug: "adr-0001-local-first-smartquiz" }
+  { section: "Decisiones", title: "ADR 0001", source: "docs/adr/0001-local-first-smartquiz.md", slug: "adr-0001-local-first-smartquiz" },
+  { section: "Decisiones", title: "ADR 0002", source: "docs/adr/0002-optional-cloud-sync.md", slug: "adr-0002-optional-cloud-sync" }
 ];
 
 const sourceToSlug = new Map(docs.map((doc) => [normalizePath(doc.source).toLowerCase(), doc.slug]));
@@ -75,11 +78,29 @@ function normalizeLink(href) {
   return href;
 }
 
+function normalizeImageLink(href) {
+  const normalized = normalizePath(href);
+
+  if (normalized.startsWith("docs/images/")) {
+    return `./images/${normalized.slice("docs/images/".length)}`;
+  }
+
+  if (normalized.startsWith("images/")) {
+    return `./${normalized}`;
+  }
+
+  return href;
+}
+
 function renderInline(value) {
   let html = escapeHtml(value);
 
   html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
   html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+  html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_match, label, href) => {
+    const normalizedHref = normalizeImageLink(href.trim());
+    return `<img class="doc-image" src="${escapeHtml(normalizedHref)}" alt="${label}" loading="lazy" decoding="async" />`;
+  });
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, href) => {
     const normalizedHref = normalizeLink(href.trim());
     const external = /^https?:\/\//.test(normalizedHref) ? ' target="_blank" rel="noreferrer"' : "";
@@ -290,7 +311,7 @@ function renderPage(doc, rendered, index, searchIndex) {
   <div class="docs-shell">
     <aside class="docs-sidebar" id="docs-sidebar" aria-label="Documentos">
       <a class="mobile-back" href="/">Volver a la aplicacion</a>
-      ${renderSidebar(doc.slug)}
+${renderSidebar(doc.slug)}
     </aside>
 
     <main id="contenido" class="docs-main" tabindex="-1">
@@ -391,6 +412,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .markdown-body code { background: color-mix(in srgb, var(--sq-primary) 12%, transparent); border-radius: .35rem; padding: .12rem .32rem; font-size: .92em; }
 .markdown-body pre { overflow: auto; background: var(--sq-code); color: #f8fafc; border-radius: .5rem; padding: 1rem; }
 .markdown-body pre code { background: transparent; color: inherit; padding: 0; }
+.markdown-body p:has(> .doc-image) { margin: 1.25rem 0 1.75rem; }
+.doc-image { display: block; width: 100%; height: auto; border: 1px solid var(--sq-border); border-radius: .5rem; background: var(--sq-bg); box-shadow: 0 14px 34px rgba(22, 32, 51, .12); }
 blockquote { border-left: 4px solid var(--sq-accent); margin: 1.2rem 0; padding: .2rem 1rem; color: var(--sq-muted); background: color-mix(in srgb, var(--sq-accent) 12%, transparent); }
 .table-wrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--sq-border); border-radius: .5rem; }
 table { width: 100%; border-collapse: collapse; min-width: 620px; }
@@ -475,6 +498,9 @@ const js = `(() => {
 })();`;
 
 fs.mkdirSync(assetDir, { recursive: true });
+if (fs.existsSync(sourceImageDir)) {
+  fs.cpSync(sourceImageDir, outputImageDir, { recursive: true });
+}
 
 const renderedDocs = docs.map((doc) => {
   const sourcePath = path.join(rootDir, doc.source);
@@ -501,7 +527,10 @@ renderedDocs.forEach(({ doc, rendered }, index) => {
 fs.writeFileSync(path.join(assetDir, "docs.css"), css);
 fs.writeFileSync(path.join(assetDir, "docs.js"), js);
 
-const generatedFiles = renderedDocs.length + 2;
+const generatedImageCount = fs.existsSync(sourceImageDir)
+  ? fs.readdirSync(sourceImageDir).filter((filename) => filename.toLowerCase().endsWith(".png")).length
+  : 0;
+const generatedFiles = renderedDocs.length + 2 + generatedImageCount;
 console.log(`SmartQuiz documentation site generated in public/docs (${generatedFiles} files).`);
 
 

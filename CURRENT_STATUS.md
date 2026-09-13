@@ -41,6 +41,7 @@ Quality automation and release-hardening phase.
 - Added reproducible screenshots of the real desktop and mobile application to the README and end-user guide. Refresh them with `npm run docs:screenshots` while the app is running on port `5172`.
 - Confirmed that production DNS points to GitHub Pages; SmartQuiz does not currently require Docker or an SSH server deployment.
 - Standardized CI, Android, iOS, and security workflows on Node.js 22 to satisfy the Capacitor 8 runtime requirement.
+- Updated official GitHub Actions to supported Node.js 24-based releases; Android and iOS workflows now run when their own definitions change.
 - Added ADR 0002 for a future opt-in cloud-sync boundary; no backend is implemented.
 
 ## Validation Completed

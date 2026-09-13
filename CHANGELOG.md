@@ -4,6 +4,7 @@ All notable changes to SmartQuiz should be documented here.
 
 ## Unreleased
 
+- Standardized local and GitHub Actions builds on Node.js 22, as required by Capacitor 8.
 - Added reproducible desktop and mobile screenshots from the real application.
 - Added an illustrated application tour to the end-user guide and README.
 - Documented the GitHub Pages production topology, DNS destination, and why Docker or SSH deployment is not currently required.

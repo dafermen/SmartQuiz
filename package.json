@@ -16,6 +16,9 @@
     "json"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "vite --host 127.0.0.1 --port 5172",
     "dev": "vite",

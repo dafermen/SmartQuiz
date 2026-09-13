@@ -28,7 +28,7 @@ npm run security:audit
 
 The audit includes runtime and development dependencies and fails on high-severity findings. Dependabot, dependency review and a scheduled GitHub Actions audit provide repository-level follow-up.
 
-Validated on 2026-09-10: `npm audit` reported zero known vulnerabilities after compatible dependency updates.
+Validated on 2026-09-13: `npm audit` reported zero known vulnerabilities after compatible dependency updates.
 
 ## Security Before Deployment
 

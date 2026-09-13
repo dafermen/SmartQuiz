@@ -4,7 +4,7 @@
 
 Requirements:
 
-- Node.js 20 or newer.
+- Node.js 22 or newer. Capacitor 8 requires Node.js 22.
 - npm.
 
 ```bash

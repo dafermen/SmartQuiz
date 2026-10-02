@@ -150,3 +150,7 @@ SmartQuiz does not send attempts or question banks to a server. User data lives 
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## DOC-STD-20261002 — Navegación documental
+
+Consultar el [mapa documental](docs/README.md) para encontrar fuentes oficiales, rutas de lectura y reglas de mantenimiento del proyecto.

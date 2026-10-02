@@ -1,4 +1,4 @@
-﻿# CURRENT_STATUS.md
+# CURRENT_STATUS.md
 
 Last updated: 2026-09-13
 
@@ -81,3 +81,7 @@ Recommended before a full release:
 3. Add complete quiz/exam/offline Playwright scenarios and accessibility checks.
 4. Review mobile CI results and add signed release workflows when store credentials are available.
 5. Select a cloud provider only after explicit approval of ADR 0002, privacy requirements and operating cost.
+
+## DOC-STD-20261002 — Organización documental
+
+El [mapa documental](docs/README.md) identifica fuentes canónicas y reglas de mantenimiento. Se conservan los hitos de implementación y la aceptación pendiente. Esta entrega documental registra validación y publicación por separado.

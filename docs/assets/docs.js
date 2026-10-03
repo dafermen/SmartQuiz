@@ -1,13 +1,14 @@
 (() => {
   const root = document.documentElement;
-  const savedTheme = localStorage.getItem("smartquiz_docs_theme") || "light";
+  let savedTheme = "light";
+  try { savedTheme = localStorage.getItem("smartquiz_docs_theme") || "light"; } catch { /* Theme remains usable. */ }
   root.dataset.theme = savedTheme;
 
   const themeToggle = document.getElementById("theme-toggle");
   themeToggle?.addEventListener("click", () => {
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
-    localStorage.setItem("smartquiz_docs_theme", next);
+    try { localStorage.setItem("smartquiz_docs_theme", next); } catch { /* In-memory preference. */ }
   });
 
   const sidebarButton = document.querySelector(".sidebar-toggle");

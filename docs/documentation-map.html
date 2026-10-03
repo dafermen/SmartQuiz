@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Despliegue | SmartQuiz Docs</title>
+  <title>Mapa documental | SmartQuiz Docs</title>
   <meta name="description" content="Documentacion navegable de SmartQuiz." />
   <link rel="stylesheet" href="./assets/docs.css" />
   <link rel="stylesheet" href="./assets/innovalogic.css" />
@@ -39,7 +39,7 @@
     <details class="docs-sidebar-section nav-section" open>
       <summary>Producto</summary>
       <ul>
-        <li><a class=""  href="./">Inicio</a></li><li><a class=""  href="./documentation-map.html">Mapa documental</a></li><li><a class=""  href="./user-guide.html">Guia de usuario</a></li><li><a class=""  href="./troubleshooting.html">Solucion de problemas</a></li>
+        <li><a class=""  href="./">Inicio</a></li><li><a class="active" aria-current="page" href="./documentation-map.html">Mapa documental</a></li><li><a class=""  href="./user-guide.html">Guia de usuario</a></li><li><a class=""  href="./troubleshooting.html">Solucion de problemas</a></li>
       </ul>
     </details>
 
@@ -67,7 +67,7 @@
     <details class="docs-sidebar-section nav-section" open>
       <summary>Entrega</summary>
       <ul>
-        <li><a class="active" aria-current="page" href="./deployment.html">Despliegue</a></li><li><a class=""  href="./github-workflow.html">Flujo GitHub</a></li><li><a class=""  href="./operations.html">Operaciones</a></li>
+        <li><a class=""  href="./deployment.html">Despliegue</a></li><li><a class=""  href="./github-workflow.html">Flujo GitHub</a></li><li><a class=""  href="./operations.html">Operaciones</a></li>
       </ul>
     </details>
 
@@ -89,70 +89,75 @@
     <main id="contenido" class="docs-main" tabindex="-1">
       <button class="sidebar-toggle" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu de docs</button>
       <div id="search-results" class="search-results" hidden></div>
-      <p class="eyebrow">Entrega</p>
+      <p class="eyebrow">Producto</p>
       
       <article class="markdown-body">
-        <p># Deployment</p>
-<p>SmartQuiz is deployed as a static Vite build to GitHub Pages.</p>
-<p>Production URL:</p>
-<pre><code>https://smartquiz.innovalogic.tech/</code></pre>
-<h2 id="production-topology">Production Topology</h2>
-<ul>
-<li>Hosting: GitHub Pages from the repository <code>gh-pages</code> branch.</li>
-<li>Custom domain: <code>smartquiz.innovalogic.tech</code>.</li>
-<li>DNS: the subdomain is a CNAME to <code>dafermen.github.io</code>.</li>
-<li>Backend: none. SmartQuiz is a client-side, local-first application.</li>
-<li>Docker: not used and not required for the current architecture.</li>
-<li>SSH server: not part of the SmartQuiz production path while DNS points to GitHub Pages.</li>
-</ul>
-<p>Do not copy the build to an unrelated SSH server unless the DNS and hosting architecture are intentionally migrated first.</p>
-<h2 id="build">Build</h2>
-<pre><code>npm run build</code></pre>
-<p>To refresh the real screenshots used by the documentation, start the app on port <code>5172</code> and run:</p>
-<pre><code>npm run docs:screenshots</code></pre>
-<p>The build regenerates the static documentation site and creates <code>dist/404.html</code> for GitHub Pages SPA fallback.</p>
-<h2 id="github-pages-deploy">GitHub Pages Deploy</h2>
-<pre><code>npm run deploy</code></pre>
-<p>This runs:</p>
-<pre><code>npm run build
-gh-pages -d dist</code></pre>
-<h2 id="pre-deployment-checklist">Pre-Deployment Checklist</h2>
-<ul>
-<li>[ ] Acceptance flows verified.</li>
-<li>[ ] <code>npm run test:coverage</code> passed.</li>
-<li>[ ] <code>npm run test:e2e</code> passed on desktop and mobile emulation.</li>
-<li>[ ] Import/export touched? Validate malformed and valid JSON.</li>
-<li>[ ] Storage touched? Validate bank scoping and backup restore.</li>
-<li>[ ] Mobile touched? Run Capacitor sync and device smoke test.</li>
-<li>[ ] Offline touched? Validate service worker behavior.</li>
-<li>[ ] <code>npm run lint</code> passed.</li>
-<li>[ ] <code>npm run security:audit</code> passed.</li>
-<li>[ ] <code>npm run build</code> passed.</li>
-<li>[ ] Open /docs/ in the build or preview server and confirm the sidebar, search, theme toggle and back-to-app link work.</li>
-<li>[ ] <code>public/CNAME</code> contains <code>smartquiz.innovalogic.tech</code> as plain text.</li>
-<li>[ ] <code>package.json</code> has <code>homepage</code>, <code>predeploy</code> and <code>deploy</code>.</li>
-</ul>
-<h2 id="post-deployment-checks">Post-Deployment Checks</h2>
-<ul>
-<li>[ ] Open https://smartquiz.innovalogic.tech/.</li>
-<li>[ ] Open https://smartquiz.innovalogic.tech/docs/.</li>
-<li>[ ] Hard-refresh the page.</li>
-<li>[ ] Open a nested route and refresh to confirm SPA fallback.</li>
-<li>[ ] Start a quiz.</li>
-<li>[ ] Open Settings and confirm bank manager loads.</li>
-<li>[ ] Export a backup.</li>
-</ul>
+        <h1 id="smartquiz-mapa-documental-y-mantenimiento">SmartQuiz — Mapa documental y mantenimiento</h1>
+<h2 id="doc-std-20261002-fuentes-canonicas">DOC-STD-20261002 — Fuentes canónicas</h2>
+<p>Estándar documental v1.0 · revisión 2026-10-02. Idioma principal: español.</p>
+<p>Aplicación de cuestionarios con persistencia local y contenedor móvil.</p>
+<p>Mantener el progreso separado por banco y ofrecer exportación antes de borrar almacenamiento. GitHub Pages publica la web; los paquetes móviles tienen su propia validación. Las capturas proceden de docs/images y se copian mediante el generador del portal.</p>
+<div class="table-wrap"><table><thead><tr>
+<th>Necesidad</th><th>Fuente oficial</th>
+</tr></thead><tbody>
+<tr>
+<td>Presentación</td><td><a href="./documentation-map.html">README.md</a></td>
+</tr>
+<tr>
+<td>Estado vigente</td><td><a href="./current-status.html">CURRENT_STATUS.md</a></td>
+</tr>
+<tr>
+<td>Desarrollo</td><td><a href="./development.html">docs/DEVELOPMENT.md</a></td>
+</tr>
+<tr>
+<td>Arquitectura</td><td><a href="./architecture.html">docs/ARCHITECTURE.md</a></td>
+</tr>
+<tr>
+<td>Uso</td><td><a href="./user-guide.html">docs/USER_GUIDE.md</a></td>
+</tr>
+<tr>
+<td>API / contratos</td><td><a href="./api.html">docs/API.md</a></td>
+</tr>
+<tr>
+<td>Pruebas</td><td><a href="./testing.html">docs/TESTING.md</a></td>
+</tr>
+<tr>
+<td>Seguridad</td><td><a href="./security.html">docs/SECURITY.md</a></td>
+</tr>
+<tr>
+<td>Despliegue</td><td><a href="./deployment.html">docs/DEPLOYMENT.md</a></td>
+</tr>
+<tr>
+<td>Operación</td><td><a href="./operations.html">docs/OPERATIONS.md</a></td>
+</tr>
+<tr>
+<td>Solución de problemas</td><td><a href="./troubleshooting.html">docs/TROUBLESHOOTING.md</a></td>
+</tr>
+<tr>
+<td>Código</td><td><a href="./code-map.html">docs/CODE_MAP.md</a></td>
+</tr>
+<tr>
+<td>Guía de calidad</td><td><a href="./qa-guide.html">docs/QA_GUIDE.md</a></td>
+</tr>
+<tr>
+<td>Historia</td><td><a href="./changelog.html">CHANGELOG.md</a></td>
+</tr>
+</tbody></table></div>
+<p>Para probar el producto, comenzar por presentación, estado y uso. Para desarrollar, continuar con instalación, arquitectura y pruebas. Para operar, consultar despliegue, seguridad y recuperación. El índice detallado existente conserva su validez.</p>
+<h3 id="evidencia-y-actualizacion">Evidencia y actualización</h3>
+<p>Separar estado vigente, historia y decisiones. Los resultados de pruebas fechados conservan su valor histórico. Este mapa no vuelve a ejecutar todos los comandos documentados ni cierra la aceptación pendiente del producto. Registrar las comprobaciones realmente ejecutadas, su entorno y sus límites antes de publicar.</p>
+<p>Actualizar la guía de origen al cambiar comandos, configuración, comportamiento, permisos o despliegue. Mantener enlaces y rutas del portal. Usar capturas reales con datos sintéticos; nunca publicar valores de .env, claves, datos de usuarios ni logs operativos. Un commit local, un commit remoto y un artefacto desplegado son estados diferentes.</p>
       </article>
       <nav class="pager" aria-label="Paginas cercanas">
-        <a href="./testing.html"><span>Anterior</span>Pruebas</a>
-        <a href="./github-workflow.html"><span>Siguiente</span>Flujo GitHub</a>
+        <a href="./"><span>Anterior</span>Inicio</a>
+        <a href="./user-guide.html"><span>Siguiente</span>Guia de usuario</a>
       </nav>
     </main>
 
     <aside class="docs-toc" aria-label="En esta pagina">
       <a class="desktop-back" href="/">Volver a la aplicacion</a>
       <h2>En esta pagina</h2>
-      <ol><li class="toc-level-2"><a href="#production-topology">Production Topology</a></li><li class="toc-level-2"><a href="#build">Build</a></li><li class="toc-level-2"><a href="#github-pages-deploy">GitHub Pages Deploy</a></li><li class="toc-level-2"><a href="#pre-deployment-checklist">Pre-Deployment Checklist</a></li><li class="toc-level-2"><a href="#post-deployment-checks">Post-Deployment Checks</a></li></ol>
+      <ol><li class="toc-level-1"><a href="#smartquiz-mapa-documental-y-mantenimiento">SmartQuiz — Mapa documental y mantenimiento</a></li><li class="toc-level-2"><a href="#doc-std-20261002-fuentes-canonicas">DOC-STD-20261002 — Fuentes canónicas</a></li><li class="toc-level-3"><a href="#evidencia-y-actualizacion">Evidencia y actualización</a></li></ol>
     </aside>
   </div>
 </body>

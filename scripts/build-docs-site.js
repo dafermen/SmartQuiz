@@ -10,6 +10,7 @@ const outputImageDir = path.join(outputDir, "images");
 
 const docs = [
   { section: "Producto", title: "Inicio", source: "README.md", slug: "index" },
+  { section: "Producto", title: "Mapa documental", source: "docs/README.md", slug: "documentation-map" },
   { section: "Producto", title: "Guia de usuario", source: "docs/USER_GUIDE.md", slug: "user-guide" },
   { section: "Producto", title: "Solucion de problemas", source: "docs/TROUBLESHOOTING.md", slug: "troubleshooting" },
   { section: "Calidad", title: "Guia QA", source: "docs/QA_GUIDE.md", slug: "qa-guide" },

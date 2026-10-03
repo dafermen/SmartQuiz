@@ -1,6 +1,14 @@
 # CURRENT_STATUS.md
 
-Last updated: 2026-09-13
+Last updated: 2026-10-03
+
+## Documentation delivery checkpoint — 2026-10-03
+
+- The generated portal includes the canonical documentation map at `/docs/documentation-map.html`; internal status navigation was checked on desktop and mobile.
+- Local validation: lint PASS; 24 unit/property/contract tests and coverage floors PASS; production build PASS; all 8 Playwright checks PASS. The map also passed at 1440px and 390px with its status link resolving, no JavaScript errors and no horizontal overflow.
+- Compatible brace-expansion patches were applied in the lockfile. The complete dependency audit still reports 7 high entries caused by one braces advisory (GHSA-vfj7-8cjw-p6xm), affecting build/deployment tools. npm reports braces 3.0.3 as latest; its proposed Tailwind 4 migration is outside this documentation change. The former zero-alert result below is historical.
+- Publication of source documentation and deployment of `/docs/` are tracked separately. The prepared documentation candidate has not been deployed. The security gate remains failed; no full application release or mobile package is approved by this checkpoint.
+- Next: resolve the build-tool advisory or obtain an explicit, documentation-only delivery exception before publishing static `/docs/` assets. Preserve the existing application assets and CNAME if that scoped delivery is authorized.
 
 ## Current Phase
 

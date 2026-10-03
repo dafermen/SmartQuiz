@@ -255,12 +255,12 @@ function groupDocs() {
 
 function renderSidebar(activeSlug) {
   return groupDocs().map((section) => `
-    <section class="docs-sidebar-section">
-      <h2>${escapeHtml(section.name)}</h2>
+    <details class="docs-sidebar-section nav-section" open>
+      <summary>${escapeHtml(section.name)}</summary>
       <ul>
-        ${section.docs.map((doc) => `<li><a class="${doc.slug === activeSlug ? "active" : ""}" href="${pageHref(doc.slug)}">${escapeHtml(doc.title)}</a></li>`).join("")}
+        ${section.docs.map((doc) => `<li><a class="${doc.slug === activeSlug ? "active" : ""}" ${doc.slug === activeSlug ? 'aria-current="page"' : ""} href="${pageHref(doc.slug)}">${escapeHtml(doc.title)}</a></li>`).join("")}
       </ul>
-    </section>`).join("\n");
+    </details>`).join("\n");
 }
 
 function renderToc(toc) {
@@ -285,8 +285,10 @@ function renderPage(doc, rendered, index, searchIndex) {
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="Documentacion navegable de SmartQuiz." />
   <link rel="stylesheet" href="./assets/docs.css" />
+  <link rel="stylesheet" href="./assets/innovalogic.css" />
   <script>window.SMARTQUIZ_DOCS_INDEX = ${searchData};</script>
   <script defer src="./assets/docs.js"></script>
+  <script defer src="./assets/reading-tools.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -319,6 +321,7 @@ ${renderSidebar(doc.slug)}
       <button class="sidebar-toggle" type="button" aria-controls="docs-sidebar" aria-expanded="false">Menu de docs</button>
       <div id="search-results" class="search-results" hidden></div>
       <p class="eyebrow">${escapeHtml(doc.section)}</p>
+      ${doc.slug === 'index' ? '<nav class="docs-reading-paths" aria-label="Recorridos de lectura"><a href="./documentation-map.html"><strong>Conocer el producto</strong><span>Propósito y documentación.</span></a><a href="./user-guide.html"><strong>Aprender a usarlo</strong><span>Bancos, práctica y exámenes.</span></a><a href="./development.html"><strong>Explorar el desarrollo</strong><span>Entorno, arquitectura y pruebas.</span></a></nav>' : ''}
       <article class="markdown-body">
         ${rendered.body}
       </article>
@@ -451,14 +454,15 @@ th { background: color-mix(in srgb, var(--sq-primary) 12%, transparent); }
 
 const js = `(() => {
   const root = document.documentElement;
-  const savedTheme = localStorage.getItem("smartquiz_docs_theme") || "light";
+  let savedTheme = "light";
+  try { savedTheme = localStorage.getItem("smartquiz_docs_theme") || "light"; } catch { /* Theme remains usable. */ }
   root.dataset.theme = savedTheme;
 
   const themeToggle = document.getElementById("theme-toggle");
   themeToggle?.addEventListener("click", () => {
     const next = root.dataset.theme === "dark" ? "light" : "dark";
     root.dataset.theme = next;
-    localStorage.setItem("smartquiz_docs_theme", next);
+    try { localStorage.setItem("smartquiz_docs_theme", next); } catch { /* In-memory preference. */ }
   });
 
   const sidebarButton = document.querySelector(".sidebar-toggle");
@@ -517,7 +521,7 @@ const searchIndex = renderedDocs.map(({ doc, markdown }) => ({
   title: doc.title,
   section: doc.section,
   href: pageHref(doc.slug),
-  text: markdown.replace(/```[\s\S]*?```/g, " ").replace(/[#>*`\-[\]()|]/g, " ").replace(/\s+/g, " ").trim().slice(0, 1200)
+  text: markdown.replace(/```[^\n]*\n|```/g, " ").replace(/[#>*`\-[\]()|]/g, " ").replace(/\s+/g, " ").trim()
 }));
 
 renderedDocs.forEach(({ doc, rendered }, index) => {
@@ -527,6 +531,7 @@ renderedDocs.forEach(({ doc, rendered }, index) => {
 
 fs.writeFileSync(path.join(assetDir, "docs.css"), css);
 fs.writeFileSync(path.join(assetDir, "docs.js"), js);
+for (const asset of ["innovalogic.css", "reading-tools.js"]) fs.copyFileSync(path.join(rootDir, "docs", "site", asset), path.join(assetDir, asset));
 
 const generatedImageCount = fs.existsSync(sourceImageDir)
   ? fs.readdirSync(sourceImageDir).filter((filename) => filename.toLowerCase().endsWith(".png")).length

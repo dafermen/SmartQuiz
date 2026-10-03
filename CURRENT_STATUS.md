@@ -1,5 +1,9 @@
 # CURRENT_STATUS.md
 
+## Documentation web navigation v1 — local candidate, 2026-10-03
+
+InnovaLogic documentation theme, reading paths and reading controls are implemented. Production build and browser at 1440 and 390 px PASS, including the final compact mobile header. The existing dependency audit gate remains failed. See [navigation maintenance and evidence](docs/WEB_NAVIGATION.md). GitHub and server delivery of this revision are pending; earlier deployment status below remains historical evidence.
+
 Last updated: 2026-10-03
 
 ## Documentation delivery checkpoint — 2026-10-03
